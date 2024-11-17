@@ -8,6 +8,13 @@
 ##
 #############################################################################
 #############################################################################
+# assemble right contents
+body.panel.right <- primePanel(
+  body.panel.right.plot.conc,
+  body.panel.right.plot.cov,
+  body.panel.right.plot.hist,
+  body.panel.right.table.demo
+)
 
 body.main <- moveable(
   body.model.info, # model infor panel # ui.part1.R
