@@ -1,0 +1,30 @@
+#chat-container .chat-list-body{
+  height: 100%!important;
+}
+#tracksimulations, #reportgraphstatus{
+  color: red!important;
+}
+#summaryrestbl table{
+  width:100%!important;
+}
+
+.chat-list-body .selectize-input {
+    min-height: 20px!important;
+}
+
+#summaryexptbl table{
+  width: 100%!important;
+}
+
+#summaryexptbl table tr>td{
+  font-weight: bold;
+}
+#summaryexptbl table th {
+    background-color: gray;
+    color: white;
+}
+
+
+#chat-container {
+  z-index: 101;
+}
