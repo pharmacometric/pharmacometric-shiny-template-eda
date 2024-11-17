@@ -20,12 +20,15 @@ for (ui_each in c(
   "includes/body",
   "includes/footer"
 )) {
-  this.path = ui_each
+
   this.files = list.files(ui_each,pattern ="^ui\\.",
              full.names = TRUE,
-             recursive = FALSE)
-  for(uifile in this.files)
+             recursive = TRUE)
+  for(uifile in this.files){
+    this.path = dirname(uifile)
     source(uifile, local = T)
+  }
+
 }
 
 
