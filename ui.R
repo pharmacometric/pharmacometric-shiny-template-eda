@@ -20,15 +20,15 @@ for (ui_each in c(
   "includes/body",
   "includes/footer"
 )) {
-
-  this.files = list.files(ui_each,pattern ="^ui\\.",
-             full.names = TRUE,
-             recursive = TRUE)
-  for(uifile in this.files){
-    this.path = dirname(uifile)
+  this.files <- list.files(ui_each,
+    pattern = "^ui\\.",
+    full.names = TRUE,
+    recursive = TRUE
+  )
+  for (uifile in this.files) {
+    this.path <- dirname(uifile)
     source(uifile, local = T)
   }
-
 }
 
 
