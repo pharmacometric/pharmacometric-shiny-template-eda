@@ -107,9 +107,5 @@ body.panel.right.tables <- card.pro(
 
 
 
-# assemble right contents
-body.panel.right <- primePanel(
-  body.panel.right.plots,
-  body.panel.right.tables
-)
+
 
