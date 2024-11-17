@@ -1,4 +1,4 @@
-# Standard Exploratory Data Analysis Template Based on Shiny
+# Standard Exploratory Data Analysis Template [Shiny]
 
 <img src="www/preview3.png">
 
