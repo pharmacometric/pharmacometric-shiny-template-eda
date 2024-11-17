@@ -1,4 +1,4 @@
-# <img src="www/logo.jpg"> Standard R shiny template for PK/PD/QSP simulations
+# <img src="www/logo.jpg"> Standard Exploratory Data Analysis Template Based on Shiny
 
 <img src="www/preview3.png">
 
