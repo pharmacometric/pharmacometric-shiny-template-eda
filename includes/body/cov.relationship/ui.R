@@ -13,7 +13,7 @@
 body.panel.right.plot.cov <- card.pro(
   title = "Covariate Relationship",
   icon = icon("chart-simple"),
-  header.bg = "yellow",
+  header.bg = "blueDark",
   collapsed = TRUE,
   xtra.header.content = textOutput("reportgraphstatus"),
   plotOutput("distPlot", height = 600),
