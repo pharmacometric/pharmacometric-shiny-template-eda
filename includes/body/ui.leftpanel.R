@@ -17,17 +17,29 @@ body.panel.left.setup <- card.pro(
   colorbtn = FALSE,
   expandbtn = FALSE,
   editbtn = TRUE,
-  "This section allows initiation of the runs, edit of general parameters and monitoring of progress",
+  "Data upload, subsetting and variable declarations",
   tabs = list(
     tabEntry(
       "Main",
-      numericInput("samplesize", "Number of participants (per arm)", 3, width = "100%"),
-      numericInput("enddoseat", "Treatment duration (wks)", 30, width = "100%"),
-      numericInput("samplingfrequency", "Sampling frequency (hr)", 1, width = "100%"),
-      numericInput("simulationseed", "Simulation seed", 1320, width = "100%"),
-      actionButton("runsimbutton", "Start simulation", icon = icon("running"))
+      checkboxGroupInput(
+        "checkGroup",
+        "Dataset for EDA",
+        choices = list("Example dataset" = 1, "User dataset" = 2),
+        selected = 1
+      ),
+      fileInput("fileupd","Upload data",width = "100%"),
+      textAreaInput("subsetting1", "Subset data A","DV != NULL",width = "100%"),
+      textAreaInput("subsetting2", "Subset data B","EVID == 1",width = "100%"),
+      actionButton("rundatabutton", "Update data", icon = icon("running"))
     ),
-    tabEntry("Parameters", uiOutput("mrgsolveparms"))
+    tabEntry("Variable Matching",
+             selectInput("depvar", "Dependent variable", choices = "DV",width = "100%"),
+             selectInput("depvar", "Independent variable", choices = "TIME",width = "100%"),
+             selectInput("depvar", "Treatment variable", choices = "TRT",width = "100%"),
+             selectInput("depvar", "Dose variable", choices = "DOSE",width = "100%"),
+             selectInput("depvar", "Body weight variable", choices = "WT",width = "100%"),
+             selectInput("depvar", "Flag variable", choices = "FLAG",width = "100%"),
+             )
   ),
   footer = textOutput("tracksimulations")
 )
