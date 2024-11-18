@@ -38,10 +38,10 @@ output$rawrestbl = renderDT(
   summary01(), options = list(lengthChange = FALSE), filter = list(position = "top")
 )
 
-output$rhstable1 <- renderRHandsontable({
-  rhandsontable(regimenDT, width = "100%") %>%
-    hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE)
-})
+output$rhstable1 <- renderDT(
+  regimenDT, options = list(lengthChange = FALSE), filter = list(position = "top")
+)
+
 
 
 
