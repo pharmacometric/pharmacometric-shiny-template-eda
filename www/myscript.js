@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
+document.querySelectorAll('.jarviswidget .widget-body .padding-15').forEach(function(e) {
+   e.style = "overflow-x: auto"
+});
+
 //include shadow for cards if not included
 document.querySelectorAll('.jarviswidget').forEach(function(e) {
    // e.className = e.className + " shadow"
