@@ -12,7 +12,7 @@
 # sims setup panel
 body.panel.left.setup <- card.pro(
 
-  title = "Simulation setup",
+  title = "Data",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
@@ -35,29 +35,12 @@ body.panel.left.setup <- card.pro(
 
 
 
-# regimen setup panel
-body.panel.left.regimen <- card.pro(
-
-  title = "Regimen setup",
-  icon = icon("book"),
-  removebtn = FALSE,
-  colorbtn = FALSE,
-  expandbtn = FALSE,
-  editbtn = TRUE,
-  collapsed = FALSE,
-  rHandsontableOutput("rhstable1"),
-  # rhandsontable(regimenDT, width = "100%") %>%
-  #   hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE),
-
-  footer = "Legend: Group - treatment group, Dose - dose in mg, Frequency - dosing frequency as integer, Additional - number of additional doses, Route - route of administration, F1 - bioavilability for the group"
-)
 
 
 
 # assemble left panel
 body.panel.left <- primePanel(
   width = 4,
-  body.panel.left.setup,
-  body.panel.left.regimen
+  body.panel.left.setup
 )
 
