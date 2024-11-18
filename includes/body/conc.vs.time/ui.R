@@ -11,10 +11,10 @@
 
 # plot panels
 body.panel.right.plot.conc <- card.pro(
-  title = "Plot graph",
+  title = "Concentration vs. Time",
   icon = icon("chart-simple"),
   collapsed = TRUE,
-  header.bg = "yellow",
+  header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   plotOutput("distPlot", height = 600),
   sidebar = div(
