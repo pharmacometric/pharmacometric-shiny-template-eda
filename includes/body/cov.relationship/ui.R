@@ -15,7 +15,8 @@ body.panel.right.plot.cov <- card.pro(
   icon = icon("chart-simple"),
   header.bg = "blueDark",
   collapsed = TRUE,
-  xtra.header.content = textOutput("reportgraphstatus"),
+  xtra.header.content = textOutput("reportgraphstatus2"),
+  selectInput("dataUseV1","Data version to use:", choices = data.versions.names),
   plotOutput("distPlot", height = 600),
   sidebar = div(
     tags$label("Graph settings"),
