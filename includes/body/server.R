@@ -20,7 +20,7 @@ for(e in list.files(file.path(this.path,"sim/"), pattern = ".R$"))
 
 output$tracksimulations <- renderText({
   if(is.null(GLOBAL$lastsim)){
-    "No simulations have been run."
+    "No data updates have been made."
   }
 })
 
