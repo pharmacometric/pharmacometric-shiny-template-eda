@@ -21,16 +21,21 @@ body.panel.left.setup <- card.pro(
   tabs = list(
     tabEntry(
       "Main",
-      checkboxGroupInput(
-        "checkGroup",
+      radioButtons(
+        "checkGroupradio1",
         "Dataset for EDA",
         choices = list("Example dataset" = 1, "User dataset" = 2),
         selected = 1
       ),
-      fileInput("fileupd","Upload data",width = "100%"),
-      textAreaInput("subsetting1", "Subset data A","DV != NULL",width = "100%"),
-      textAreaInput("subsetting2", "Subset data B","EVID == 1",width = "100%"),
-      actionButton("rundatabutton", "Update data", icon = icon("running"))
+      conditionalPanel(
+        condition = "input.checkGroupradio1 == 2",
+        fileInput("fileupd","Upload data",width = "100%")
+      )
+      ,tags$hr(),
+      tags$b("Various versions of the datasets will be created for exploration. (1)Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below."),
+      textAreaInput("subsetting1", "Subset dataV2","DV != NULL",width = "100%"),
+      textAreaInput("subsetting2", "Subset dataV3","EVID == 1",width = "100%"),
+      actionButton("rundatabutton", "Update data version", icon = icon("running"))
     ),
     tabEntry("Variable Matching",
              selectInput("depvar", "Dependent variable", choices = "DV",width = "100%"),
