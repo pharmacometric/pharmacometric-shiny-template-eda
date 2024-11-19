@@ -49,3 +49,5 @@ GLOBAL<- reactiveValues()
 GLOBAL$lastsim <- NULL
 GLOBAL$start.sim <- FALSE
 seed.val <- 67772
+GLOBAL$data.versions <- list("original" = data.frame(),"dataV2" = data.frame(),"dataV3" = data.frame())
+data.versions.names <- c("original","dataV2","dataV3")
