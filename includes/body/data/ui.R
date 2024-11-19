@@ -12,7 +12,6 @@
 
 # regimen setup panel
 body.panel.right.table.rawdata <- card.pro(
-
   title = "Raw data",
   icon = icon("book"),
   removebtn = FALSE,
@@ -20,6 +19,7 @@ body.panel.right.table.rawdata <- card.pro(
   expandbtn = FALSE,
   editbtn = TRUE,
   collapsed = FALSE,
+  selectInput("dataUseV1","Data version to use:", choices = data.versions.names),
   DTOutput("rhstable1"),
   # rhandsontable(regimenDT, width = "100%") %>%
   #   hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE),
