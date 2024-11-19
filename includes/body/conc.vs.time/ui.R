@@ -16,6 +16,7 @@ body.panel.right.plot.conc <- card.pro(
   collapsed = TRUE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
+  selectInput("dataUseV1","Data version to use:", choices = data.versions.names),
   plotOutput("distPlot", height = 600),
   sidebar = div(
     tags$label("Graph settings"),
