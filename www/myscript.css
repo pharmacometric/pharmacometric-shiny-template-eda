@@ -28,3 +28,8 @@
 #chat-container {
   z-index: 101;
 }
+
+#checkGroupradio1 .shiny-options-group .radio{
+  display: inline-block;
+  padding-right: 20px;
+}
