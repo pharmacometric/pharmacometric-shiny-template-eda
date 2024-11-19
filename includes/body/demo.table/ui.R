@@ -24,15 +24,15 @@ body.panel.right.table.demo <- card.pro(
   ),
   tabs = list(
     tabEntry(
-      "Exposure summary",
+      "Demographic table",
       tableOutput("summaryexptbl")
     ),
     tabEntry(
-      "Individual results",
+      "Sampling table",
       DTOutput("rawrestbl")
     ),
     tabEntry(
-      "Individal regimen",
+      "Other tables",
       DTOutput("summaryrestbl")
     )
   ),
