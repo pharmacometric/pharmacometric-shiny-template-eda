@@ -38,9 +38,7 @@ output$rawrestbl = renderDT(
   summary01(), options = list(lengthChange = FALSE), filter = list(position = "top")
 )
 
-output$rhstable1 <- renderDT(
-  originalData(), options = list(lengthChange = FALSE), filter = list(position = "top")
-)
+
 
 observe({
   varnames = names(originalData())
