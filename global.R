@@ -11,6 +11,10 @@
 #########################################################################################
 
 
+
+# clear console, set dir, load libs and load files
+clean(source = c("utils.R"), clearPkgs = TRUE)
+
 # load libraries
 library(shiny)
 library(shinyjs)
@@ -29,10 +33,6 @@ library(patchwork)
 library(table1)
 library(r2resize)
 library(rlang)
-
-# clear console, set dir, load libs and load files
-clean(source = c("utils.R"))
-
 
 
 # add all individual utils
