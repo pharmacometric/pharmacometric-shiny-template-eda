@@ -16,11 +16,13 @@ body.panel.right.plot.conc <- card.pro(
   collapsed = FALSE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
-  selectInput("dataUseV1","Data version to use:", choices = data.versions.names),
-
-  r2resize::splitCard(
-    plotOutput("concvtimeplot1", height = 400),
-    tags$code('Code for the plots ...
+  selectInput("dataUseV1", "Data version to use:", choices = data.versions.names),
+  tabs = list(
+    tabEntry(
+      "Output",
+      plotOutput("concvtimeplot1", height = 400)
+    ),
+    tabEntry("Code", tags$code('Code for the plots ...
     plot(1:100,
        1:100,
        xlab = "sample x",
@@ -28,10 +30,8 @@ body.panel.right.plot.conc <- card.pro(
        ylab = "sample y"
   )
   text(50, 50, "Click \'Start simulation\' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
-    '),
-    position = "vertical"
-  )
-  ,
+    '))
+  ),
   sidebar = div(
     tags$label("Graph settings"),
     selectInput("graphtype", "Graph type", choices = c(
@@ -52,22 +52,22 @@ body.panel.right.plot.conc <- card.pro(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
     ), selected = "Arial", width = "90%"),
     sliderInput("fontxytitle",
-                "Font-size title",
-                min = 1,
-                max = 50,
-                value = 14
+      "Font-size title",
+      min = 1,
+      max = 50,
+      value = 14
     ),
     sliderInput("fontxyticks",
-                "Font-size ticks",
-                min = 1,
-                max = 50,
-                value = 12
+      "Font-size ticks",
+      min = 1,
+      max = 50,
+      value = 12
     ),
     sliderInput("fontxystrip",
-                "Font-size strip",
-                min = 1,
-                max = 50,
-                value = 12
+      "Font-size strip",
+      min = 1,
+      max = 50,
+      value = 12
     ),
     "For downloads:",
     numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
@@ -78,4 +78,3 @@ body.panel.right.plot.conc <- card.pro(
     downloadButton("downloadimg2", "Download plot", icon = icon("image"))
   )
 )
-
