@@ -27,13 +27,16 @@ createSampleData <- function(N = 100){
   ##  DVID: Dummy variable for dependent variable (0 if DV is present).
   ##  II: Interval since the last dose (float, in hours; typically 0 for first observations).
   ##  SS: Steady state indicator (0 for not at steady state).
-  ##  TREATMENT: Treatment group assigned to the patient (string; "Drug1", "Drug2", or "Drug3").
+  ##  TRT: Treatment group assigned to the patient (string; "Drug1", "Drug2", or "Drug3").
   ##
   ##  Additional Notes
   ##  Each patient has a total of 5 records: 2 dosing records (with DV set to .) and 3 observation records (with actual DV values).
-  ##  The distribution of TREATMENT can be randomized as needed for your study design.
+  ##  The distribution of TRT can be randomized as needed for your study design.
   # initial data
   # set.seed(number(1))# For reproducibility
+
+  # Load conc
+  load("includes/body/data/sampleconc.data")
 
   # Define parameters
   num_patients <- N
@@ -93,7 +96,8 @@ createSampleData <- function(N = 100){
         DVID = 0,
         II = 0,
         SS = 0,
-        TREATMENT = treatment[i],
+        FLAG = 1,
+        TRT = treatment[i],
         CMT = 1,           # Compartment for dosing
         AMT = as.character(dose_value)  # Amount given as character
       ))
@@ -114,9 +118,10 @@ createSampleData <- function(N = 100){
         DV = dv_value,
         EVID = 0,           # Changed to 0 for observations
         DVID = 0,
+        FLAG = 1,
         II = 0,
         SS = 0,
-        TREATMENT = treatment[i],
+        TRT = treatment[i],
         CMT = 2,           # Compartment for observations
         AMT = "."          # Set to "." for observations
       ))
@@ -126,7 +131,7 @@ createSampleData <- function(N = 100){
   regimenDT %>% arrange(ID, TIME)
 }
 
-updateSimStatus <- function(message = "Running simulations..."){
+updateSimStatus <- function(message = "No data updates have been made."){
   shinyjs::runjs(paste0("$('#tracksimulations').html('",message,"')"))
 }
 
@@ -141,13 +146,15 @@ disableSims <- function(is = "true"){
 }
 
 
-potheme <- list(theme(
+library(ggplot2)
+
+styler06 <- list(theme(
   axis.title.y = element_text(face = "bold"),
   panel.background = element_rect(colour = "#333333"),
   strip.text = element_text(face = "bold")
 ))
 
-po.nopanel0 <- list(theme(
+styler00 <- list(theme(
   axis.title.x = element_text(size = 16),
   axis.title.y = element_text(size = 16, face = "bold", angle = 90),
   axis.text.x = element_text(size = 16),
@@ -158,7 +165,7 @@ po.nopanel0 <- list(theme(
   strip.text.x = element_text(size = 16, face = "bold")
 ))
 
-po.nopanel1 <- list(
+styler01 <- list(
   theme(
     axis.title.x = element_text(size = 14),
     axis.title.y = element_text(size = 14, face = "bold", angle = 90),
@@ -172,7 +179,7 @@ po.nopanel1 <- list(
   )
 )
 
-po.nopanel3 <- list(theme(
+styler03 <- list(theme(
   panel.grid.major = element_blank(),
   panel.grid.minor = element_blank(),
   panel.background = element_blank(),
@@ -186,7 +193,7 @@ po.nopanel3 <- list(theme(
   strip.text.x = element_text(size = 12, face = "bold"),
   plot.title = element_text(size = 14, face = "bold")
 ))
-po.nopanel <- list(theme(
+styler0 <- list(theme(
   legend.position = "bottom",
   axis.title.x = element_text(size = 12, face = "bold"),
   axis.title.y = element_text(size = 12, face = "bold", angle = 90),
