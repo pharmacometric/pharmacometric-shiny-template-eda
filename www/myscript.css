@@ -33,3 +33,8 @@
   display: inline-block;
   padding-right: 20px;
 }
+
+code {
+  display: block;
+  white-space: pre-wrap
+}
