@@ -36,7 +36,7 @@ createSampleData <- function(N = 100){
   # set.seed(number(1))# For reproducibility
 
   # Define parameters
-  num_patients <- 100
+  num_patients <- N
   treatments <- c("Drug1", "Drug2", "Drug3")
 
   # Generate patient demographics
