@@ -15,3 +15,10 @@ observeEvent(input$rundatabutton,{
   head(originalData())
   head(dataV3())
 })
+
+output$rhstable1 <- renderDT(
+  switch (input$datatoUseV1,
+          "original"= originalData(),"dataV2"=dataV2(),"dataV3"=dataV3()
+  ),
+  options = list(lengthChange = FALSE), filter = list(position = "top")
+)
