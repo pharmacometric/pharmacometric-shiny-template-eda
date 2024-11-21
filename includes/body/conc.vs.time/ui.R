@@ -13,7 +13,7 @@
 body.panel.right.plot.conc <- card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
-  collapsed = FALSE,
+  collapsed = TRUE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   selectInput("dataUseV1", "Data version to use:", choices = data.versions.names),
