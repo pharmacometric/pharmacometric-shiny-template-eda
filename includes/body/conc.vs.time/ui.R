@@ -13,11 +13,25 @@
 body.panel.right.plot.conc <- card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
-  collapsed = TRUE,
+  collapsed = FALSE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   selectInput("dataUseV1","Data version to use:", choices = data.versions.names),
-  plotOutput("distPlot", height = 600),
+
+  r2resize::splitCard(
+    plotOutput("concvtimeplot1", height = 400),
+    tags$code('Code for the plots ...
+    plot(1:100,
+       1:100,
+       xlab = "sample x",
+       type = "l",
+       ylab = "sample y"
+  )
+  text(50, 50, "Click \'Start simulation\' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
+    '),
+    position = "vertical"
+  )
+  ,
   sidebar = div(
     tags$label("Graph settings"),
     selectInput("graphtype", "Graph type", choices = c(
