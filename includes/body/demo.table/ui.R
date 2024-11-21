@@ -25,7 +25,12 @@ body.panel.right.table.demo <- card.pro(
   tabs = list(
     tabEntry(
       "Demographic table",
-      tableOutput("summaryexptbl")
+      r2resize::splitCard(
+        tableOutput("summaryexptbl"),
+        tags$code('Code for the table ...'),
+        position = "vertical"
+      )
+
     ),
     tabEntry(
       "Sampling table",
