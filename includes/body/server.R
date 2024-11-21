@@ -19,8 +19,11 @@ for(e in list.files(file.path(this.path,"sim/"), pattern = ".R$"))
 # other outputs and event listeners for the body section
 
 output$tracksimulations <- renderText({
-  if(is.null(GLOBAL$lastsim)){
+  if(!nrow(GLOBAL$data.versions$original)){
     "No data updates have been made."
+  }else{
+    list(input$subsetting1,input$subsetting2,input$popsize1)
+    "Dataset created. Click 'Generate Data Versions' if data is updated."
   }
 })
 
