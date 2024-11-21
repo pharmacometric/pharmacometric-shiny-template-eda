@@ -23,13 +23,17 @@ body.panel.left.setup <- card.pro(
       "Main",
       radioButtons(
         "checkGroupradio1",
-        "Dataset for EDA",
+        "Dataset for exploratory data analysis",
         choices = list("Example dataset" = 1, "User dataset" = 2),
         selected = 1
       ),
       conditionalPanel(
         condition = "input.checkGroupradio1 == 2",
         fileInput("fileupd","Upload data",width = "100%")
+      ),
+      conditionalPanel(
+        condition = "input.checkGroupradio1 == 1",
+        numericInput("popsize1", "Number subjects / per group",100,width = "100%")
       )
       ,tags$hr(),
       tags$b("Various versions of the datasets will be created for exploration. (1)Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below."),
@@ -38,12 +42,12 @@ body.panel.left.setup <- card.pro(
       actionButton("rundatabutton", "Update data version", icon = icon("running"))
     ),
     tabEntry("Variable Matching",
-             selectInput("depvar", "Dependent variable", choices = "DV",width = "100%"),
-             selectInput("depvar", "Independent variable", choices = "TIME",width = "100%"),
-             selectInput("depvar", "Treatment variable", choices = "TRT",width = "100%"),
-             selectInput("depvar", "Dose variable", choices = "DOSE",width = "100%"),
-             selectInput("depvar", "Body weight variable", choices = "WT",width = "100%"),
-             selectInput("depvar", "Flag variable", choices = "FLAG",width = "100%"),
+             selectInput("depvar1", "Dependent variable", choices = "DV",width = "100%"),
+             selectInput("depvar2", "Independent variable", choices = "TIME",width = "100%"),
+             selectInput("depvar3", "Treatment variable", choices = "TRT",width = "100%"),
+             selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%"),
+             selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%"),
+             selectInput("depvar6", "Flag variable", choices = "FLAG",width = "100%"),
              )
   ),
   footer = textOutput("tracksimulations")
