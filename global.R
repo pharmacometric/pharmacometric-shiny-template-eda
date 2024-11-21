@@ -27,6 +27,7 @@ library(mrgsolve)
 library(quickcode)
 library(patchwork)
 library(table1)
+library(rlang)
 
 # clear console, set dir, load libs and load files
 clean(source = c("utils.R"))
