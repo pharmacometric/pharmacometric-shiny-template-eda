@@ -73,11 +73,11 @@ createSampleData <- function(N = 100){
   for (i in 1:num_patients) {
     # Determine dose based on treatment
     if (treatment[i] == "Drug1") {
-      dose_value <- sample(c(50, 100, 200), 1)
+      dose_value <- sample(c(50, 100, 80), 1)
     } else if (treatment[i] == "Drug2") {
-      dose_value <- sample(c(25, 80, 150), 1)
+      dose_value <- sample(c(25, 80, 50), 1)
     } else {
-      dose_value <- sample(c(5, 25, 300), 1)
+      dose_value <- sample(c(10, 25, 50), 1)
     }
 
     # Dosing records (2 records with DV set to ".")
@@ -104,7 +104,10 @@ createSampleData <- function(N = 100){
     }
 
     # Observation records (3 records with actual DV values)
+    conctime = get(paste0("r",dose_value))
+    #print(dose_value)
     for (j in 0:6) {
+
       dv_value <- round(runif(1, 0.5, 5.5), 1) # Random DV values for observations
       regimenDT <- rbind(regimenDT, data.frame(
         ID = i,
