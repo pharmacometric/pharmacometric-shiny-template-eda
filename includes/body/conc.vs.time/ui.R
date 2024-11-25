@@ -76,5 +76,9 @@ body.panel.right.plot.conc <- card.pro(
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
     downloadButton("downloadimg2", "Download plot", icon = icon("image"))
+  ),
+  footer = list(
+    downloadButton("cdownloadimg2", "Download plot(s)", icon = icon("image")),
+    downloadButton("cdownloadimg2", "Download code", icon = icon("code"))
   )
 )
