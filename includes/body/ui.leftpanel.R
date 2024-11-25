@@ -33,18 +33,19 @@ body.panel.left.setup <- card.pro(
       ),
       conditionalPanel(
         condition = "input.checkGroupradio1 == 1",
-        numericInput("popsize1", "Number subjects / per group",100,width = "100%")
+        numericInput("popsize1", "Number subjects",10,width = "100%")
       )
       ,tags$hr(),
       tags$b("Various versions of the datasets will be created for exploration. (1)Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below."),
       textAreaInput("subsetting1", "Subset dataV2",'RENAL_FUNCTION == "Normal"',width = "100%"),
-      textAreaInput("subsetting2", "Subset dataV3","EVID == 1",width = "100%"),
+      textAreaInput("subsetting2", "Subset dataV3","TRT == 'DrugA'",width = "100%"),
       actionButton("rundatabutton", "Generate Data Versions", icon = icon("running"))
     ),
     tabEntry("Variable Matching",
              selectInput("depvar1", "Dependent variable", choices = "DV",width = "100%"),
              selectInput("depvar2", "Independent variable", choices = "TIME",width = "100%"),
              selectInput("depvar3", "Treatment variable", choices = "TRT",width = "100%"),
+             selectInput("colvar3", "Color by", choices = "ID",width = "100%"),
              selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%"),
              selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%"),
              selectInput("depvar6", "Flag variable", choices = "FLAG",width = "100%"),
