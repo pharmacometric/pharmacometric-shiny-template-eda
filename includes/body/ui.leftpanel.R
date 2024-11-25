@@ -38,7 +38,7 @@ body.panel.left.setup <- card.pro(
       ,tags$hr(),
       tags$b("Various versions of the datasets will be created for exploration. (1)Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below."),
       textAreaInput("subsetting1", "Subset dataV2",'RENAL_FUNCTION == "Normal"',width = "100%"),
-      textAreaInput("subsetting2", "Subset dataV3","TRT == 'DrugA'",width = "100%"),
+      textAreaInput("subsetting2", "Subset dataV3","TRT %nin% 'Drug1'",width = "100%"),
       actionButton("rundatabutton", "Generate Data Versions", icon = icon("running"))
     ),
     tabEntry("Variable Matching",
