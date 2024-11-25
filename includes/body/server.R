@@ -9,12 +9,6 @@
 #############################################################################
 #############################################################################
 
-# include all files required for simulations
-
-for(e in list.files(file.path(this.path,"sim/"), pattern = ".R$"))
-  source(file.path(this.path,"sim", e), local = TRUE)
-
-
 
 # other outputs and event listeners for the body section
 
