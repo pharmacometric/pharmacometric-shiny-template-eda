@@ -13,13 +13,13 @@
 body.panel.right.plot.conc <- card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
-  collapsed = TRUE,
+  collapsed = FALSE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
-  selectInput("dataUseV1", "Data version to use:", choices = data.versions.names),
   tabs = list(
     tabEntry(
       "Output",
+      selectInput("datatoUseconc1", "Data version to use:", choices = data.versions.names),
       plotOutput("concvtimeplot1", height = 400)
     ),
     tabEntry("Code", tags$code('Code for the plots ...
@@ -46,7 +46,7 @@ body.panel.right.plot.conc <- card.pro(
     selectInput("loglinear", "Semi-log or linear", choices = c(
       "Linear", "Semi-Log"
     ), width = "90%"),
-    textInput("labely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
+    textInput("labely", "Y-label", "Concentration (μg/ml)", width = "95%"),
     textInput("labelx", "X-label", "Time after first dose (days)", width = "95%"),
     selectInput("graphfont", "Font type", choices = c(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
