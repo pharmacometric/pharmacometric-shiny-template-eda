@@ -13,7 +13,7 @@
 
 
 # clear console, set dir, load libs and load files
-clean(source = c("utils.R"), clearPkgs = TRUE)
+quickcode::clean(source = c("utils.R"), clearPkgs = TRUE)
 
 # load libraries
 library(shiny)
