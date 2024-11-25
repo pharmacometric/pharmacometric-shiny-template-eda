@@ -104,11 +104,12 @@ createSampleData <- function(N = 100){
     }
 
     # Observation records (3 records with actual DV values)
-    conctime = get(paste0("r",dose_value))
+    omega = runif(1,0.001,0.99)
+    conctime = subset(get(paste0("r",dose_value)), TIME %in% c(0, 4, 12, 24, 36, 48, 60, 72, 84, 96))
     #print(dose_value)
-    for (j in 0:6) {
+    for (j in conctime$TIME) {
 
-      dv_value <- round(runif(1, 0.5, 5.5), 1) # Random DV values for observations
+      dv_value <- conctime[conctime$TIME==j,]$DV * exp(omega)
       regimenDT <- rbind(regimenDT, data.frame(
         ID = i,
         AGE = age[i],
@@ -130,7 +131,7 @@ createSampleData <- function(N = 100){
       ))
     }
   }
-
+  print("generated data...")
   regimenDT %>% arrange(ID, TIME)
 }
 
