@@ -20,7 +20,7 @@ body.panel.right.plot.conc <- card.pro(
     tabEntry(
       "Output",
       selectInput("datatoUseconc1", "Data version to use:", choices = data.versions.names),
-      plotOutput("concvtimeplot1", height = 400)
+      plotOutput("concvtimeplot1", height = 500)
     ),
     tabEntry("Code", tags$code('Code for the plots ...
     plot(1:100,
