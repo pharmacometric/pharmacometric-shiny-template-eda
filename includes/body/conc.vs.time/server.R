@@ -23,7 +23,7 @@ output$concvtimeplot1 <- renderPlot({
       geom_line() +
       theme_bw() +
       facet_wrap(.~.ttr)+
-      labs(x = input$labelx, y = input$labely)+
+      labs(x = input$labelx, y = input$labely, color = "")+
       styler0
   }else{
   plot(1:100,
