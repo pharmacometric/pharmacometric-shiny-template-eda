@@ -39,12 +39,13 @@ output$rawrestbl = renderDT(
 
 observe({
   varnames = names(originalData())
-  updateSelectInput(session,"depvar1", "Dependent variable", choices = varnames, selected =  "DV")
-  updateSelectInput(session,"depvar2", "Independent variable", choices = varnames, selected =  "TIME")
-  updateSelectInput(session,"depvar3", "Treatment variable", choices = varnames, selected =  "TRT")
-  updateSelectInput(session,"depvar4", "Dose variable", choices = varnames, selected =  "DOSE")
-  updateSelectInput(session,"depvar5", "Body weight variable", choices = varnames, selected =  "WT")
-  updateSelectInput(session,"depvar6", "Flag variable", choices = varnames, selected =  "FLAG")
+  updateSelectInput(session,"depvar1", choices = varnames, selected =  "DV")
+  updateSelectInput(session,"depvar2", choices = varnames, selected =  "TIME")
+  updateSelectInput(session,"depvar3", choices = varnames, selected =  "TRT")
+  updateSelectInput(session,"depvar4", choices = varnames, selected =  "DOSE")
+  updateSelectInput(session,"depvar5", choices = varnames, selected =  "WT")
+  updateSelectInput(session,"depvar6", choices = varnames, selected =  "FLAG")
+  updateSelectInput(session,"colvar3", choices = varnames, selected =  "ID")
 })
 
 
