@@ -47,7 +47,7 @@ body.panel.right.plot.conc <- card.pro(
       "Linear", "Semi-Log"
     ), width = "90%"),
     textInput("labely", "Y-label", "Concentration (μg/ml)", width = "95%"),
-    textInput("labelx", "X-label", "Time after first dose (days)", width = "95%"),
+    textInput("labelx", "X-label", "Time after first dose (hrs)", width = "95%"),
     selectInput("graphfont", "Font type", choices = c(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
     ), selected = "Arial", width = "90%"),
@@ -75,10 +75,10 @@ body.panel.right.plot.conc <- card.pro(
     numericInput("downimgh", "Image height (px)", 1200, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("downloadimg2", "Download plot", icon = icon("image"))
+    downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"))
   ),
   footer = list(
-    downloadButton("cdownloadimg2", "Download plot(s)", icon = icon("image")),
+    downloadButton("concvtimedownloadimg", "Download plot(s)", icon = icon("image")),
     downloadButton("cdownloadimg2", "Download code", icon = icon("code"))
   )
 )
