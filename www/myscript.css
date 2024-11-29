@@ -1,7 +1,7 @@
 #chat-container .chat-list-body{
   height: 100%!important;
 }
-#tracksimulations, #reportgraphstatus{
+#tracksimulations, #reportgraphstatus, #reportgraphstatus2{
   color: red!important;
 }
 #summaryrestbl table{
@@ -24,6 +24,16 @@
     color: white;
 }
 
+
+#varnamesholder{
+  font-family: courier;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: blue;
+}
+.hider{
+  display: none;
+}
 
 #chat-container {
   z-index: 101;
