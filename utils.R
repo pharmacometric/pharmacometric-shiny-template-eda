@@ -90,7 +90,7 @@ createSampleData <- function(N = 100){
         RENAL_FUNCTION = renal_function[i],
         GFR_VALUE = gfr[i],
         TIME = j * 24,     # Assuming dosing every 24 hours
-        TSFD = 0,
+        TSLD = 0,
         DOSE = dose_value,  # Use the determined dose value
         DV = ".",
         EVID = 1,
@@ -119,7 +119,7 @@ createSampleData <- function(N = 100){
         RENAL_FUNCTION = renal_function[i],
         GFR_VALUE = gfr[i],
         TIME = j, # * 24 + 12,  # Assuming mid-point after dosing
-        TSFD = conctime[conctime$TIME==j,]$TSFD,
+        TSLD = conctime[conctime$TIME==j,]$TSLD,
         DOSE = dose_value,
         DV = dv_value,
         EVID = 0,           # Changed to 0 for observations
