@@ -33,7 +33,7 @@ body.panel.left.setup <- card.pro(
       ),
       conditionalPanel(
         condition = "input.checkGroupDatasetT == 1",
-        numericInput("popsize1", "Number subjects",10,width = "100%")
+        numericInput("popsize1", "Number of subjects",10,width = "100%")
       )
       ,tags$hr(),
       tags$i(tags$b("Various versions of the datasets will be created for exploration. (1) Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below.")),
