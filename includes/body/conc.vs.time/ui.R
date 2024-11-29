@@ -16,6 +16,7 @@ body.panel.right.plot.conc <- card.pro(
   collapsed = FALSE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
+  div(id="reportgraphstatus2"),
   tabs = list(
     tabEntry(
       "Output",
@@ -52,7 +53,7 @@ body.panel.right.plot.conc <- card.pro(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
     ), selected = "Arial", width = "90%"),
     sliderInput("fontxytitle",
-      "Font-size title",
+      "Font-size text",
       min = 1,
       max = 50,
       value = 14
@@ -69,10 +70,12 @@ body.panel.right.plot.conc <- card.pro(
       max = 50,
       value = 12
     ),
+    selectInput('legendposition','Legend position',choices = c('bottom','top','left','right','none'), width = "90%"),
+    numericInput('ncollegend','Number of legend columns', value = 5, width = "90%"),
     "For downloads:",
     numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
-    numericInput("downimgw", "Image width (px)", 2200, width = "90%"),
-    numericInput("downimgh", "Image height (px)", 1200, width = "90%"),
+    numericInput("downimgw", "Image width (px)", 2500, width = "90%"),
+    numericInput("downimgh", "Image height (px)", 1800, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
     downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"))
