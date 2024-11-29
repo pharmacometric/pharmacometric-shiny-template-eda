@@ -22,21 +22,23 @@ body.panel.left.setup <- card.pro(
     tabEntry(
       "Main",
       radioButtons(
-        "checkGroupradio1",
+        "checkGroupDatasetT",
         "Dataset for exploratory data analysis",
         choices = list("Example dataset" = 1, "User dataset" = 2),
         selected = 1
       ),
       conditionalPanel(
-        condition = "input.checkGroupradio1 == 2",
+        condition = "input.checkGroupDatasetT == 2",
         fileInput("fileupd","Upload data",width = "100%")
       ),
       conditionalPanel(
-        condition = "input.checkGroupradio1 == 1",
+        condition = "input.checkGroupDatasetT == 1",
         numericInput("popsize1", "Number subjects",10,width = "100%")
       )
       ,tags$hr(),
-      tags$b("Various versions of the datasets will be created for exploration. (1)Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below."),
+      tags$i(tags$b("Various versions of the datasets will be created for exploration. (1) Original dataset, (2) dataV2, (3) dataV3. You may modify the subset for the data version below.")),
+      actionButton('shwvarnames','Show/hide variable names'), div(id='varnamesholder', class = 'hider'),
+      hr(),
       textAreaInput("subsetting1", "Subset dataV2",'RENAL_FUNCTION == "Normal"',width = "100%"),
       textAreaInput("subsetting2", "Subset dataV3","TRT %nin% 'Drug1'",width = "100%"),
       actionButton("rundatabutton", "Generate Data Versions", icon = icon("running"))
