@@ -21,11 +21,6 @@ output$tracksimulations <- renderText({
   }
 })
 
-observeEvent(input$runsimbutton,{
-  disableSims()
-  #Sys.sleep(2)
-  GLOBAL$start.sim <- TRUE
-})
 
 output$summaryrestbl = renderDT(
   data01() %>% select(Group,ID,time,WT,Dose,cmt,ii,addl), options = list(lengthChange = FALSE)#,dom = 't'
@@ -38,7 +33,7 @@ output$rawrestbl = renderDT(
 
 
 observe({
-  varnames = names(originalData())
+  varnames = names(GLOBAL$data.versions$original)
   updateSelectInput(session,"depvar1", choices = varnames, selected =  "DV")
   updateSelectInput(session,"depvar2", choices = varnames, selected =  "TIME")
   updateSelectInput(session,"depvar3", choices = varnames, selected =  "TRT")
