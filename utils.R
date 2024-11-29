@@ -142,10 +142,17 @@ updateSimStatus <- function(message = "No data updates have been made."){
 }
 
 
-updateGraphStatus <- function(message = "Generating graphs..."){
+updateGraphStatus <- function(message = ""){
   shinyjs::runjs(paste0("$('#reportgraphstatus').html('",message,"')"))
 }
 
+updateGraphStatus2 <- function(message = ""){
+  shinyjs::runjs(paste0("$('#reportgraphstatus2').html('",message,"')"))
+}
+
+updateVariableHolder <- function(message = ""){
+  shinyjs::runjs(paste0("$('#varnamesholder').html('",message,"')"))
+}
 
 disableSims <- function(is = "true"){
   shinyjs::runjs(paste0('$("#runsimbutton").prop("disabled",',is,')'))
@@ -161,14 +168,10 @@ styler06 <- list(theme(
 ))
 
 styler00 <- list(theme(
-  axis.title.x = element_text(size = 16),
-  axis.title.y = element_text(size = 16, face = "bold", angle = 90),
-  axis.text.x = element_text(size = 16),
-  axis.text.y = element_text(size = 16),
-  legend.text = element_text(size = 16),
-  legend.title = element_text(size = 16),
-  panel.background = element_rect(colour = "#000000"),
-  strip.text.x = element_text(size = 16, face = "bold")
+  panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  axis.title.y = element_text(face = "bold"),
+  panel.background = element_rect(colour = "#333333"),
+  strip.text = element_text(face = "bold")
 ))
 
 styler01 <- list(
