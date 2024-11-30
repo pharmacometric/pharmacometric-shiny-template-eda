@@ -33,7 +33,8 @@ library(patchwork)
 library(table1)
 library(r2resize)
 library(rlang)
-
+library(grid)
+library(ggthemes)
 
 # add all individual utils
 for (ui_each in c(
@@ -51,5 +52,6 @@ GLOBAL<- reactiveValues()
 GLOBAL$lastsim <- NULL
 GLOBAL$start.sim <- FALSE
 seed.val <- 67772
+GLOBAL$objects <- NULL
 GLOBAL$data.versions <- list("original" = data.frame(),"dataV2" = data.frame(),"dataV3" = data.frame())
 data.versions.names <- c("original","dataV2","dataV3")
