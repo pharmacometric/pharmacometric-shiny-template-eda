@@ -39,13 +39,7 @@ output$concvtimeplot1 <- renderPlot({
       updateGraphStatus2("Plots cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
     }
   } else {
-    plot(1:100,
-      1:100,
-      xlab = "sample x",
-      type = "l",
-      ylab = "sample y"
-    )
-    text(50, 50, "Click 'Start simulation' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
+    sampleplot()
   }
 })
 
@@ -80,12 +74,7 @@ output$concvtimeplot2 <- renderPlot({
       updateGraphStatus2("Plots cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
     }
   } else {
-    plot(number(1000),
-      number(1000),
-      xlab = "Sample x",
-      type = "l",
-      ylab = "Sample y"
-    )
-    text(50, 50, "Click 'Start simulation' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
+    sampleplot()
   }
 })
+
