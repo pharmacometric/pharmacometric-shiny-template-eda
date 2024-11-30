@@ -82,7 +82,7 @@ body.panel.right.plot.conc <- card.pro(
     "For downloads:",
     numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
     numericInput("downimgw", "Image width (px)", 2500, width = "90%"),
-    numericInput("downimgh", "Image height (px)", 2080, width = "90%"),
+    numericInput("downimgh", "Image height (px)", 1700, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
     downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"))
