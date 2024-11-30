@@ -160,7 +160,8 @@ disableSims <- function(is = "true"){
 
 
 library(ggplot2)
-
+library(grid)
+library(ggthemes)
 styler06 <- list(theme(
   axis.title.y = element_text(face = "bold"),
   panel.background = element_rect(colour = "#333333"),
@@ -174,6 +175,30 @@ styler00 <- list(theme(
   strip.text = element_text(face = "bold")
 ))
 
+styler03 <- theme(plot.title = element_text(face = "bold",
+            size = rel(1.2), hjust = 0.5, margin = margin(0,0,20,0)),
+            text = element_text(),
+            panel.background = element_rect(colour = NA),
+            plot.background = element_rect(colour = NA),
+            panel.border = element_rect(colour = NA),
+            axis.title = element_text(face = "bold",size = rel(1)),
+            axis.title.y = element_text(angle=90,vjust =2),
+            axis.title.x = element_text(vjust = -0.2),
+            axis.text = element_text(),
+            axis.line.x = element_line(colour="black"),
+            axis.line.y = element_line(colour="black"),
+            axis.ticks = element_line(),
+            legend.key = element_rect(colour = NA),
+            legend.position = "bottom",
+            legend.direction = "horizontal",
+            legend.box = "vetical",
+            legend.key.size= unit(0.5, "cm"),
+            #legend.margin = unit(0, "cm"),
+            legend.title = element_text(face="italic"),
+            plot.margin=unit(c(10,5,5,5),"mm"),
+            strip.background=element_rect(colour="black",fill="#f0f0f0", linewidth =rel(2)),
+            strip.text = element_text(face="bold")
+    )
 styler01 <- list(
   theme(
     axis.title.x = element_text(size = 14),
@@ -188,31 +213,6 @@ styler01 <- list(
   )
 )
 
-styler03 <- list(theme(
-  panel.grid.major = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.background = element_blank(),
-  legend.position = "bottom",
-  axis.title.x = element_text(size = 13, face = "bold"),
-  axis.title.y = element_text(size = 13, face = "bold", angle = 90),
-  axis.text.x = element_text(size = 12),
-  axis.text.y = element_text(size = 12),
-  legend.text = element_text(size = 10),
-  legend.title = element_text(size = 10),
-  strip.text.x = element_text(size = 12, face = "bold"),
-  plot.title = element_text(size = 14, face = "bold")
-))
-styler0 <- list(theme(
-  legend.position = "bottom",
-  axis.title.x = element_text(size = 12, face = "bold"),
-  axis.title.y = element_text(size = 12, face = "bold", angle = 90),
-  axis.text.x = element_text(size = 12),
-  axis.text.y = element_text(size = 12),
-  legend.text = element_text(size = 10),
-  legend.title = element_text(size = 10),
-  strip.text.x = element_text(size = 12, face = "bold"),
-  plot.title = element_text(size = 10, face = "bold")
-))
 
 
 getTimeV <- function(n,t0){
