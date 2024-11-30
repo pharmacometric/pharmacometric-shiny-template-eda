@@ -26,6 +26,17 @@ output$concvtimedownloadimg <- downloadHandler(
   }
 )
 
+output$concvtimedownloadimg2 <- downloadHandler(
+  filename = function() {
+    fAddDate('app1-eda-concvs-obj.data')
+  },
+  content = function(con) {
+    figx = last_plot()
+    save(figx, file = con)
+  }
+)
+
+
 
 output$downloadtable1 <- downloadHandler(
   filename = function() {
