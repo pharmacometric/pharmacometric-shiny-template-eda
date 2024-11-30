@@ -176,7 +176,7 @@ styler00 <- list(theme(
 ))
 
 styler03 <- theme(plot.title = element_text(face = "bold",
-            size = rel(1.2), hjust = 0.5, margin = margin(0,0,20,0)),
+            hjust = 0.5, margin = margin(0,0,20,0)),
             text = element_text(),
             panel.background = element_rect(colour = NA),
             plot.background = element_rect(colour = NA),
