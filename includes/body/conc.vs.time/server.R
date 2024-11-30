@@ -12,10 +12,10 @@
 output$concvtimeplot1 <- renderPlot({
   plot.data <- GLOBAL$data.versions[[input$datatoUseconc1]]
   if (nrow(plot.data)) {
-    if (all(c(input$depvar1, input$depvar2, input$depvar3, input$colvar3) %in% names(plot.data))) {
+    if (all(c(input$depvar1, input$indepvar, input$depvar3, input$colvar3) %in% names(plot.data))) {
       updateGraphStatus2()
       plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
-      plot.data$.tm <- as.numeric(plot.data[[input$depvar2]])
+      plot.data$.tm <- as.numeric(plot.data[[input$indepvar]])
       plot.data$.colv <- as.factor(plot.data[[input$colvar3]])
       plot.data$.ttr <- as.factor(plot.data[[input$depvar3]])
 
@@ -27,6 +27,7 @@ output$concvtimeplot1 <- renderPlot({
         labs(x = input$labelx, y = input$labely, color = "") +
         theme_bw() +
         styler00 +
+        styler03 +
         theme(text = element_text(family = input$graphfont), axis.text = element_text(size = input$fontxyticks, family = input$graphfont), axis.title = element_text(size = input$fontxytitle, family = input$graphfont), strip.text = element_text(size = input$fontxystrip, family = input$graphfont), legend.position = input$legendposition, legend.text = element_text(family = input$graphfont), legend.title = element_text(family = input$graphfont), title = element_text(family = input$graphfont))
     } else {
       updateGraphStatus2("Plots cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
@@ -37,6 +38,41 @@ output$concvtimeplot1 <- renderPlot({
       xlab = "sample x",
       type = "l",
       ylab = "sample y"
+    )
+    text(50, 50, "Click 'Start simulation' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
+  }
+})
+
+
+output$concvtimeplot2 <- renderPlot({
+  plot.data <- GLOBAL$data.versions[[input$datatoUseconc2]]
+  if (nrow(plot.data)) {
+    if (all(c(input$depvar1, input$indepvar2, input$depvar3, input$colvar3) %in% names(plot.data))) {
+      updateGraphStatus2()
+      plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
+      plot.data$.tm <- as.numeric(plot.data[[input$indepvar2]])
+      plot.data$.colv <- as.factor(plot.data[[input$colvar3]])
+      plot.data$.ttr <- as.factor(plot.data[[input$depvar3]])
+
+      ggplot(data = plot.data %>% filter(not.na(.dv)), aes(.tm, .dv, color = .colv)) +
+        geom_point() +
+        geom_line() +
+        facet_wrap(. ~ .ttr) +
+        guides(color = guide_legend(ncol = input$ncollegend)) +
+        labs(x = input$labelx2, y = input$labely, color = "") +
+        theme_bw() +
+        styler00 +
+        styler03 +
+        theme(text = element_text(family = input$graphfont), axis.text = element_text(size = input$fontxyticks, family = input$graphfont), axis.title = element_text(size = input$fontxytitle, family = input$graphfont), strip.text = element_text(size = input$fontxystrip, family = input$graphfont), legend.position = input$legendposition, legend.text = element_text(family = input$graphfont), legend.title = element_text(family = input$graphfont), title = element_text(family = input$graphfont))
+    } else {
+      updateGraphStatus2("Plots cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
+    }
+  } else {
+    plot(1:100,
+         1:100,
+         xlab = "sample x",
+         type = "l",
+         ylab = "sample y"
     )
     text(50, 50, "Click 'Start simulation' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
   }
