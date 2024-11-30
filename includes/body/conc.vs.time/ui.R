@@ -16,22 +16,18 @@ body.panel.right.plot.conc <- card.pro(
   collapsed = FALSE,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
-  div(id="reportgraphstatus2"),
+  div(id="reportgraphstatus2",
+      tags$blockquote(style="color:blue","Tabs: DV.vs.TSFD (concentration versus time since first dose) and DV.vs.TSLD (concentration versus time since last dose)")
+      ),
   tabs = list(
     tabEntry(
-      "Output",
+      "DV.vs.TSFD",
       selectInput("datatoUseconc1", "Data version to use:", choices = data.versions.names),
       plotOutput("concvtimeplot1", height = 500)
     ),
-    tabEntry("Code", tags$code('Code for the plots ...
-    plot(1:100,
-       1:100,
-       xlab = "sample x",
-       type = "l",
-       ylab = "sample y"
-  )
-  text(50, 50, "Click \'Start simulation\' to run simulations and display results", cex = 1.2, pos = 3, col = "red")
-    '))
+    tabEntry("DV.vs.TSLD",
+             selectInput("datatoUseconc2", "Data version to use:", choices = data.versions.names),
+             plotOutput("concvtimeplot2", height = 500))
   ),
   sidebar = div(
     tags$label("Graph settings"),
@@ -48,7 +44,8 @@ body.panel.right.plot.conc <- card.pro(
       "Linear", "Semi-Log"
     ), width = "90%"),
     textInput("labely", "Y-label", "Concentration (μg/ml)", width = "95%"),
-    textInput("labelx", "X-label", "Time after first dose (hrs)", width = "95%"),
+    textInput("labelx", "X-label (TSFD tab)", "Time after first dose (hrs)", width = "95%"),
+    textInput("labelx2", "X-label (TSLD tab)", "Time after last dose (hrs)", width = "95%"),
     selectInput("graphfont", "Font type", choices = c(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
     ), selected = "Arial", width = "90%"),
@@ -56,7 +53,7 @@ body.panel.right.plot.conc <- card.pro(
       "Font-size text",
       min = 1,
       max = 50,
-      value = 14
+      value = 12
     ),
     sliderInput("fontxyticks",
       "Font-size ticks",
@@ -75,13 +72,14 @@ body.panel.right.plot.conc <- card.pro(
     "For downloads:",
     numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
     numericInput("downimgw", "Image width (px)", 2500, width = "90%"),
-    numericInput("downimgh", "Image height (px)", 1800, width = "90%"),
+    numericInput("downimgh", "Image height (px)", 2000, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
     downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"))
   ),
   footer = list(
-    downloadButton("concvtimedownloadimg", "Download plot(s)", icon = icon("image")),
+    downloadButton("concvtimedownloadimg", "Download plot file (png)", icon = icon("image")),
+    downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image")),
     downloadButton("cdownloadimg2", "Download code", icon = icon("code"))
   )
 )
