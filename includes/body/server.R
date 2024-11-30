@@ -35,7 +35,8 @@ output$rawrestbl = renderDT(
 observe({
   varnames = names(GLOBAL$data.versions$original)
   updateSelectInput(session,"depvar1", choices = varnames, selected =  "DV")
-  updateSelectInput(session,"depvar2", choices = varnames, selected =  "TIME")
+  updateSelectInput(session,"indepvar", choices = varnames, selected =  "TIME")
+  updateSelectInput(session,"indepvar2", choices = varnames, selected =  "TSLD")
   updateSelectInput(session,"depvar3", choices = varnames, selected =  "TRT")
   updateSelectInput(session,"depvar4", choices = varnames, selected =  "DOSE")
   updateSelectInput(session,"depvar5", choices = varnames, selected =  "WT")
