@@ -16,51 +16,51 @@ body.panel.right.plot.hist <- card.pro(
   collapsed = TRUE,
   header.bg = "yellow",
   xtra.header.content = textOutput("reportgraphstatus"),
-  plotOutput("distPlot", height = 600),
+  plotOutput("covdistPlot", height = 600),
   sidebar = div(
     tags$label("Graph settings"),
-    selectInput("graphtype", "Graph type", choices = c(
+    selectInput("covgraphtype", "Graph type", choices = c(
       "Combined", "Combined_group", "Facet by ID", "Facet by Group", "Facet by Dose"
     ), selected = "Facet by Group", width = "90%"),
     conditionalPanel(
-      condition = "input.graphtype == 'Combined' | input.graphtype == 'Combined_group' | input.graphtype == 'Facet by Group'",
-      selectInput("graphtype2", "Statistic", choices = c(
+      condition = "input.covgraphtype == 'Combined' | input.covgraphtype == 'Combined_group' | input.covgraphtype == 'Facet by Group'",
+      selectInput("covgraphtype2", "Statistic", choices = c(
         "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
       ), selected = "Median ± 90% PI", width = "90%")
     ),
-    selectInput("loglinear", "Semi-log or linear", choices = c(
+    selectInput("covloglinear", "Semi-log or linear", choices = c(
       "Linear", "Semi-Log"
     ), width = "90%"),
-    textInput("labely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
-    textInput("labelx", "X-label", "Time after first dose (days)", width = "95%"),
-    selectInput("graphfont", "Font type", choices = c(
+    textInput("covlabely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
+    textInput("covlabelx", "X-label", "Time after first dose (days)", width = "95%"),
+    selectInput("covgraphfont", "Font type", choices = c(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
-    ), selected = "Arial", width = "90%"),
-    sliderInput("fontxytitle",
+    ), selected = "covArial", width = "90%"),
+    sliderInput("covfontxytitle",
                 "Font-size title",
                 min = 1,
                 max = 50,
                 value = 14
     ),
-    sliderInput("fontxyticks",
+    sliderInput("covfontxyticks",
                 "Font-size ticks",
                 min = 1,
                 max = 50,
                 value = 12
     ),
-    sliderInput("fontxystrip",
+    sliderInput("covfontxystrip",
                 "Font-size strip",
                 min = 1,
                 max = 50,
                 value = 12
     ),
     "For downloads:",
-    numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
-    numericInput("downimgw", "Image width (px)", 2200, width = "90%"),
-    numericInput("downimgh", "Image height (px)", 1200, width = "90%"),
-    numericInput("downimgs", "Image scale", 1, width = "90%"),
+    numericInput("covdownimgdpi", "Image dpi", 300, width = "90%"),
+    numericInput("covdownimgw", "Image width (px)", 2200, width = "90%"),
+    numericInput("covdownimgh", "Image height (px)", 1200, width = "90%"),
+    numericInput("covdownimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("downloadimg2", "Download plot", icon = icon("image"))
+    downloadButton("covdownloadimg2", "Download plot", icon = icon("image"))
   )
 )
 
