@@ -47,7 +47,7 @@ body.panel.right.plot.conc <- card.pro(
     conditionalPanel(
       condition = "input.cgraphtype == 3 | input.cgraphtype == 6",
       selectInput("graphsummtype", "Statistic", choices = c(
-        "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
+        "Mean" = 1, "Mean ± SD" = 2, "Mean ± SEM" = 3, "Median" = 4, "Median ± 90% PI" = 5, "Median ± 95% PI" = 6
       ), selected = "Median ± 90% PI", width = "90%")
     ),
     conditionalPanel(
@@ -60,6 +60,8 @@ body.panel.right.plot.conc <- card.pro(
     textInput("labely", "Y-label", "Concentration (μg/ml)", width = "95%"),
     textInput("labelx", "X-label (TSFD tab)", "Time after first dose (hrs)", width = "95%"),
     textInput("labelx2", "X-label (TSLD tab)", "Time after last dose (hrs)", width = "95%"),
+    selectInput("legendposition", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
+    numericInput("ncollegend", "Number of legend columns", value = 5, width = "90%"),
     selectInput("graphfont", "Font type", choices = c(
       "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
     ), selected = "Arial", width = "90%"),
@@ -81,8 +83,6 @@ body.panel.right.plot.conc <- card.pro(
       max = 50,
       value = 12
     ),
-    selectInput("legendposition", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
-    numericInput("ncollegend", "Number of legend columns", value = 5, width = "90%"),
     "For downloads:",
     numericInput("downimgdpi", "Image dpi", 300, width = "90%"),
     numericInput("downimgw", "Image width (px)", 2500, width = "90%"),
