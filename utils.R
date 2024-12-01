@@ -284,3 +284,34 @@ sampleplot <- function() {
     return(alternative)
   res
 }
+
+data_summarised_overall <- function(dataa){
+  if (nrow(dataa)) {
+    dataa %>% filter(not.na(.dv)) %>% group_by(.colv, .tm) %>%
+      reframe(
+        dv_mean = mean(.dv),
+        dv_med = median(.dv),
+        sd = sd(.dv),
+        sem = sd(.dv)/sqrt(length((.dv))),
+        q95 = quantile(.dv,probs = 0.95),
+        q05 = quantile(.dv,probs = 0.05),
+        q975 = quantile(.dv,probs = 0.975),
+        q025 = quantile(.dv,probs = 0.025))
+  }
+}
+
+data_summarised_facet <- function(dataa){
+  if (nrow(dataa)) {
+    dataa %>% filter(not.na(.dv)) %>% group_by(.ttr, .tm) %>%
+      reframe(
+        .colv = unique(.colv),
+        dv_mean = mean(.dv),
+        dv_med = median(.dv),
+        sd = sd(.dv),
+        sem = sd(.dv)/sqrt(length((.dv))),
+        q95 = quantile(.dv,probs = 0.95),
+        q05 = quantile(.dv,probs = 0.05),
+        q975 = quantile(.dv,probs = 0.975),
+        q025 = quantile(.dv,probs = 0.025))
+  }
+}
