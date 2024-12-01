@@ -52,6 +52,6 @@ code {
     background-color: #333;
     color: wheat;
 }
-#graphtype2-label {
+#graphtype2-label,#graphcolnum-label {
   color: blue;
 }
