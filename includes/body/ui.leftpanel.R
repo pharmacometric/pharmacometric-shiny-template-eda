@@ -48,7 +48,7 @@ body.panel.left.setup <- card.pro(
              selectInput("indepvar", "Time since first dose", choices = "TIME",width = "100%"),
              selectInput("indepvar2", "Time since last dose", choices = "TSLD",width = "100%"),
              selectInput("idvar", "Individual identifier variable", choices = "ID",width = "100%"),
-             selectInput("depvar3", "Facet variable", choices = "TRT",width = "100%"),
+             selectInput("cfacetvar", "Facet variable", choices = "TRT",width = "100%"),
              selectInput("colvar3", "Color by", choices = "ID",width = "100%"),
              selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%"),
              selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%"),
