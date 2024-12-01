@@ -273,3 +273,14 @@ sampleplot <- function() {
   # box(lwd=2, col=colss[4])
   text(50, 50, "Click 'Generate data version' to get started", cex = 1.5, pos = 3, col = "red")
 }
+
+
+`%ifnon%` <- function (test, alternative)
+{
+  res <- test
+  if (!length(res))
+    return(alternative)
+  if (all(is.null(res) | is.na(res) | is.nan(res) | !not.empty(res)))
+    return(alternative)
+  res
+}
