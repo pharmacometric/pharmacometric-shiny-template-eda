@@ -23,18 +23,18 @@ body.panel.right.plot.conc <- card.pro(
   tabs = list(
     tabEntry(
       "DV.vs.TSFD",
-      selectInput("datatoUseconc1", "Data version to use:", choices = data.versions.names),
+      selectInput("datatoUseconc1", "Data version to use:", choices = c()),
       plotOutput("concvtimeplot1", height = 500)
     ),
     tabEntry(
       "DV.vs.TSLD",
-      selectInput("datatoUseconc2", "Data version to use:", choices = data.versions.names),
+      selectInput("datatoUseconc2", "Data version to use:", choices = c()),
       plotOutput("concvtimeplot2", height = 500)
     )
   ),
   sidebar = div(
     tags$label("Graph settings"),
-    selectInput("graphtype", "Graph type", choices = c(
+    selectInput("cgraphtype", "Graph type", choices = c(
       "overall - spaghetti plot" = 1,
       "overall - scatter plot" = 2,
       "overall - summarised" = 3,
@@ -45,10 +45,14 @@ body.panel.right.plot.conc <- card.pro(
       "individual - scatter plot" = 8
     ), selected = "Facet by Group", width = "90%"),
     conditionalPanel(
-      condition = "input.graphtype == 3 | input.graphtype == 6",
-      selectInput("graphtype2", "Statistic", choices = c(
+      condition = "input.cgraphtype == 3 | input.cgraphtype == 6",
+      selectInput("graphsummtype", "Statistic", choices = c(
         "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
       ), selected = "Median ± 90% PI", width = "90%")
+    ),
+    conditionalPanel(
+      condition = "input.cgraphtype == 4 |input.cgraphtype == 5 |input.cgraphtype == 6 |input.cgraphtype == 7 | input.cgraphtype == 8",
+      numericInput("graphcolnum", "Facet column number", value = 4, width = "90%")
     ),
     selectInput("loglinear", "Semi-log or linear", choices = c(
       "Linear", "Semi-Log"
