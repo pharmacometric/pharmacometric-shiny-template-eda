@@ -25,6 +25,30 @@ runApp(launch.browser = TRUE)
 
 ```
 
+
+```
+# Required libraries and versions
+
+shiny, version 1.8.1.1
+shinyjs, version 2.1.0
+rhandsontable, version 0.3.8
+DT, version 0.33
+flextable, version 0.9.6
+nlme, version 3.1.166
+markdown, version 1.13
+card.pro, version 2.2.0
+dplyr, version 1.1.4
+ggplot2, version 3.5.1
+magrittr, version 2.0.3
+mrgsolve, version 1.5.1
+quickcode, version 1.0.1
+patchwork, version 1.3.0
+table1, version 1.4.3
+r2resize, version 1.9.1
+rlang, version 1.1.4
+grid, version 4.4.1
+ggthemes, version 5.1.0
+```
 ### Features
 
 The following features are available in the current template for you to get started.
