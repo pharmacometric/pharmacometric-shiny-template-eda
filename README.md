@@ -41,7 +41,7 @@ dplyr, version 1.1.4
 ggplot2, version 3.5.1
 magrittr, version 2.0.3
 mrgsolve, version 1.5.1
-quickcode, version 1.0.1
+quickcode, version 1.0.3
 patchwork, version 1.3.0
 table1, version 1.4.3
 r2resize, version 1.9.1
