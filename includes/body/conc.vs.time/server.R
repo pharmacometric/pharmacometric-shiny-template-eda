@@ -4,7 +4,7 @@
 ##
 ##  Description: Server function for concentration versus time plots
 ##
-##  R Version: R version 4.4.1 (2024-06-14 ucrt)
+##  R Version: 4.4.1 (2024-06-14 ucrt)
 ##
 ##  Plot types(input$cgraphtype)
 ##  "overall - spaghetti plot" = 1,
@@ -28,6 +28,7 @@
 #############################################################################
 #############################################################################
 
+# set data versions to use for plotting
 updateSelectInput(session, "datatoUseconc1", choices = data.versions.names)
 updateSelectInput(session, "datatoUseconc2", choices = data.versions.names)
 
@@ -49,7 +50,7 @@ output$concvtimeplot1 = renderPlot({
       plot.data$.id = as.numeric(plot.data[[input$idvar]])
       plot.data$.colv = as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
       plot.data$.ttr = as.factor(plot.data[[input$cfacetvar]])
-      plot.data$.none = "x"
+      plot.data$.summ = as.factor(plot.data[[input$summby]])
 
 
       # get data type based on selection
@@ -58,7 +59,7 @@ output$concvtimeplot1 = renderPlot({
       if (input$cgraphtype == 3)
         datatoplot = data_summarised_overall(datatoplot)
       if (input$cgraphtype == 6)
-        datatoplot = data_summarised_facet(datatoplot)
+        datatoplot = data_summarised_overall(datatoplot)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 1:3)
         datatoplot = datatoplot %>% rename(.dv = dv_mean)
@@ -78,7 +79,7 @@ output$concvtimeplot1 = renderPlot({
 
       # add scatter if plotting median or mean alone
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% c(1,4))
-        gplotout = gplotout + geom_point(data = datatoplot0) #+
+        gplotout = gplotout + geom_point(data = datatoplot0, aes(color = .summ)) #+
         #scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
         #theme(legend.position = "none")
 
@@ -103,12 +104,36 @@ output$concvtimeplot1 = renderPlot({
 
       # if summary is specified
       if (input$cgraphtype %in% c(3,6)) {
-        gplotout = gplotout + geom_line()
+        gplotout = gplotout + geom_line(aes(color=.summ))
+      }
+
+      # if median/mean with intervals specified
+      if(input$graphsummtype %in% c(2,3,5,6)){
+        gplotout = gplotout + geom_point(aes(color=.summ))
+      }
+      if(input$graphsummtype == 2){
+        gplotout = gplotout +
+          geom_errorbar(aes(ymin=.dv-sd, ymax=.dv+sd, color = .summ), position=position_dodge(0.05))
+      }
+      if(input$graphsummtype == 3){
+        gplotout = gplotout +
+          geom_errorbar(aes(ymin=.dv-sem, ymax=.dv+sem, color = .summ), position=position_dodge(0.05))
+      }
+      if(input$graphsummtype == 5){
+        gplotout = gplotout +
+          geom_ribbon(aes(ymin=q05, ymax=q95, color = .summ, fill = .summ), alpha=0.1, linetype = "dotted")+ guides(fill = 'none')
+      }
+      if(input$graphsummtype == 6){
+        gplotout = gplotout +
+          geom_ribbon(aes(ymin=q025, ymax=q975, color = .summ, fill = .summ), alpha=0.1, linetype = "dotted")+ guides(fill = 'none')
       }
 
       # facet if it is specified
-      if (input$cgraphtype %in% 4:6) {
+      if (input$cgraphtype %in% 4:5) {
         gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
+      }
+      if (input$cgraphtype %in% 4:6) {
+        gplotout = gplotout +facet_wrap(. ~ .summ, ncol = input$graphcolnum)
       }
 
       # inidividual if it is specified
@@ -143,7 +168,7 @@ output$concvtimeplot2 = renderPlot({
       plot.data$.id = as.numeric(plot.data[[input$idvar]])
       plot.data$.colv = as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
       plot.data$.ttr = as.factor(plot.data[[input$cfacetvar]])
-      plot.data$.none = "x"
+      plot.data$.summ = as.factor(plot.data[[input$summby]])
 
 
       # get data type based on selection
@@ -200,9 +225,33 @@ output$concvtimeplot2 = renderPlot({
         gplotout = gplotout + geom_line()
       }
 
+      # if median/mean with intervals specified
+      if(input$graphsummtype %in% c(2,3,5,6)){
+        gplotout = gplotout + geom_point(aes(color=.summ))
+      }
+      if(input$graphsummtype == 2){
+        gplotout = gplotout +
+          geom_errorbar(aes(ymin=.dv-sd, ymax=.dv+sd, color = .summ), position=position_dodge(0.05))
+      }
+      if(input$graphsummtype == 3){
+        gplotout = gplotout +
+          geom_errorbar(aes(ymin=.dv-sem, ymax=.dv+sem, color = .summ), position=position_dodge(0.05))
+      }
+      if(input$graphsummtype == 5){
+        gplotout = gplotout +
+          geom_ribbon(aes(ymin=q05, ymax=q95, color = .summ, fill = .summ), alpha=0.1, linetype = "dotted")+ guides(fill = 'none')
+      }
+      if(input$graphsummtype == 6){
+        gplotout = gplotout +
+          geom_ribbon(aes(ymin=q025, ymax=q975, color = .summ, fill = .summ), alpha=0.1, linetype = "dotted")+ guides(fill = 'none')
+      }
+
       # facet if it is specified
-      if (input$cgraphtype %in% 4:6) {
+      if (input$cgraphtype %in% 4:5) {
         gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
+      }
+      if (input$cgraphtype %in% 4:6) {
+        gplotout = gplotout +facet_wrap(. ~ .summ, ncol = input$graphcolnum)
       }
 
       # inidividual if it is specified
