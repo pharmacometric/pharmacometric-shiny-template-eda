@@ -281,7 +281,7 @@ data_summarised_overall = function(dataa) {
   if (nrow(dataa)) {
     dataa %>%
       filter(not.na(.dv)) %>%
-      group_by(.colv, .tm) %>%
+      group_by(.summ, .tm) %>%
       reframe(
         dv_mean = mean(.dv),
         dv_med = median(.dv),
@@ -299,9 +299,9 @@ data_summarised_facet = function(dataa) {
   if (nrow(dataa)) {
     dataa %>%
       filter(not.na(.dv)) %>%
-      group_by(.ttr, .tm) %>%
+      group_by(.summ, .tm) %>%
       reframe(
-        .colv = unique(.colv),
+        .colv = unique(.colv)[1],
         dv_mean = mean(.dv),
         dv_med = median(.dv),
         sd = sd(.dv),
@@ -357,7 +357,7 @@ code_download_checks_df = tibble::tribble(
   "\\{SCRIPTDATA\\}", 1, "datatoUseconc1", "datatoUseconc2",
   "\\{DVVAR\\}", 1, "depvar1", "",
   "\\{TYMEVAR\\}", 1, "indepvar", "indepvar2",
-  "\\{LIBRARIES\\}", 3, "", "",
+  "\\{LIBRARIES\\}", 3, "libs.glue", "",
   "\\{CONSOLECLEAR\\}", 1, "", "",
   "\\{DATAFILE\\}", 1, "", "",
   "\\{STORAGEPATH\\}", 1, "", "",
