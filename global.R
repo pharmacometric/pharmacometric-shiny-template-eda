@@ -36,5 +36,6 @@ GLOBAL$lastsim = NULL
 GLOBAL$start.sim = FALSE
 seed.val = 67772
 GLOBAL$objects = NULL
+GLOBAL$data.orig.filename = NULL
 GLOBAL$data.versions = list("original" = data.frame(),"dataV2" = data.frame(),"dataV3" = data.frame())
 data.versions.names = c("original","dataV2","dataV3")
