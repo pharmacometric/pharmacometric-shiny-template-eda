@@ -17,7 +17,7 @@ source.part = function(path, which = c("ui", "server"), input = NULL, output = N
   which = match.arg(which)
   for (h in list.files(path = path, pattern = paste0(which, ".R$"), full.names = 1L, recursive = 1L)) {
     this.path = dirname(h)
-    source(h, local = 1L)
+    source(h, local = TRUE)
   }
 }
 
