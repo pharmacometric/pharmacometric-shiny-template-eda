@@ -8,6 +8,9 @@
 ##
 #############################################################################
 #############################################################################
+#for(u in indexed(libs))message(u$key,"-",u$val)
+libs.glue = paste0("c(",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')\n") # for exporting code
+
 
 # plot panels
 body.panel.right.plot.conc = card.pro(
@@ -94,6 +97,7 @@ body.panel.right.plot.conc = card.pro(
   footer = list(
     downloadButton("concvtimedownloadimg", "Download plot file (png)", icon = icon("image")),
     downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image")),
-    downloadButton("cdownloadimg2", "Download code", icon = icon("code"))
+    downloadButton("cdownloadconcvt2", "Download TSFD code", icon = icon("code")),
+    downloadButton("cdownloadconcvt3", "Download TSLD code", icon = icon("code"))
   )
 )
