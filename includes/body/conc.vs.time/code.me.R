@@ -19,13 +19,13 @@
 ##
 #############################################################################
 #############################################################################
-###  SECTION:
+###  SECTION: Clear environment and load libraries
 #############################################################################
 
+quickcode::clean(clearPkgs = 1L) #refresh console, clear environment
+
 {LIBRARIES}
-
-{CONSOLECLEAR}
-
+lapply(libs, function(l)library(l,character.only=1L)) #import libraries
 
 #############################################################################
 ###  SECTION: Data, relevant paths and functions
@@ -38,7 +38,7 @@ storePath = {STORAGEPATH}
 data_summarised_facet = function(dataa){
   dataa %>% filter(not.na({DVVAR})) %>% group_by({FACETVAR}, {TYMEVAR}) %>%
     reframe(
-      {COLORVAR} = unique({COLORVAR}),
+      {COLORVAR} = unique({COLORVAR})[1],
       dv_mean = mean({DVVAR}),
       dv_med = median({DVVAR}),
       sd = sd({DVVAR}),
@@ -70,7 +70,12 @@ gplotout = ggplot(data = dTPlot, aes(x = {TYMEVAR}, y = {DVVAR}, color = {COLORV
 {LSPAGHETTIPLOT}  + geom_point() + geom_line()
 {LSCATTERPLOT}  + geom_point()
 {LSUMMARYPLOT}  + geom_line()
+{LNOTMEANMEDIANALONE}  + geom_point(aes(color=FACETCOLNUM))
 {LFACETPLOT}  + facet_wrap(. ~ {FACETVAR}, ncol = {FACETCOLNUM})
+{LSUMMARYPLOTA}  +geom_errorbar(aes(ymin={DVVAR}-sd, ymax={DVVAR}+sd, color = {FACETVAR}), position=position_dodge(0.05)) #sd error bars
+{LSUMMARYPLOTB}  +geom_errorbar(aes(ymin={DVVAR}-sd, ymax={DVVAR}+sd, color = {FACETVAR}), position=position_dodge(0.05)) #sem error bars
+{LSUMMARYPLOTC}  + geom_ribbon(aes(ymin=q05, ymax=q95, color = {FACETVAR}, fill = {FACETVAR}), alpha=0.1, linetype = "dotted")+ guides(fill = 'none') #ribbon for 90%CI
+{LSUMMARYPLOTD}  + geom_ribbon(aes(ymin=q025, ymax=q975, color = {FACETVAR}, fill = {FACETVAR}), alpha=0.1, linetype = "dotted")+ guides(fill = 'none') #ribbon for 95%CI
 {LSEMILOGPLOT}  + scale_y_log10()
 + theme_bw()
 + styler03
