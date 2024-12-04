@@ -4,9 +4,9 @@
 ##
 ##  Author: W.H
 ##
-##  Date: 2024-12-01
+##  Date: {SCRIPTDATA}
 ##
-##  Title: Concentration vs. Time
+##  Title: Concentration({DVVAR}) vs. Time ({TYMEVAR})
 ##
 ##  Description: Generate exploratory plot for observed concentration over
 ##               time
@@ -35,115 +35,76 @@ edaData = {DATAFILE}
 edaDataV1 = {DATAFILEV2}
 edaDataV2 = {DATAFILEV3}
 storePath = {STORAGEPATH}
-ggplotTheme = {GGPLTHEME}
-depVar = {DVVAR}
-timeVar = {TYMEVAR}
-colorVar = {COLOURVAR}
-treatVar = {TRTVAR}
-
+data_summarised_facet <- function(dataa){
+  dataa %>% filter(not.na({DVVAR})) %>% group_by({FACETVAR}, {TYMEVAR}) %>%
+    reframe(
+      {COLORVAR} = unique({COLORVAR}),
+      dv_mean = mean({DVVAR}),
+      dv_med = median({DVVAR}),
+      sd = sd({DVVAR}),
+      sem = sd({DVVAR})/sqrt(length(({DVVAR}))),
+      q95 = quantile({DVVAR},probs = 0.95),
+      q05 = quantile({DVVAR},probs = 0.05),
+      q975 = quantile({DVVAR},probs = 0.975),
+      q025 = quantile({DVVAR},probs = 0.025))
+}
 
 #############################################################################
 ###  SECTION: Create concentration vs time plot
 #############################################################################
 
-plot.data <- GLOBAL$data.versions[[input$datatoUseconc1]]
-if (!length(plot.data) | is.null(plot.data)) {
-  return(sampleplot())
-}
-if (nrow(plot.data)) {
-  if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--", names(plot.data)))) {
-    updateGraphStatus2()
-    plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
-    plot.data$.tm <- as.numeric(plot.data[[input$indepvar]])
-    plot.data$.id <- as.numeric(plot.data[[input$idvar]])
-    plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %ifnon% as.factor(plot.data$.id)
-    plot.data$.ttr <- as.factor(plot.data[[input$cfacetvar]])
-    plot.data$.none <- "x"
+plot.data = {CHOSENDATA}
+dTPlot = dTPlot0 = plot.data %>% filter(not.na({DVVAR}) & {DVVAR} > 0)
+
+# ERROR handler to ensure data has rows
+if (!nrow(plot.data)) stop("The plot data does not have data rows.")
+
+{SUMMARISEPLOT}# Data summarized or unsummarized
+{SUMMARISEPLOT}  dTPlot = data_summarised_facet(dTPlot)
+# Plot final data
+gplotout = ggplot(data = dTPlot, aes(x = {TYMEVAR}, y = {DVVAR}, color = {COLORVAR}))
++ guides(color = guide_legend(ncol = {LEGENDCOLNUM}))
++ labs(x = {ILABELX}, y = {ILABELY}, color = "")
+{LMEANMEDIANALONE}  + geom_point(data = dTPlot0)
+{LREMOVECOLORVAR}  + scale_color_manual(values = rep("black", length(unique(dTPlot${IDVAR})))) + theme(legend.position = "none")
+{LSPAGHETTIPLOT}  + geom_point() + geom_line()
+{LSCATTERPLOT}  + geom_point()
+{LSUMMARYPLOT}  + geom_line()
+{LFACETPLOT}  + facet_wrap(. ~ {FACETVAR}, ncol = {FACETCOLNUM})
+{LSEMILOGPLOT}  + scale_y_log10()
++ theme_bw()
++ styler03
++ theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title.y = element_text(face = "bold", vjust = 2),
+        axis.title.x = element_text(vjust = -0.2),
+        panel.background = element_rect(colour = "#333333"),
+        plot.background = element_rect(colour = NA),
+        panel.border = element_rect(colour = NA),
+        axis.title = element_text(face = "bold", size = rel(1)),
+        axis.line.x = element_line(colour = "black"),
+        axis.line.y = element_line(colour = "black"),
+        text = element_text(family = {TEXTFONT}),
+        axis.text = element_text(size = {FONTTICKSIZE}, family = {TEXTFONT}),
+        axis.title = element_text(size = {FONTXYSIZE}, family = {TEXTFONT}),
+        strip.text = element_text(face = "bold", size = {FONTSTRIPSIZE}, family = {TEXTFONT}),
+        plot.margin = unit(c(10, 5, 5, 5), "mm"),
+        strip.background = element_rect(colour = "#000000", fill = "#f3f3f3", linewidth = rel(1.6)),
+        legend.position = {LEGENDPOS},
+        legend.text = element_text(family = {TEXTFONT}),
+        legend.title = element_text(family = {TEXTFONT}),
+        title = element_text(family = {TEXTFONT}))
+# Print plot
+print(gplotout)
+# Save printed plot
+ggsave(fAddDate(storePath, "/eda_{GRAPHTYPE1}{GRAPHTYPE2}{GRAPHTYPE3}_conc_time_v1.png"), width = {IMAGEWIDTH}, height = {IMAGEHEIGHT}, dpi = 300, units = "px")
 
 
-    # get data type based on selection
-    datatoplot0 <- plot.data %>% filter(not.na(.dv) & .dv > 0)
-    datatoplot <- datatoplot0
-    if (input$cgraphtype == 3) {
-      datatoplot <- data_summarised_overall(datatoplot)
-    }
-    if (input$cgraphtype == 6) {
-      datatoplot <- data_summarised_facet(datatoplot)
-    }
 
-    if (input$cgraphtype %in% c(3, 6) & input$graphsummtype %in% 1:3) {
-      datatoplot <- datatoplot %>% rename(.dv = dv_mean)
-    }
-
-    if (input$cgraphtype %in% c(3, 6) & input$graphsummtype %in% 4:6) {
-      datatoplot <- datatoplot %>% rename(.dv = dv_med)
-    }
-
-
-    # global plot out
-    gplotout <- ggplot(datatoplot, aes(.tm, .dv, color = .colv)) +
-      guides(color = guide_legend(ncol = input$ncollegend)) +
-      labs(x = input$labelx, y = input$labely, color = "") +
-      theme_bw() +
-      styler00 +
-      styler03 +
-      theme(text = element_text(family = input$graphfont), axis.text = element_text(size = input$fontxyticks, family = input$graphfont), axis.title = element_text(size = input$fontxytitle, family = input$graphfont), strip.text = element_text(size = input$fontxystrip, family = input$graphfont), legend.position = input$legendposition, legend.text = element_text(family = input$graphfont), legend.title = element_text(family = input$graphfont), title = element_text(family = input$graphfont))
-
-    # add scatter if plotting median or mean alone
-    if (input$cgraphtype %in% c(3, 6) & input$graphsummtype %in% c(1, 4)) {
-      gplotout <- gplotout + geom_point(data = datatoplot0)
-    } #+
-    # scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
-    # theme(legend.position = "none")
-
-
-    # add ribbon if plotting med +/- confident interval
-
-    # if color variable is specified
-    if (input$colvar3 == "--" | input$cgraphtype %in% c(1, 4, 7, 8)) {
-      gplotout <- gplotout + scale_color_manual(values = rep("black", length(unique(datatoplot$.id)))) +
-        theme(legend.position = "none")
-    }
-
-    # if spaghetti is specified
-    if (input$cgraphtype %in% c(1, 4, 7)) {
-      gplotout <- gplotout + geom_point() + geom_line()
-    }
-
-    # if scatter is specified
-    if (input$cgraphtype %in% c(2, 5, 8)) {
-      gplotout <- gplotout + geom_point()
-    }
-
-    # if summary is specified
-    if (input$cgraphtype %in% c(3, 6)) {
-      gplotout <- gplotout + geom_line()
-    }
-
-    # facet if it is specified
-    if (input$cgraphtype %in% 4:6) {
-      gplotout <- gplotout + facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
-    }
-
-    # inidividual if it is specified
-    if (input$cgraphtype %in% 7:8) {
-      gplotout <- gplotout + facet_wrap(. ~ .id, ncol = input$graphcolnum)
-    }
-
-    # add semi log if it is specified
-    if (input$loglinear == "Semi-Log") {
-      gplotout <- gplotout + scale_y_log10()
-    }
-
-    print(gplotout)
-    ggsave(fAddDate(storePath,"/eda_conc_vs_time_v1.png"))
-  }
-
-}
 
 
 #############################################################################
-###  SECTION: Print session information and clear environmet
+###  SECTION: Print session information and clear environment
 #############################################################################
 
 sessionInfo()
