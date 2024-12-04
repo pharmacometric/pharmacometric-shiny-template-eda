@@ -47,7 +47,7 @@ output$concvtimeplot1 <- renderPlot({
       plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
       plot.data$.tm <- as.numeric(plot.data[[input$indepvar]])
       plot.data$.id <- as.numeric(plot.data[[input$idvar]])
-      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %ifnon% as.factor(plot.data$.id)
+      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
       plot.data$.ttr <- as.factor(plot.data[[input$cfacetvar]])
       plot.data$.none <- "x"
 
@@ -141,7 +141,7 @@ output$concvtimeplot2 <- renderPlot({
       plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
       plot.data$.tm <- as.numeric(plot.data[[input$indepvar2]])
       plot.data$.id <- as.numeric(plot.data[[input$idvar]])
-      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %ifnon% as.factor(plot.data$.id)
+      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
       plot.data$.ttr <- as.factor(plot.data[[input$cfacetvar]])
       plot.data$.none <- "x"
 
