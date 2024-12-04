@@ -275,43 +275,106 @@ sampleplot <- function() {
 }
 
 
-`%ifnon%` <- function (test, alternative)
-{
-  res <- test
-  if (!length(res))
-    return(alternative)
-  if (all(is.null(res) | is.na(res) | is.nan(res) | !not.empty(res)))
-    return(alternative)
-  res
-}
 
-data_summarised_overall <- function(dataa){
+
+data_summarised_overall <- function(dataa) {
   if (nrow(dataa)) {
-    dataa %>% filter(not.na(.dv)) %>% group_by(.colv, .tm) %>%
+    dataa %>%
+      filter(not.na(.dv)) %>%
+      group_by(.colv, .tm) %>%
       reframe(
         dv_mean = mean(.dv),
         dv_med = median(.dv),
         sd = sd(.dv),
-        sem = sd(.dv)/sqrt(length((.dv))),
-        q95 = quantile(.dv,probs = 0.95),
-        q05 = quantile(.dv,probs = 0.05),
-        q975 = quantile(.dv,probs = 0.975),
-        q025 = quantile(.dv,probs = 0.025))
+        sem = sd(.dv) / sqrt(length((.dv))),
+        q95 = quantile(.dv, probs = 0.95),
+        q05 = quantile(.dv, probs = 0.05),
+        q975 = quantile(.dv, probs = 0.975),
+        q025 = quantile(.dv, probs = 0.025)
+      )
   }
 }
 
-data_summarised_facet <- function(dataa){
+data_summarised_facet <- function(dataa) {
   if (nrow(dataa)) {
-    dataa %>% filter(not.na(.dv)) %>% group_by(.ttr, .tm) %>%
+    dataa %>%
+      filter(not.na(.dv)) %>%
+      group_by(.ttr, .tm) %>%
       reframe(
         .colv = unique(.colv),
         dv_mean = mean(.dv),
         dv_med = median(.dv),
         sd = sd(.dv),
-        sem = sd(.dv)/sqrt(length((.dv))),
-        q95 = quantile(.dv,probs = 0.95),
-        q05 = quantile(.dv,probs = 0.05),
-        q975 = quantile(.dv,probs = 0.975),
-        q025 = quantile(.dv,probs = 0.025))
+        sem = sd(.dv) / sqrt(length((.dv))),
+        q95 = quantile(.dv, probs = 0.95),
+        q05 = quantile(.dv, probs = 0.05),
+        q975 = quantile(.dv, probs = 0.975),
+        q025 = quantile(.dv, probs = 0.025)
+      )
   }
 }
+
+
+
+extract_pattern <- function(file) {
+  extract_words_with_braces <- function(string) {
+    pattern <- "\\{([A-Z]+)\\}"
+    matches <- stringr::str_extract_all(string, pattern)
+    if (length(matches) > 0) {
+      return(unlist(matches))
+    } else {
+      return(NULL)
+    }
+  }
+
+  # Read the file line by line
+  lines <- readLines(file)
+  replacebr <- c()
+  for (line in lines) {
+    replacebr <- c(replacebr, extract_words_with_braces(line))
+  }
+  replacebr
+}
+
+# extracted_patterns <- suppressMessages(extract_pattern("includes/body/conc.vs.time/code.me.R"))
+#
+# print(unique(extracted_patterns))
+# i = gsub("\\{","\\\\{",extracted_patterns)
+# i2 = gsub("\\}","\\\\}",i)
+# for(u in unique(i2)){
+#   message("'",u,"',1,'','',")
+# }
+
+code_download_checks_df <- tribble(
+  ~srh, ~rpl, ~with, ~check,
+  "\\{SCRIPTDATA\\}", 1, "", "",
+  "\\{DVVAR\\}", 1, "", "",
+  "\\{TYMEVAR\\}", 1, "", "",
+  "\\{LIBRARIES\\}", 1, "", "",
+  "\\{CONSOLECLEAR\\}", 1, "", "",
+  "\\{DATAFILE\\}", 1, "", "",
+  "\\{STORAGEPATH\\}", 1, "", "",
+  "\\{FACETVAR\\}", 1, "", "",
+  "\\{COLORVAR\\}", 1, "", "",
+  "\\{CHOSENDATA\\}", 1, "", "",
+  "\\{SUMMARISEPLOT\\}", 1, "", "",
+  "\\{LEGENDCOLNUM\\}", 1, "", "",
+  "\\{ILABELX\\}", 1, "", "",
+  "\\{ILABELY\\}", 1, "", "",
+  "\\{LMEANMEDIANALONE\\}", 1, "", "",
+  "\\{LREMOVECOLORVAR\\}", 1, "", "",
+  "\\{IDVAR\\}", 1, "", "",
+  "\\{LSPAGHETTIPLOT\\}", 1, "", "",
+  "\\{LSCATTERPLOT\\}", 1, "", "",
+  "\\{LSUMMARYPLOT\\}", 1, "", "",
+  "\\{LFACETPLOT\\}", 1, "", "",
+  "\\{FACETCOLNUM\\}", 1, "", "",
+  "\\{LSEMILOGPLOT\\}", 1, "", "",
+  "\\{TEXTFONT\\}", 1, "", "",
+  "\\{FONTTICKSIZE\\}", 1, "", "",
+  "\\{FONTXYSIZE\\}", 1, "", "",
+  "\\{FONTSTRIPSIZE\\}", 1, "", "",
+  "\\{LEGENDPOS\\}", 1, "", "",
+  "\\{IMAGEWIDTH\\}", 1, "", "",
+  "\\{IMAGEHEIGHT\\}", 1, "", ""
+)
