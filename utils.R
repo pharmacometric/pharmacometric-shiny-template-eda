@@ -348,40 +348,45 @@ extract_pattern = function(file) {
 
 
 #rpl values
+# 0 - value is provided
 # 1 - value available in input to replace
 # 2 - To be replaced with "" or remove entirely
 # 3 - no values available in input, get in variable
-
+# 4 - value is in a reactive
 code_download_checks_df = tibble::tribble(
   ~srh, ~rpl, ~with, ~with2,
   "\\{SCRIPTDATA\\}", 1, "datatoUseconc1", "datatoUseconc2",
   "\\{DVVAR\\}", 1, "depvar1", "",
   "\\{TYMEVAR\\}", 1, "indepvar", "indepvar2",
   "\\{LIBRARIES\\}", 3, "libs.glue", "",
-  "\\{CONSOLECLEAR\\}", 1, "", "",
-  "\\{DATAFILE\\}", 1, "", "",
-  "\\{STORAGEPATH\\}", 1, "", "",
-  "\\{FACETVAR\\}", 1, "", "",
-  "\\{COLORVAR\\}", 1, "", "",
-  "\\{CHOSENDATA\\}", 1, "", "",
-  "\\{SUMMARISEPLOT\\}", 1, "", "",
-  "\\{LEGENDCOLNUM\\}", 1, "", "",
-  "\\{ILABELX\\}", 1, "", "",
-  "\\{ILABELY\\}", 1, "", "",
-  "\\{LMEANMEDIANALONE\\}", 1, "", "",
-  "\\{LREMOVECOLORVAR\\}", 1, "", "",
-  "\\{IDVAR\\}", 1, "", "",
-  "\\{LSPAGHETTIPLOT\\}", 1, "", "",
-  "\\{LSCATTERPLOT\\}", 1, "", "",
-  "\\{LSUMMARYPLOT\\}", 1, "", "",
-  "\\{LFACETPLOT\\}", 1, "", "",
-  "\\{FACETCOLNUM\\}", 1, "", "",
-  "\\{LSEMILOGPLOT\\}", 1, "", "",
-  "\\{TEXTFONT\\}", 1, "", "",
-  "\\{FONTTICKSIZE\\}", 1, "", "",
-  "\\{FONTXYSIZE\\}", 1, "", "",
-  "\\{FONTSTRIPSIZE\\}", 1, "", "",
-  "\\{LEGENDPOS\\}", 1, "", "",
-  "\\{IMAGEWIDTH\\}", 1, "", "",
-  "\\{IMAGEHEIGHT\\}", 1, "", ""
+  '\\{DATAFILE\\}',1,"GLOBAL$data.orig.filename",'',
+  '\\{STORAGEPATH\\}',0,"./",'',
+  '\\{FACETVAR\\}',1,'cfacetvar','',
+  '\\{COLORVAR\\}',1,'colvar3','',
+  '\\{CHOSENDATA\\}',1,'datatoUseconc1','',
+  '\\{SUMMARISEPLOT\\}',1,'','',
+  '\\{LEGENDCOLNUM\\}',1,'','',
+  '\\{ILABELX\\}',1,'','',
+  '\\{ILABELY\\}',1,'','',
+  '\\{LMEANMEDIANALONE\\}',1,'','',
+  '\\{LREMOVECOLORVAR\\}',1,'','',
+  '\\{IDVAR\\}',1,'','',
+  '\\{LSPAGHETTIPLOT\\}',1,'','',
+  '\\{LSCATTERPLOT\\}',1,'','',
+  '\\{LSUMMARYPLOT\\}',1,'','',
+  '\\{LNOTMEANMEDIANALONE\\}',1,'','',
+  '\\{LFACETPLOT\\}',1,'','',
+  '\\{FACETCOLNUM\\}',1,'','',
+  '\\{LSUMMARYPLOTA\\}',1,'','',
+  '\\{LSUMMARYPLOTB\\}',1,'','',
+  '\\{LSUMMARYPLOTC\\}',1,'','',
+  '\\{LSUMMARYPLOTD\\}',1,'','',
+  '\\{LSEMILOGPLOT\\}',1,'','',
+  '\\{TEXTFONT\\}',1,'','',
+  '\\{FONTTICKSIZE\\}',1,'','',
+  '\\{FONTXYSIZE\\}',1,'','',
+  '\\{FONTSTRIPSIZE\\}',1,'','',
+  '\\{LEGENDPOS\\}',1,'','',
+  '\\{IMAGEWIDTH\\}',1,'','',
+  '\\{IMAGEHEIGHT\\}',1,'',''
 )
