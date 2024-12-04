@@ -50,9 +50,9 @@ body.panel.left.setup = card.pro(
              selectInput("idvar", "Individual identifier variable", choices = "ID",width = "100%"),
              selectInput("cfacetvar", "Facet variable", choices = "TRT",width = "100%"),
              selectInput("colvar3", "Color by", choices = "ID",width = "100%"),
+             selectInput("summby", "Summarize data by", choices = "TRT",width = "100%"),
              selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%"),
-             selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%"),
-             selectInput("depvar6", "Flag variable", choices = "FLAG",width = "100%"),
+             selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%")
              )
   ),
   footer = textOutput("tracksimulations")
