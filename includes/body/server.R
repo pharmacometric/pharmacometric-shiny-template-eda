@@ -40,7 +40,7 @@ observe({
   updateSelectInput(session,"cfacetvar", choices = varnames, selected =  "TRT")
   updateSelectInput(session,"depvar4", choices = varnames, selected =  "DOSE")
   updateSelectInput(session,"depvar5", choices = varnames, selected =  "WT")
-  updateSelectInput(session,"depvar6", choices = varnames, selected =  "FLAG")
+  updateSelectInput(session,"summby", choices = varnames, selected =  "TRT")
   updateSelectInput(session,"colvar3", choices = c("--",varnames), selected =  "ID")
   updateSelectInput(session,"idvar", choices = varnames, selected =  "ID")
 })
