@@ -10,11 +10,11 @@
 #############################################################################
 
 # plot panels
-body.panel.right.plot.cov <- card.pro(
+body.panel.right.plot.cov = card.pro(
   title = "Covariate Relationship",
   icon = icon("chart-simple"),
   header.bg = "blueDark",
-  collapsed = TRUE,
+  collapsed = 1L,
   xtra.header.content = textOutput("reportgraphstatus2"),
   selectInput("miscdataUseV1","Data version to use:", choices = data.versions.names),
   plotOutput("didistPlot", height = 600),

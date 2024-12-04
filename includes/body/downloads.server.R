@@ -10,7 +10,7 @@
 #############################################################################
 
 
-output$concvtimedownloadimg <- downloadHandler(
+output$concvtimedownloadimg = downloadHandler(
   filename = function() {
     fAddDate('app1-eda-concvs-img.png')
   },
@@ -26,7 +26,7 @@ output$concvtimedownloadimg <- downloadHandler(
   }
 )
 
-output$concvtimedownloadimg2 <- downloadHandler(
+output$concvtimedownloadimg2 = downloadHandler(
   filename = function() {
     fAddDate('app1-eda-concvs-obj.data')
   },
@@ -38,7 +38,7 @@ output$concvtimedownloadimg2 <- downloadHandler(
 
 
 
-output$downloadtable1 <- downloadHandler(
+output$downloadtable1 = downloadHandler(
   filename = function() {
     fAddDate('app1-res-summ-all.csv')
   },
@@ -49,7 +49,7 @@ output$downloadtable1 <- downloadHandler(
 
 
 # download individual summaries
-output$downloadtable1 <- downloadHandler(
+output$downloadtable1 = downloadHandler(
   filename = function() {
     paste0('app1-res-summ-indv-', Sys.Date(), '.csv')
   },
@@ -60,7 +60,7 @@ output$downloadtable1 <- downloadHandler(
 
 
 # download regimen used for sims
-output$downloadtable3 <- downloadHandler(
+output$downloadtable3 = downloadHandler(
   filename = function() {
     fAddDate('app1-res-regimen.csv')
   },
@@ -71,7 +71,7 @@ output$downloadtable3 <- downloadHandler(
 
 
 # download individual summaries
-output$downloadtable4 <- downloadHandler(
+output$downloadtable4 = downloadHandler(
   filename = function() {
     fAddDate('app1-raw_tab_res.csv')
   },

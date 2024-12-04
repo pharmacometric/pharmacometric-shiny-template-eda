@@ -11,32 +11,32 @@
 #############################################################################
 
 
-originalData <- reactive({
+originalData = reactive({
   createSampleData(N = input$popsize1)
 })
 
-originalData2 <- reactive({
+originalData2 = reactive({
   if(is.null(input$fileupd)){
     updateSimStatus("No dataset was uploaded.")
     data.frame()
   }
   else{
-    read.csv(input$fileupd$datapath, header = TRUE)
+    read.csv(input$fileupd$datapath, header = 1L)
   }
 
 })
 
-dataV2 <- reactive({
-  if(input$checkGroupDatasetT == 1) ordata <- originalData()
-  else ordata <- originalData2()
+dataV2 = reactive({
+  if(input$checkGroupDatasetT == 1) ordata = originalData()
+  else ordata = originalData2()
 
   tryCatch(eval(parse(text = paste0("subset(ordata,",input$subsetting1,")"))),
            error = function(e) ordata[1,])
 })
 
-dataV3 <- reactive({
-  if(input$checkGroupDatasetT == 1) ordata <- originalData()
-  else ordata <- originalData2()
+dataV3 = reactive({
+  if(input$checkGroupDatasetT == 1) ordata = originalData()
+  else ordata = originalData2()
 
   tryCatch(eval(parse(text = paste0("subset(ordata,",input$subsetting2,")"))),
            error = function(e) ordata[1,])
@@ -45,13 +45,13 @@ dataV3 <- reactive({
 
 observeEvent(input$rundatabutton,{
 
-  ordata <- originalData()
+  ordata = originalData()
   if(input$checkGroupDatasetT == 2){
     if(is.null(input$fileupd)) updateSimStatus("No dataset was uploaded.")
-    else ordata <- originalData2()
+    else ordata = originalData2()
   }
 
-    GLOBAL$data.versions <- list(
+    GLOBAL$data.versions = list(
       "original" = ordata,
       "dataV2" = dataV2(),
       "dataV3" = dataV3()
@@ -59,7 +59,7 @@ observeEvent(input$rundatabutton,{
 
 })
 
-output$rhstable1 <- renderDT(
+output$rhstable1 = renderDT(
   switch (input$datatoUseV1,
           "original"= GLOBAL$data.versions$original,
           "dataV2"=GLOBAL$data.versions$dataV2,

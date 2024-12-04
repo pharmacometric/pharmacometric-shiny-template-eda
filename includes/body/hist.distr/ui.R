@@ -10,10 +10,10 @@
 #############################################################################
 
 # plot panels
-body.panel.right.plot.hist <- card.pro(
+body.panel.right.plot.hist = card.pro(
   title = "Histogram",
   icon = icon("chart-simple"),
-  collapsed = TRUE,
+  collapsed = 1L,
   header.bg = "yellow",
   xtra.header.content = textOutput("reportgraphstatus"),
   plotOutput("covdistPlot", height = 600),

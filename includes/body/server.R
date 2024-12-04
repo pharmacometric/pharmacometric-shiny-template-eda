@@ -12,7 +12,7 @@
 
 # other outputs and event listeners for the body section
 
-output$tracksimulations <- renderText({
+output$tracksimulations = renderText({
   if(!nrow(GLOBAL$data.versions$original)){
     "No data updates have been made."
   }else{

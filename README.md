@@ -21,7 +21,7 @@ setwd("pharmacometric-shiny-template-eda")
 
 # Load shiny and run app
 library(shiny)
-runApp(launch.browser = TRUE)
+runApp(launch.browser = 1L)
 
 ```
 

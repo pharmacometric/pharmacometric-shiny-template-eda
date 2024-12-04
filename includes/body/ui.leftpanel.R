@@ -10,13 +10,13 @@
 #############################################################################
 
 # sims setup panel
-body.panel.left.setup <- card.pro(
+body.panel.left.setup = card.pro(
 
   title = "Data",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
-  editbtn = TRUE,
+  editbtn = 1L,
   "Data upload, subsetting and variable declarations",
   tabs = list(
     tabEntry(
@@ -65,7 +65,7 @@ body.panel.left.setup <- card.pro(
 
 
 # assemble left panel
-body.panel.left <- primePanel(
+body.panel.left = primePanel(
   width = 4,
   body.panel.left.setup
 )

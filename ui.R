@@ -20,13 +20,13 @@ for (ui_each in c(
   "includes/body",
   "includes/footer"
 )) {
-  this.files <- list.files(ui_each,
+  this.files = list.files(ui_each,
     pattern = "^ui\\.",
-    full.names = TRUE,
-    recursive = TRUE
+    full.names = 1L,
+    recursive = 1L
   )
   for (uifile in this.files) {
-    this.path <- dirname(uifile)
+    this.path = dirname(uifile)
     source(uifile, local = T)
   }
 }
@@ -35,7 +35,7 @@ for (ui_each in c(
 
 
 # create the main UI for the app
-ui <- fluidPage(
+ui = fluidPage(
   useShinyjs(),
   use.cardpro(theme = "a"),
   header.main,

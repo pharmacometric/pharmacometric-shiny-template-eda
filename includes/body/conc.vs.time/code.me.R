@@ -35,7 +35,7 @@ edaData = {DATAFILE}
 edaDataV1 = {DATAFILEV2}
 edaDataV2 = {DATAFILEV3}
 storePath = {STORAGEPATH}
-data_summarised_facet <- function(dataa){
+data_summarised_facet = function(dataa){
   dataa %>% filter(not.na({DVVAR})) %>% group_by({FACETVAR}, {TYMEVAR}) %>%
     reframe(
       {COLORVAR} = unique({COLORVAR}),

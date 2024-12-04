@@ -10,7 +10,7 @@
 #############################################################################
 
 # plot panels
-body.panel.right.plot.conc <- card.pro(
+body.panel.right.plot.conc = card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
   collapsed = FALSE,

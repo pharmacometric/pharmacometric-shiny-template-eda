@@ -38,37 +38,37 @@ updateSelectInput(session, "datatoUseconc2", choices = data.versions.names)
 
 
 # Time after first dose plot
-output$concvtimeplot1 <- renderPlot({
-  plot.data <- GLOBAL$data.versions[[input$datatoUseconc1]]
+output$concvtimeplot1 = renderPlot({
+  plot.data = GLOBAL$data.versions[[input$datatoUseconc1]]
   if(!length(plot.data) | is.null(plot.data))return(sampleplot())
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--",names(plot.data)))) {
       updateGraphStatus2()
-      plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
-      plot.data$.tm <- as.numeric(plot.data[[input$indepvar]])
-      plot.data$.id <- as.numeric(plot.data[[input$idvar]])
-      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
-      plot.data$.ttr <- as.factor(plot.data[[input$cfacetvar]])
-      plot.data$.none <- "x"
+      plot.data$.dv = as.numeric(plot.data[[input$depvar1]])
+      plot.data$.tm = as.numeric(plot.data[[input$indepvar]])
+      plot.data$.id = as.numeric(plot.data[[input$idvar]])
+      plot.data$.colv = as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
+      plot.data$.ttr = as.factor(plot.data[[input$cfacetvar]])
+      plot.data$.none = "x"
 
 
       # get data type based on selection
-      datatoplot0 <- plot.data %>% filter(not.na(.dv) & .dv > 0)
-      datatoplot <- datatoplot0
+      datatoplot0 = plot.data %>% filter(not.na(.dv) & .dv > 0)
+      datatoplot = datatoplot0
       if (input$cgraphtype == 3)
-        datatoplot <- data_summarised_overall(datatoplot)
+        datatoplot = data_summarised_overall(datatoplot)
       if (input$cgraphtype == 6)
-        datatoplot <- data_summarised_facet(datatoplot)
+        datatoplot = data_summarised_facet(datatoplot)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 1:3)
-        datatoplot <- datatoplot %>% rename(.dv = dv_mean)
+        datatoplot = datatoplot %>% rename(.dv = dv_mean)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 4:6)
-        datatoplot <- datatoplot %>% rename(.dv = dv_med)
+        datatoplot = datatoplot %>% rename(.dv = dv_med)
 
 
       # global plot out
-      gplotout <- ggplot(datatoplot, aes(.tm, .dv, color = .colv))   +
+      gplotout = ggplot(datatoplot, aes(.tm, .dv, color = .colv))   +
         guides(color = guide_legend(ncol = input$ncollegend))+
         labs(x = input$labelx, y = input$labely, color = "")+
         theme_bw() +
@@ -78,7 +78,7 @@ output$concvtimeplot1 <- renderPlot({
 
       # add scatter if plotting median or mean alone
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% c(1,4))
-        gplotout <- gplotout + geom_point(data = datatoplot0) #+
+        gplotout = gplotout + geom_point(data = datatoplot0) #+
         #scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
         #theme(legend.position = "none")
 
@@ -87,38 +87,38 @@ output$concvtimeplot1 <- renderPlot({
 
       # if color variable is specified
       if (input$colvar3 == "--" | input$cgraphtype %in% c(1,4,7,8)) {
-        gplotout <- gplotout + scale_color_manual(values = rep("black",length(unique(datatoplot$.id)))) +
+        gplotout = gplotout + scale_color_manual(values = rep("black",length(unique(datatoplot$.id)))) +
           theme(legend.position = "none")
       }
 
       # if spaghetti is specified
       if (input$cgraphtype %in% c(1,4,7)) {
-        gplotout <- gplotout + geom_point() + geom_line()
+        gplotout = gplotout + geom_point() + geom_line()
       }
 
       # if scatter is specified
       if (input$cgraphtype %in% c(2,5,8)) {
-        gplotout <- gplotout + geom_point()
+        gplotout = gplotout + geom_point()
       }
 
       # if summary is specified
       if (input$cgraphtype %in% c(3,6)) {
-        gplotout <- gplotout + geom_line()
+        gplotout = gplotout + geom_line()
       }
 
       # facet if it is specified
       if (input$cgraphtype %in% 4:6) {
-        gplotout <- gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
+        gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
       }
 
       # inidividual if it is specified
       if (input$cgraphtype %in% 7:8) {
-        gplotout <- gplotout +facet_wrap(. ~ .id, ncol = input$graphcolnum)
+        gplotout = gplotout +facet_wrap(. ~ .id, ncol = input$graphcolnum)
       }
 
       # add semi log if it is specified
       if (input$loglinear == "Semi-Log") {
-        gplotout <- gplotout + scale_y_log10()
+        gplotout = gplotout + scale_y_log10()
       }
 
       gplotout
@@ -132,37 +132,37 @@ output$concvtimeplot1 <- renderPlot({
 })
 
 # Time after last dose plot
-output$concvtimeplot2 <- renderPlot({
-  plot.data <- GLOBAL$data.versions[[input$datatoUseconc2]]
+output$concvtimeplot2 = renderPlot({
+  plot.data = GLOBAL$data.versions[[input$datatoUseconc2]]
   if(!length(plot.data) | is.null(plot.data))return(sampleplot())
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar2, input$cfacetvar, input$colvar3) %in% c("--",names(plot.data)))) {
       updateGraphStatus2()
-      plot.data$.dv <- as.numeric(plot.data[[input$depvar1]])
-      plot.data$.tm <- as.numeric(plot.data[[input$indepvar2]])
-      plot.data$.id <- as.numeric(plot.data[[input$idvar]])
-      plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
-      plot.data$.ttr <- as.factor(plot.data[[input$cfacetvar]])
-      plot.data$.none <- "x"
+      plot.data$.dv = as.numeric(plot.data[[input$depvar1]])
+      plot.data$.tm = as.numeric(plot.data[[input$indepvar2]])
+      plot.data$.id = as.numeric(plot.data[[input$idvar]])
+      plot.data$.colv = as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
+      plot.data$.ttr = as.factor(plot.data[[input$cfacetvar]])
+      plot.data$.none = "x"
 
 
       # get data type based on selection
-      datatoplot0 <- plot.data %>% filter(not.na(.dv) & .dv > 0)
-      datatoplot <- datatoplot0
+      datatoplot0 = plot.data %>% filter(not.na(.dv) & .dv > 0)
+      datatoplot = datatoplot0
       if (input$cgraphtype == 3)
-        datatoplot <- data_summarised_overall(datatoplot)
+        datatoplot = data_summarised_overall(datatoplot)
       if (input$cgraphtype == 6)
-        datatoplot <- data_summarised_facet(datatoplot)
+        datatoplot = data_summarised_facet(datatoplot)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 1:3)
-        datatoplot <- datatoplot %>% rename(.dv = dv_mean)
+        datatoplot = datatoplot %>% rename(.dv = dv_mean)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 4:6)
-        datatoplot <- datatoplot %>% rename(.dv = dv_med)
+        datatoplot = datatoplot %>% rename(.dv = dv_med)
 
 
       # global plot out
-      gplotout <- ggplot(datatoplot, aes(.tm, .dv, color = .colv))   +
+      gplotout = ggplot(datatoplot, aes(.tm, .dv, color = .colv))   +
         guides(color = guide_legend(ncol = input$ncollegend))+
         labs(x = input$labelx, y = input$labely, color = "")+
         theme_bw() +
@@ -172,7 +172,7 @@ output$concvtimeplot2 <- renderPlot({
 
       # add scatter if plotting median or mean alone
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% c(1,4))
-        gplotout <- gplotout + geom_point(data = datatoplot0) #+
+        gplotout = gplotout + geom_point(data = datatoplot0) #+
       #scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
       #theme(legend.position = "none")
 
@@ -181,38 +181,38 @@ output$concvtimeplot2 <- renderPlot({
 
       # if color variable is specified
       if (input$colvar3 == "--" | input$cgraphtype %in% c(1,4,7,8)) {
-        gplotout <- gplotout + scale_color_manual(values = rep("black",length(unique(datatoplot$.id)))) +
+        gplotout = gplotout + scale_color_manual(values = rep("black",length(unique(datatoplot$.id)))) +
           theme(legend.position = "none")
       }
 
       # if spaghetti is specified
       if (input$cgraphtype %in% c(1,4,7)) {
-        gplotout <- gplotout + geom_point() + geom_line()
+        gplotout = gplotout + geom_point() + geom_line()
       }
 
       # if scatter is specified
       if (input$cgraphtype %in% c(2,5,8)) {
-        gplotout <- gplotout + geom_point()
+        gplotout = gplotout + geom_point()
       }
 
       # if summary is specified
       if (input$cgraphtype %in% c(3,6)) {
-        gplotout <- gplotout + geom_line()
+        gplotout = gplotout + geom_line()
       }
 
       # facet if it is specified
       if (input$cgraphtype %in% 4:6) {
-        gplotout <- gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
+        gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
       }
 
       # inidividual if it is specified
       if (input$cgraphtype %in% 7:8) {
-        gplotout <- gplotout +facet_wrap(. ~ .id, ncol = input$graphcolnum)
+        gplotout = gplotout +facet_wrap(. ~ .id, ncol = input$graphcolnum)
       }
 
       # add semi log if it is specified
       if (input$loglinear == "Semi-Log") {
-        gplotout <- gplotout + scale_y_log10()
+        gplotout = gplotout + scale_y_log10()
       }
 
       gplotout

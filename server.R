@@ -13,7 +13,7 @@
 #############################################################################
 
 
-server <- function(input, output, session) {
+server = function(input, output, session) {
 
   # include all required server files for head, body and footer
 

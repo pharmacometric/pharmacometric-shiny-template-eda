@@ -11,13 +11,13 @@
 
 
 # regimen setup panel
-body.panel.right.table.rawdata <- card.pro(
+body.panel.right.table.rawdata = card.pro(
   title = "Raw data",
   icon = icon("book"),
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
-  editbtn = TRUE,
+  editbtn = 1L,
   collapsed = FALSE,
   selectInput("datatoUseV1","Data version to use:", choices = data.versions.names),
   DTOutput("rhstable1"),

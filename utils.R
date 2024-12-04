@@ -13,15 +13,15 @@ library(ggplot2)
 library(grid)
 library(ggthemes)
 
-source.part <- function(path, which = c("ui", "server"), input = NULL, output = NULL, session = NULL) {
-  which <- match.arg(which)
-  for (h in list.files(path = path, pattern = paste0(which, ".R$"), full.names = TRUE, recursive = TRUE)) {
-    this.path <- dirname(h)
-    source(h, local = TRUE)
+source.part = function(path, which = c("ui", "server"), input = NULL, output = NULL, session = NULL) {
+  which = match.arg(which)
+  for (h in list.files(path = path, pattern = paste0(which, ".R$"), full.names = 1L, recursive = 1L)) {
+    this.path = dirname(h)
+    source(h, local = 1L)
   }
 }
 
-createSampleData <- function(N = 10) {
+createSampleData = function(N = 10) {
   ##  ID: Unique identifier for each patient (integer).
   ##  AGE: Age of the patient (float).
   ##  WEIGHT: Body weight of the patient (float).
@@ -48,50 +48,50 @@ createSampleData <- function(N = 10) {
   load("includes/body/data/sampleconc.data")
 
   # Define parameters
-  num_patients <- N
-  treatments <- c("Drug1", "Drug2", "Drug3")
+  num_patients = N
+  treatments = c("Drug1", "Drug2", "Drug3")
 
   # Generate patient demographics
-  age <- sample(18:90, num_patients, replace = TRUE)
-  wt <- round(runif(num_patients, 20, 200), 1) # Generate weights as float values
+  age = sample(18:90, num_patients, replace = 1L)
+  wt = round(runif(num_patients, 20, 200), 1) # Generate weights as float values
 
   # Assign GFR and renal function based on age and weight
-  gfr <- numeric(num_patients)
-  renal_function <- character(num_patients)
+  gfr = numeric(num_patients)
+  renal_function = character(num_patients)
 
   for (i in 1:num_patients) {
     if (age[i] < 60) {
-      gfr[i] <- round(runif(1, 60, 100), 1) # Normal
-      renal_function[i] <- "Normal"
+      gfr[i] = round(runif(1, 60, 100), 1) # Normal
+      renal_function[i] = "Normal"
     } else if (age[i] < 75) {
-      gfr[i] <- round(runif(1, 30, 60), 1) # Mild
-      renal_function[i] <- "Mild"
+      gfr[i] = round(runif(1, 30, 60), 1) # Mild
+      renal_function[i] = "Mild"
     } else {
-      gfr[i] <- round(runif(1, 0, 30), 1) # Severe
-      renal_function[i] <- "Severe"
+      gfr[i] = round(runif(1, 0, 30), 1) # Severe
+      renal_function[i] = "Severe"
     }
   }
 
   # Generate treatment assignments
-  treatment <- sample(treatments, num_patients, replace = TRUE)
+  treatment = sample(treatments, num_patients, replace = 1L)
 
   # Create an empty data frame for the regimenDT
-  regimenDT <- data.frame()
+  regimenDT = data.frame()
 
   # Populate the regimenDT with 5 records per patient
   for (i in 1:num_patients) {
     # Determine dose based on treatment
     if (treatment[i] == "Drug1") {
-      dose_value <- sample(c(50, 100, 80), 1)
+      dose_value = sample(c(50, 100, 80), 1)
     } else if (treatment[i] == "Drug2") {
-      dose_value <- sample(c(25, 80, 50), 1)
+      dose_value = sample(c(25, 80, 50), 1)
     } else {
-      dose_value <- sample(c(10, 25, 50), 1)
+      dose_value = sample(c(10, 25, 50), 1)
     }
 
     # Dosing records (2 records with DV set to ".")
     for (j in 0:2) {
-      regimenDT <- rbind(regimenDT, data.frame(
+      regimenDT = rbind(regimenDT, data.frame(
         ID = i,
         AGE = age[i],
         WT = wt[i], # Renamed to WT
@@ -114,12 +114,12 @@ createSampleData <- function(N = 10) {
     }
 
     # Observation records (3 records with actual DV values)
-    omega <- runif(1, 0.001, 0.99)
-    conctime <- subset(get(paste0("r", dose_value)), TIME %in% c(0, 4, 12, 24, 36, 48, 60, 72, 84, 96))
+    omega = runif(1, 0.001, 0.99)
+    conctime = subset(get(paste0("r", dose_value)), TIME %in% c(0, 4, 12, 24, 36, 48, 60, 72, 84, 96))
     # print(dose_value)
     for (j in conctime$TIME) {
-      dv_value <- conctime[conctime$TIME == j, ]$DV * exp(omega)
-      regimenDT <- rbind(regimenDT, data.frame(
+      dv_value = conctime[conctime$TIME == j, ]$DV * exp(omega)
+      regimenDT = rbind(regimenDT, data.frame(
         ID = i,
         AGE = age[i],
         WT = wt[i], # Renamed to WT
@@ -145,43 +145,43 @@ createSampleData <- function(N = 10) {
   regimenDT %>% arrange(ID, TIME)
 }
 
-updateSimStatus <- function(message = "No data updates have been made.") {
+updateSimStatus = function(message = "No data updates have been made.") {
   shinyjs::runjs(paste0("$('#tracksimulations').html('", message, "')"))
 }
 
 
-updateGraphStatus <- function(message = "") {
+updateGraphStatus = function(message = "") {
   shinyjs::runjs(paste0("$('#reportgraphstatus').html('", message, "')"))
 }
 
-updateGraphStatus2 <- function(message = "") {
+updateGraphStatus2 = function(message = "") {
   shinyjs::runjs(paste0("$('#reportgraphstatus2').html('", message, "')"))
 }
 
-updateVariableHolder <- function(message = "") {
+updateVariableHolder = function(message = "") {
   shinyjs::runjs(paste0("$('#varnamesholder').html('", message, "')"))
 }
 
-disableSims <- function(is = "true") {
+disableSims = function(is = "1L") {
   shinyjs::runjs(paste0('$("#runsimbutton").prop("disabled",', is, ")"))
 }
 
 
 
-styler06 <- list(theme(
+styler06 = list(theme(
   axis.title.y = element_text(face = "bold"),
   panel.background = element_rect(colour = "#333333"),
   strip.text = element_text(face = "bold")
 ))
 
-styler00 <- list(theme(
+styler00 = list(theme(
   panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
   axis.title.y = element_text(face = "bold"),
   panel.background = element_rect(colour = "#333333"),
   strip.text = element_text(face = "bold")
 ))
 
-styler03 <- theme(
+styler03 = theme(
   plot.title = element_text(
     face = "bold",
     hjust = 0.5, margin = margin(0, 0, 20, 0)
@@ -208,7 +208,7 @@ styler03 <- theme(
   strip.background = element_rect(colour = "#000000", fill = "#f3f3f3", linewidth = rel(1.6)),
   strip.text = element_text(face = "bold")
 )
-styler01 <- list(
+styler01 = list(
   theme(
     axis.title.x = element_text(size = 14),
     axis.title.y = element_text(size = 14, face = "bold", angle = 90),
@@ -224,7 +224,7 @@ styler01 <- list(
 
 
 
-getTimeV <- function(n, t0) {
+getTimeV = function(n, t0) {
   if (n > 1) {
     c(0, pop_off(cumsum(t0)))
   } else {
@@ -232,41 +232,41 @@ getTimeV <- function(n, t0) {
   }
 }
 
-pop_off <- function(.) {
+pop_off = function(.) {
   .[1:{
     length(.) - 1
   }]
 }
 
 
-calculate_auc <- function(time, concentration) {
+calculate_auc = function(time, concentration) {
   # Check if inputs are of the same length
   if (length(time) != length(concentration)) {
     stop("Time and concentration vectors must be of the same length.")
   }
 
   # Sort the time and concentration data by time
-  sorted_indices <- order(time)
-  time <- time[sorted_indices]
-  concentration <- concentration[sorted_indices]
+  sorted_indices = order(time)
+  time = time[sorted_indices]
+  concentration = concentration[sorted_indices]
 
   # Calculate the AUC using the trapezoidal rule
-  auc <- sum((time[-1] - time[-length(time)]) * (concentration[-1] + concentration[-length(concentration)]) / 2)
+  auc = sum((time[-1] - time[-length(time)]) * (concentration[-1] + concentration[-length(concentration)]) / 2)
 
   return(auc)
 }
 
 
 
-sampleplot <- function() {
-  colss <- sample(grDevices::colors(), 5)
+sampleplot = function() {
+  colss = sample(grDevices::colors(), 5)
   plot(c(0, 20, 100),
     c(0, 20, 100),
     bg = colss[1:3],
     xlab = "Sample x",
     cex = 2,
     pch = 21,
-    axes = TRUE,
+    axes = 1L,
     ylab = "Sample y",
     bty = "n"
   )
@@ -277,7 +277,7 @@ sampleplot <- function() {
 
 
 
-data_summarised_overall <- function(dataa) {
+data_summarised_overall = function(dataa) {
   if (nrow(dataa)) {
     dataa %>%
       filter(not.na(.dv)) %>%
@@ -295,7 +295,7 @@ data_summarised_overall <- function(dataa) {
   }
 }
 
-data_summarised_facet <- function(dataa) {
+data_summarised_facet = function(dataa) {
   if (nrow(dataa)) {
     dataa %>%
       filter(not.na(.dv)) %>%
@@ -316,10 +316,10 @@ data_summarised_facet <- function(dataa) {
 
 
 
-extract_pattern <- function(file) {
-  extract_words_with_braces <- function(string) {
-    pattern <- "\\{([A-Z]+)\\}"
-    matches <- stringr::str_extract_all(string, pattern)
+extract_pattern = function(file) {
+  extract_words_with_braces = function(string) {
+    pattern = "\\{([A-Z]+)\\}"
+    matches = stringr::str_extract_all(string, pattern)
     if (length(matches) > 0) {
       return(unlist(matches))
     } else {
@@ -328,15 +328,15 @@ extract_pattern <- function(file) {
   }
 
   # Read the file line by line
-  lines <- readLines(file)
-  replacebr <- c()
+  lines = readLines(file)
+  replacebr = c()
   for (line in lines) {
-    replacebr <- c(replacebr, extract_words_with_braces(line))
+    replacebr = c(replacebr, extract_words_with_braces(line))
   }
   replacebr
 }
 
-# extracted_patterns <- suppressMessages(extract_pattern("includes/body/conc.vs.time/code.me.R"))
+# extracted_patterns = suppressMessages(extract_pattern("includes/body/conc.vs.time/code.me.R"))
 #
 # print(unique(extracted_patterns))
 # i = gsub("\\{","\\\\{",extracted_patterns)
@@ -344,13 +344,20 @@ extract_pattern <- function(file) {
 # for(u in unique(i2)){
 #   message("'",u,"',1,'','',")
 # }
+#yy[nzchar(yy)]
 
-code_download_checks_df <- tribble(
-  ~srh, ~rpl, ~with, ~check,
-  "\\{SCRIPTDATA\\}", 1, "", "",
-  "\\{DVVAR\\}", 1, "", "",
-  "\\{TYMEVAR\\}", 1, "", "",
-  "\\{LIBRARIES\\}", 1, "", "",
+
+#rpl values
+# 1 - value available in input to replace
+# 2 - To be replaced with "" or remove entirely
+# 3 - no values available in input, get in variable
+
+code_download_checks_df = tibble::tribble(
+  ~srh, ~rpl, ~with, ~with2,
+  "\\{SCRIPTDATA\\}", 1, "datatoUseconc1", "datatoUseconc2",
+  "\\{DVVAR\\}", 1, "depvar1", "",
+  "\\{TYMEVAR\\}", 1, "indepvar", "indepvar2",
+  "\\{LIBRARIES\\}", 3, "", "",
   "\\{CONSOLECLEAR\\}", 1, "", "",
   "\\{DATAFILE\\}", 1, "", "",
   "\\{STORAGEPATH\\}", 1, "", "",

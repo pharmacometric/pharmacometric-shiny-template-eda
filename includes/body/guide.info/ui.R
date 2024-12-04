@@ -9,14 +9,14 @@
 #############################################################################
 #############################################################################
 
-body.model.info <- card.pro(
+body.model.info = card.pro(
   title = "Guide for using EDA app", width = 12,
   header.bg = "magenta",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
   editbtn = FALSE,
-  collapsed = TRUE,
+  collapsed = 1L,
   shadow = FALSE,
   shiny::includeMarkdown(file.path(this.path, "model_information.md"))
 )

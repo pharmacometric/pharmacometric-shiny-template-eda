@@ -10,13 +10,13 @@
 #############################################################################
 
 
-body.panel.right.table.demo <- card.pro(
+body.panel.right.table.demo = card.pro(
 
   title = "Tables",
   header.bg = "blueLight",
   icon = icon("table"),
-  editbtn = TRUE,
-  collapsed = TRUE,
+  editbtn = 1L,
+  collapsed = 1L,
   sliderInput("selectedrangesumm",
               "Select treatment time (days) range for summary",
               value = c(0, 30 * 7), min = 0, max = 30 * 7,
