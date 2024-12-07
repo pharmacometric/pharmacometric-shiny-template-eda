@@ -44,9 +44,9 @@ output$cdownloadconcvt2 = downloadHandler(
     fAddDate('app1-eda-concvs-tsfd-code.R')
   },
   content = function(con) {
-    print(code.convtsfd.tpl)
-    codetempl = readLines(code.convtsfd.tpl)
+    codetempl = readLines(print(GLOBAL$code.convtsfd.tpl))
     codetempl = gsub("\\{SCRIPTDATA\\}",input[["datatoUseconc1"]],codetempl)
+    codetempl = gsub("\\{LIBRARIES\\}",GLOBAL$code.convtsfd.libs.glue,codetempl)
     writeLines(codetempl,con)
   }
 )
