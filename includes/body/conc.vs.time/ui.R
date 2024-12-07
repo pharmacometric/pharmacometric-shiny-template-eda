@@ -8,8 +8,11 @@
 ##
 #############################################################################
 #############################################################################
+
 #for(u in indexed(libs))message(u$key,"-",u$val)
-libs.glue = paste0("c(",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')\n") # for exporting code
+# for exporting code
+code.convtsfd.tpl = paste0(this.path,"/code.me.R")
+libs.glue = paste0("c(",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')\n")
 
 
 # plot panels
