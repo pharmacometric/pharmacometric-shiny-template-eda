@@ -24,7 +24,7 @@
 
 quickcode::clean(clearPkgs = 1L) #refresh console, clear environment
 
-{LIBRARIES}
+libs = {LIBRARIES}
 lapply(libs, function(l)library(l,character.only=1L)) #import libraries
 
 #############################################################################
