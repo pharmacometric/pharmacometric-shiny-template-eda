@@ -22,10 +22,10 @@
 ###  SECTION: Clear environment and load libraries
 #############################################################################
 
-quickcode::clean(clearPkgs = 1L) #refresh console, clear environment
+quickcode::clean(clearPkgs = 1L) #clear environment, old code garbage cleanup
 
-libs = {LIBRARIES}
-lapply(libs, function(l)library(l,character.only=1L)) #import libraries
+libs = {LIBRARIES} #core libraries
+invisible(lapply(libs, function(l)library(l,character.only=1L, quietly = 1L))) #import libraries
 
 #############################################################################
 ###  SECTION: Data, relevant paths and functions
