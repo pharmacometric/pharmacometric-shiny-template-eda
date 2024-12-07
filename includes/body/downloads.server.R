@@ -9,7 +9,7 @@
 #############################################################################
 #############################################################################
 
-
+# download c vs t plot
 output$concvtimedownloadimg = downloadHandler(
   filename = function() {
     fAddDate('app1-eda-concvs-img.png')
@@ -26,6 +26,7 @@ output$concvtimedownloadimg = downloadHandler(
   }
 )
 
+# download c vs t data
 output$concvtimedownloadimg2 = downloadHandler(
   filename = function() {
     fAddDate('app1-eda-concvs-obj.data')
@@ -35,6 +36,21 @@ output$concvtimedownloadimg2 = downloadHandler(
     save(figx, file = con)
   }
 )
+
+
+# download c vs t code
+output$cdownloadconcvt2 = downloadHandler(
+  filename = function() {
+    fAddDate('app1-eda-concvs-tsfd-code.R')
+  },
+  content = function(con) {
+    print(code.convtsfd.tpl)
+    codetempl = readLines(code.convtsfd.tpl)
+    codetempl = gsub("\\{SCRIPTDATA\\}",input[["datatoUseconc1"]],codetempl)
+    writeLines(codetempl,con)
+  }
+)
+
 
 
 
