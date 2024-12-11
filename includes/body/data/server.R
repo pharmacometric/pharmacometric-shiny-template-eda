@@ -11,77 +11,95 @@
 #############################################################################
 
 
-originalData = reactive({
+originalData <- reactive({
   createSampleData(N = input$popsize1)
 })
 
-originalData2 = reactive({
-  if(is.null(input$fileupd)){
+originalData2 <- reactive({
+  if (is.null(input$fileupd)) {
     updateSimStatus("No dataset was uploaded.")
     data.frame()
-  }
-  else{
+  } else {
+    GLOBAL$data.orig.filename <- input$fileupd["name"]
     read.csv(input$fileupd$datapath, header = 1L)
   }
-
 })
 
-dataV2 = reactive({
-  if(input$checkGroupDatasetT == 1) ordata = originalData()
-  else ordata = originalData2()
-
-  tryCatch(eval(parse(text = paste0("subset(ordata,",input$subsetting1,")"))),
-           error = function(e) ordata[1,])
-})
-
-dataV3 = reactive({
-  if(input$checkGroupDatasetT == 1) ordata = originalData()
-  else ordata = originalData2()
-
-  tryCatch(eval(parse(text = paste0("subset(ordata,",input$subsetting2,")"))),
-           error = function(e) ordata[1,])
-})
-
-
-observeEvent(input$rundatabutton,{
-
-  ordata = originalData()
-  if(input$checkGroupDatasetT == 2){
-    if(is.null(input$fileupd)) updateSimStatus("No dataset was uploaded.")
-    else ordata = originalData2()
+dataV2 <- reactive({
+  if (input$checkGroupDatasetT == 1) {
+    ordata <- originalData()
+  } else {
+    ordata <- originalData2()
   }
 
-    GLOBAL$data.versions = list(
-      "original" = ordata,
-      "dataV2" = dataV2(),
-      "dataV3" = dataV3()
-    )
-
+  tryCatch(eval(parse(text = paste0("subset(ordata,", input$subsetting1, ")"))),
+    error = function(e) ordata[1, ]
+  )
 })
 
-output$rhstable1 = renderDT(
-  switch (input$datatoUseV1,
-          "original"= GLOBAL$data.versions$original,
-          "dataV2"=GLOBAL$data.versions$dataV2,
-          "dataV3"=GLOBAL$data.versions$dataV3
+dataV3 <- reactive({
+  if (input$checkGroupDatasetT == 1) {
+    ordata <- originalData()
+  } else {
+    ordata <- originalData2()
+  }
+
+  tryCatch(eval(parse(text = paste0("subset(ordata,", input$subsetting2, ")"))),
+    error = function(e) ordata[1, ]
+  )
+})
+
+
+observeEvent(input$rundatabutton, {
+  ordata <- originalData()
+  if (input$checkGroupDatasetT == 2) {
+    if (is.null(input$fileupd)) {
+      updateSimStatus("No dataset was uploaded.")
+    } else {
+      ordata <- originalData2()
+    }
+  }
+  GLOBAL$data.versions.filter <- list(
+    "original" = "",
+    "dataV2" = input$subsetting1,
+    "dataV3" = input$subsetting2
+  )
+
+  GLOBAL$data.versions <- list(
+    "original" = ordata,
+    "dataV2" = dataV2(),
+    "dataV3" = dataV3()
+  )
+})
+
+output$rhstable1 <- renderDT(
+  switch(input$datatoUseV1,
+    "original" = GLOBAL$data.versions$original,
+    "dataV2" = GLOBAL$data.versions$dataV2,
+    "dataV3" = GLOBAL$data.versions$dataV3
   ),
   options = list(lengthChange = FALSE), filter = list(position = "top")
 )
 
 
 
-observeEvent(input$checkGroupDatasetT,{
-  if(input$checkGroupDatasetT == 1)updateSimStatus("Sample dataset will be generated. Specify the sample size.")
-  else updateSimStatus("Select a csv dataset with headers to upload.")
+observeEvent(input$checkGroupDatasetT, {
+  if (input$checkGroupDatasetT == 1) {
+    updateSimStatus("Sample dataset will be generated. Specify the sample size.")
+  } else {
+    updateSimStatus("Select a csv dataset with headers to upload.")
+  }
 })
 
 
 observe({
-  if(input$checkGroupDatasetT == 1)updateVariableHolder(paste(names(originalData()), collapse = " "))
-  else updateVariableHolder(paste(names(originalData2()), collapse = " "))
+  if (input$checkGroupDatasetT == 1) {
+    updateVariableHolder(paste(names(originalData()), collapse = " "))
+  } else {
+    updateVariableHolder(paste(names(originalData2()), collapse = " "))
+  }
 })
 
-observeEvent(input$shwvarnames,{
-  shinyjs::toggleClass('varnamesholder',class = 'hider')
+observeEvent(input$shwvarnames, {
+  shinyjs::toggleClass("varnamesholder", class = "hider")
 })
-
