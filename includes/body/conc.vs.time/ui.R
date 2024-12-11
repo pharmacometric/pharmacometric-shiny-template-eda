@@ -12,7 +12,7 @@
 #for(u in indexed(libs))message(u$key,"-",u$val)
 # for exporting code
 GLOBAL$code.convtsfd.tpl = paste0(this.path,"/code.me.R")
-GLOBAL$code.convtsfd.libs.glue = paste0("c('",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')\n")
+GLOBAL$code.convtsfd.libs.glue = paste0("c('",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')")
 
 
 # plot panels
