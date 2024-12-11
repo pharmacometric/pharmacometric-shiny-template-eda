@@ -145,7 +145,6 @@ output$concvtimeplot1 = renderPlot({
       if (input$loglinear == "Semi-Log") {
         gplotout = gplotout + scale_y_log10()
       }
-      dput(gplotout)
       gplotout
 
     } else {
