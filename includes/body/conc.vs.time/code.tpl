@@ -57,7 +57,10 @@ storePath = "{STORAGEPATH}"
 plot.data = edaData %>% filter({CHOSENDATA})
 dTPlot = dTPlot0 = plot.data %>%
 filter(not.na({DVVAR}), {DVVAR} > 0, {DVVAR} != ".") %>%
-mutate({DVVAR} = as.numeric({DVVAR}))
+mutate({DVVAR} = as.numeric({DVVAR})
+        {LNOTSUMMARISEPLOT},{COLORVAR} = as.factor({COLORVAR})
+        {LSUMMARISEPLOT},{SUMMVAR} = as.factor({SUMMVAR})
+        )
 
 # Declare color variable
 {LNOTSUMMARISEPLOT}colorBy = "{COLORVAR}"
