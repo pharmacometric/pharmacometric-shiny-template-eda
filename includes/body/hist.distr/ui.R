@@ -24,12 +24,12 @@ body.panel.right.plot.hist = card.pro(
     tabEntry(
       "Body weight",
       selectInput("datatoUsehist1", "Data version to use:", choices = c()),
-      plotOutput("histcatvar1", height = 500)
+      plotOutput("histcatvar1", height = 450)
     ),
     tabEntry(
       "Age",
       selectInput("datatoUsehist2", "Data version to use:", choices = c()),
-      plotOutput("histcatvar2", height = 500)
+      plotOutput("histcatvar2", height = 450)
     )
   ),
   sidebar = div(
