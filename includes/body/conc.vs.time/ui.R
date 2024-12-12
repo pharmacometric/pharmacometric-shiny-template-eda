@@ -20,7 +20,7 @@ body.panel.right.plot.conc = card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
   collapsed = FALSE,
-  header.bg = "blueLight",
+  header.bg = "white",
   xtra.header.content = textOutput("reportgraphstatus"),
   div(
     id = "reportgraphstatus2",
@@ -98,6 +98,6 @@ body.panel.right.plot.conc = card.pro(
   footer = list(
     downloadButton("concvtimedownloadimg", "Download plot file (png)", icon = icon("image")),
     downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class="downloadbtns2"),
-    downloadButton("cdownloadconcvt2", "Download plot code", icon = icon("code"), class="downloadbtns")
+    downloadButton("cdownloadconcvt2", "Download plot code (R)", icon = icon("code"), class="downloadbtns")
   )
 )
