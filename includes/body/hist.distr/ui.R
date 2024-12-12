@@ -12,9 +12,9 @@
 # plot panels
 body.panel.right.plot.hist = card.pro(
   title = "Histograms",
-  icon = icon("chart-simple"),
+  icon = icon("star"),
   collapsed = FALSE,
-  header.bg = "white",
+  header.bg = "yellow",
   xtra.header.content = textOutput("reportgraphstatus"),
   div(
     id = "reporthiststatus2",
@@ -34,7 +34,12 @@ body.panel.right.plot.hist = card.pro(
   ),
   sidebar = div(
     tags$label("Graph settings"),
-    selectInput("histgraphtype", "Graph type", choices = c("Histogram"), width = "90%"),
+    selectInput("histgraphtype", "Graph type", choices = c(
+      "overall - no color" = 1,
+      "overall - with color" = 2,
+      "facet - no color" = 3,
+      "facet - with color" = 4
+    ), width = "90%"),
     conditionalPanel(
       condition = "input.histgraphtype == 3 | input.histgraphtype == 6",
       selectInput("histgraphsummtype", "Statistic", choices = c(
