@@ -89,6 +89,8 @@ createSampleData = function(N = 10) {
       dose_value = sample(c(10, 25, 50), 1)
     }
 
+    sex = sample(c("0" = "Male","1" = "Female"))
+
     # Dosing records (2 records with DV set to ".")
     for (j in 0:2) {
       regimenDT = rbind(regimenDT, data.frame(
@@ -106,6 +108,8 @@ createSampleData = function(N = 10) {
         DVID = 0,
         II = 0,
         SS = 0,
+        SEX = names(sex)[1],
+        SEXC = sex[1],
         FLAG = 1,
         TRT = treatment[i],
         CMT = 1, # Compartment for dosing
@@ -135,6 +139,8 @@ createSampleData = function(N = 10) {
         FLAG = 1,
         II = 0,
         SS = 0,
+        SEX = names(sex)[1],
+        SEXC = sex[1],
         TRT = treatment[i],
         CMT = 2, # Compartment for observations
         AMT = "." # Set to "." for observations
@@ -156,6 +162,10 @@ updateGraphStatus = function(message = "") {
 
 updateGraphStatus2 = function(message = "") {
   shinyjs::runjs(paste0("$('#reportgraphstatus2').html('", message, "')"))
+}
+
+updateGraphStatus3 = function(message = "") {
+  shinyjs::runjs(paste0("$('#reporthiststatus2').html('", message, "')"))
 }
 
 updateVariableHolder = function(message = "") {
