@@ -336,7 +336,7 @@ extract_pattern = function(file) {
   replacebr
 }
 
-# extracted_patterns = suppressMessages(extract_pattern("includes/body/conc.vs.time/code.me.R"))
+# extracted_patterns = suppressMessages(extract_pattern("includes/body/conc.vs.time/code.tpl"))
 #
 # print(unique(extracted_patterns))
 # i = gsub("\\{","\\\\{",extracted_patterns)
@@ -358,7 +358,7 @@ code_download_checks_df = tibble::tribble(
   "\\{SCRIPTDATA\\}", 1, "datatoUseconc1", "datatoUseconc2",
   "\\{DVVAR\\}", 1, "depvar1", "",
   "\\{TYMEVAR\\}", 1, "indepvar", "indepvar2",
-  "\\{LIBRARIES\\}", 4, "code.convtsfd.libs.glue", "",
+  "\\{LIBRARIES\\}", 4, "code.convtm.libs.glue", "",
   '\\{DATAFILE\\}',4,"data.orig.filename",'',
   '\\{STORAGEPATH\\}',0,"./",'',
   '\\{TDATE\\}',0,as.character(Sys.Date()),'',
@@ -367,6 +367,9 @@ code_download_checks_df = tibble::tribble(
   '\\{SUMMVAR\\}',1,'summby','',
   '\\{COLORVAR\\}',1,'colvar3','',
   '\\{CHOSENDATA\\}',4,'data.versions.filter','datatoUseconc1',
+  '\\{LDVMEAN\\}',2,'graphsummtype','1:3',
+  '\\{LDVMEDIAN\\}',2,'graphsummtype','4:6',
+  '\\{LNOTSUMMARISEPLOT\\}',2,'cgraphtype','c(1,2,4,5)',
   '\\{LSUMMARISEPLOT\\}',2,'cgraphtype','c(3,6)',
   '\\{LEGENDCOLNUM\\}',1,'ncollegend','',
   '\\{ILABELX\\}',1,'labelx','',
@@ -385,7 +388,7 @@ code_download_checks_df = tibble::tribble(
   '\\{LSUMMARYPLOTC\\}',2,'graphsummtype','5',
   '\\{LSUMMARYPLOTD\\}',2,'graphsummtype','6',
   '\\{LFACETPLOTSUMM\\}',2,'cgraphtype','6',
-  '\\{LSEMILOGPLOT\\}',2,'loglinear','"Semi-Log"',
+  '\\{LSEMILOGPLOT\\}',2,'loglinear','"semi-log"',
   '\\{TEXTFONT\\}',1,'graphfont','',
   '\\{FONTTICKSIZE\\}',1,'fontxyticks','',
   '\\{FONTXYSIZE\\}',1,'fontxytitle','',
