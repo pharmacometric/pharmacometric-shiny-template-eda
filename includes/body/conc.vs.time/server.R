@@ -80,8 +80,6 @@ output$concvtimeplot1 = renderPlot({
       # add scatter if plotting median or mean alone
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% c(1,4))
         gplotout = gplotout + geom_point(data = datatoplot0, aes(color = .summ)) #+
-        #scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
-        #theme(legend.position = "none")
 
 
       # add ribbon if plotting med +/- confident interval
@@ -132,7 +130,7 @@ output$concvtimeplot1 = renderPlot({
       if (input$cgraphtype %in% 4:5) {
         gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
       }
-      if (input$cgraphtype %in% c(3,6)) {
+      if (input$cgraphtype == 6) {
         gplotout = gplotout +facet_wrap(. ~ .summ, ncol = input$graphcolnum)
       }
 
@@ -142,9 +140,11 @@ output$concvtimeplot1 = renderPlot({
       }
 
       # add semi log if it is specified
-      if (input$loglinear == "Semi-Log") {
+      if (input$loglinear == "semi-log") {
         gplotout = gplotout + scale_y_log10()
       }
+
+      GLOBAL$concvtimeplot1 = gplotout # for exports of ggplot object
       gplotout
 
     } else {
@@ -259,10 +259,11 @@ output$concvtimeplot2 = renderPlot({
       }
 
       # add semi log if it is specified
-      if (input$loglinear == "Semi-Log") {
+      if (input$loglinear == "semi-log") {
         gplotout = gplotout + scale_y_log10()
       }
 
+      GLOBAL$concvtimeplot2 = gplotout # for exports of ggplot object
       gplotout
 
     } else {
