@@ -47,12 +47,17 @@ body.panel.left.setup = card.pro(
              selectInput("depvar1", "Dependent variable", choices = "DV",width = "100%"),
              selectInput("indepvar", "Time since first dose", choices = "TIME",width = "100%"),
              selectInput("indepvar2", "Time since last dose", choices = "TSLD",width = "100%"),
-             selectInput("idvar", "Individual identifier variable", choices = "ID",width = "100%"),
-             selectInput("cfacetvar", "Facet variable", choices = "TRT",width = "100%"),
-             selectInput("colvar3", "Color by", choices = "ID",width = "100%"),
-             selectInput("summby", "Summarize data by", choices = "TRT",width = "100%"),
-             selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%"),
-             selectInput("depvar5", "Body weight variable", choices = "WT",width = "100%")
+             tags$b("Other variables"),tags$hr(),
+             row(
+               column(width = 6,selectInput("idvar", "Individual identifier variable", choices = "ID",width = "100%")),
+               column(width = 6,selectInput("cfacetvar", "Facet variable", choices = "TRT",width = "100%")),
+               column(width = 6,selectInput("colvar3", "Color by", choices = "ID",width = "100%")),
+               column(width = 6,selectInput("summby", "Summarize data by", choices = "TRT",width = "100%")),
+               column(width = 6,selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%")),
+               column(width = 6,selectInput("wtvar", "Body weight variable", choices = "WT",width = "100%")),
+               column(width = 6,selectInput("agevar", "Age variable", choices = "AGE",width = "100%")),
+               column(width = 6,selectInput("sexvar", "Gender variable", choices = "SEX",width = "100%"))
+             )
              )
   ),
   footer = textOutput("tracksimulations")
