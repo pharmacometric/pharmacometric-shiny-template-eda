@@ -32,8 +32,9 @@ output$concvtimedownloadimg2 <- downloadHandler(
     fAddDate("app1-eda-concvs-obj.data")
   },
   content = function(con) {
-    figx <- last_plot()
-    save(figx, file = con)
+    tsfd_plot = GLOBAL$concvtimeplot1
+    tsld_plot = GLOBAL$concvtimeplot2
+    save(tsfd_plot,tsld_plot, file = con)
   }
 )
 
@@ -45,7 +46,8 @@ output$cdownloadconcvt2 <- downloadHandler(
   },
   content = function(con) {
     # get template
-    codetempl <- readLines(print(GLOBAL$code.convtsfd.tpl))
+    codetempl <- readLines(print(GLOBAL$code.convtm.tpl))
+
 
     # graph type
     GRAPHTYPE1 = "dv-tsfd"
@@ -82,8 +84,8 @@ output$cdownloadconcvt2 <- downloadHandler(
 
     dirn = tempdir()
     #unlink(dirn, recursive = TRUE)
-    write.csv(GLOBAL$data.versions[[input$datatoUseconc1]],file.path(dirn,GLOBAL$data.orig.filename))
-    writeLines(codetempl,file.path(dirn,"code.R"))
+    write.csv(GLOBAL$data.versions[[input$datatoUseconc1]],file.path(dirn,GLOBAL$data.orig.filename), row.names = FALSE)
+    writeLines(codetempl,file.path(dirn,"drugName_conc_time_v1.R"))
     files2zip <- list.files(dirn, full.names = TRUE,pattern = ".R|.csv")
     zip(zipfile = con, files = files2zip)
   }
