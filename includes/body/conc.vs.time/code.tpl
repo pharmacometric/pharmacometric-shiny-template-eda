@@ -58,7 +58,7 @@ plot.data = edaData %>% filter({CHOSENDATA})
 dTPlot = dTPlot0 = plot.data %>%
 filter(not.na({DVVAR}), {DVVAR} > 0, {DVVAR} != ".") %>%
 {LNOTSUMMARISEPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{COLORVAR} = as.factor({COLORVAR}))
-{LNOTSUMMARISEPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{LSUMMARISEPLOT} = as.factor({LSUMMARISEPLOT}))
+{LSUMMARISEPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{SUMMVAR} = as.factor({SUMMVAR}))
 
 # Declare color variable
 {LNOTSUMMARISEPLOT}colorBy = "{COLORVAR}"
@@ -79,9 +79,10 @@ labs(x = "{ILABELX}", y = "{ILABELY}", color = "") +
 {LSPAGHETTIPLOT}geom_point() + geom_line() +
 {LSCATTERPLOT}geom_point() +
 {LSUMMARYPLOT}geom_line() +
-{LNOTMEANMEDIANALONE}geom_point(aes(color=FACETCOLNUM)) +
-{LFACETPLOT}facet_wrap(. ~ {FACETVAR}, ncol = {FACETCOLNUM}) +
-{LFACETPLOTSUMM}facet_wrap(. ~ {SUMMVAR}, ncol = {FACETCOLNUM}) +
+{LNOTSUMMARISEPLOT}{LNOTMEANMEDIANALONE}geom_point(aes(color={COLORVAR})) +
+{LSUMMARISEPLOT}{LNOTMEANMEDIANALONE}geom_point(aes(color={SUMMVAR})) +
+{LNOTSUMMARISEPLOT}{LFACETPLOT}facet_wrap(. ~ {FACETVAR}, ncol = {FACETCOLNUM}) +
+{LSUMMARISEPLOT}{LFACETPLOTSUMM}facet_wrap(. ~ {SUMMVAR}, ncol = {FACETCOLNUM}) +
 {LSUMMARYPLOTA}geom_errorbar(aes(ymin={DVVAR}-sd, ymax={DVVAR}+sd, color = {FACETVAR}), position=position_dodge(0.05)) + #sd error bars
 {LSUMMARYPLOTB}geom_errorbar(aes(ymin={DVVAR}-sem, ymax={DVVAR}+sem, color = {FACETVAR}), position=position_dodge(0.05)) + #sem error bars
 {LSUMMARYPLOTC}geom_ribbon(aes(ymin=q05, ymax=q95, color = {FACETVAR}, fill = {FACETVAR}), alpha=0.1, linetype = "dotted")+ guides(fill = "none") + #ribbon for 90%CI
