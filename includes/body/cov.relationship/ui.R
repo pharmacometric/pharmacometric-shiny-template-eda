@@ -13,7 +13,7 @@
 body.panel.right.plot.cov = card.pro(
   title = "Covariate Relationship",
   icon = icon("chart-simple"),
-  header.bg = "blueDark",
+  header.bg = "magenta",
   collapsed = 1L,
   xtra.header.content = textOutput("reportgraphstatus2"),
   selectInput("miscdataUseV1","Data version to use:", choices = data.versions.names),
