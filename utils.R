@@ -353,11 +353,12 @@ extract_pattern = function(file) {
 # 2 - To be replaced with "" or remove entirely
 # 3 - no values available in input, get in variable
 # 4 - value is in a reactive
+# 5 - value available in input, two inputs exist so choose from 'ITYPE'
 code_download_checks_df = tibble::tribble(
   ~srh, ~rpl, ~with, ~with2,
-  "\\{SCRIPTDATA\\}", 1, "datatoUseconc1", "datatoUseconc2",
+  "\\{SCRIPTDATA\\}", 5, "datatoUseconc1", "datatoUseconc2",
   "\\{DVVAR\\}", 1, "depvar1", "",
-  "\\{TYMEVAR\\}", 1, "indepvar", "indepvar2",
+  "\\{TYMEVAR\\}", 5, "indepvar", "indepvar2",
   "\\{LIBRARIES\\}", 4, "code.convtm.libs.glue", "",
   '\\{DATAFILE\\}',4,"data.orig.filename",'',
   '\\{STORAGEPATH\\}',0,"./",'',
@@ -372,7 +373,7 @@ code_download_checks_df = tibble::tribble(
   '\\{LNOTSUMMARISEPLOT\\}',2,'cgraphtype','c(1,2,4,5)',
   '\\{LSUMMARISEPLOT\\}',2,'cgraphtype','c(3,6)',
   '\\{LEGENDCOLNUM\\}',1,'ncollegend','',
-  '\\{ILABELX\\}',1,'labelx','',
+  '\\{ILABELX\\}',5,'labelx','labelx2',
   '\\{ILABELY\\}',1,'labely','',
   '\\{LMEANMEDIANALONE\\}',2,'graphsummtype','c(1,4)',
   '\\{LREMOVECOLORVAR\\}',2,'cgraphtype','c(1,4,7,8)',
@@ -394,6 +395,7 @@ code_download_checks_df = tibble::tribble(
   '\\{FONTXYSIZE\\}',1,'fontxytitle','',
   '\\{FONTSTRIPSIZE\\}',1,'fontxystrip','',
   '\\{LEGENDPOS\\}',1,'legendposition','',
+  '\\{TYMEVAR0\\}',3,'TYMEVAR0','',
   '\\{GRAPHTYPE1\\}',3,'GRAPHTYPE1','',
   '\\{GRAPHTYPE2\\}',3,'GRAPHTYPE2','',
   '\\{GRAPHTYPE3\\}',1,'loglinear','',
