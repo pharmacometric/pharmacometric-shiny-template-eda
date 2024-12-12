@@ -33,7 +33,7 @@ output$histcatvar1 = renderPlot({
         geom_density(stat = "density", position = "identity", alpha = 0.6) +
         geom_vline(data = data_vline, aes(xintercept = grpmn, color = .sx),
                    linetype = "dashed", linewidth = 1) +
-        labs(x = input$histlabelx, y = input$histlabely, fill = "Race", color = "Race") +
+        labs(x = input$histlabelx, y = input$histlabely, fill = "Race", color = "Race", caption = "Dashed lines denote mean of body weights.") +
         theme_bw() +
         styler00 +
         styler03 +
@@ -45,7 +45,8 @@ output$histcatvar1 = renderPlot({
               legend.position = input$histlegendposition,
               legend.text = element_text(family = input$histgraphfont),
               legend.title = element_text(family = input$histgraphfont),
-              title = element_text(family = input$histgraphfont))
+              title = element_text(family = input$histgraphfont),
+              plot.caption = element_text(vjust = 4, size = 10, face = "bold"))
 
 
 
