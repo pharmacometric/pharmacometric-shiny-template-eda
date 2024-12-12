@@ -55,3 +55,12 @@ code {
 #graphtype2-label,#graphcolnum-label {
   color: blue;
 }
+
+
+.downloadbtns {
+  background-color: lightblue; border-width: 0;
+}
+
+.downloadbtns2 {
+  background-color: lightgoldenrodyellow; border-width: 0;
+}
