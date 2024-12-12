@@ -11,7 +11,7 @@
 
 body.model.info = card.pro(
   title = "Guide for using EDA app", width = 12,
-  header.bg = "magenta",
+  header.bg = "darken",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
