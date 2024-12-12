@@ -20,7 +20,7 @@ body.panel.right.plot.conc = card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
   collapsed = FALSE,
-  header.bg = "white",
+  header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   div(
     id = "reportgraphstatus2",
