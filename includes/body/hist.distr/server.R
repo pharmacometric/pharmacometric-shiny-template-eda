@@ -52,7 +52,7 @@ output$histcatvar1 <- renderPlot({
       }
 
       gplotout <- gplotout +
-        labs(x = input$histlabelx, y = input$histlabely, fill = "Race", color = "Race", caption = "Dashed lines denote mean of body weights.") +
+        labs(x = input$histlabelx, y = input$histlabely, fill = "", color = "", caption = "Dashed lines denote mean of body weights.") +
         theme_bw() +
         styler00 +
         styler03 +
