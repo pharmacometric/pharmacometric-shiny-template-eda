@@ -28,8 +28,8 @@ body.panel.right.plot.hist = card.pro(
         "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
       ), selected = "Median ± 90% PI", width = "90%")
     ),
-    selectInput("covloglinear", "Semi-log or linear", choices = c(
-      "Linear", "Semi-Log"
+    selectInput("covloglinear", "semi-log or linear", choices = c(
+      "Linear", "semi-log"
     ), width = "90%"),
     textInput("covlabely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
     textInput("covlabelx", "X-label", "Time after first dose (days)", width = "95%"),
