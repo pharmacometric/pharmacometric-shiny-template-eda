@@ -1,0 +1,60 @@
+############################################################################
+############################################################################
+##  Document Path: includes/body/hist.distr/server.R
+##
+##  Description: Server function for concentration versus time plots
+##
+##  R Version: 4.4.1 (2024-06-14 ucrt)
+##
+#############################################################################
+#############################################################################
+
+# set data versions to use for plotting
+updateSelectInput(session, "datatoUsehist1", choices = data.versions.names)
+updateSelectInput(session, "datatoUsehist2", choices = data.versions.names)
+
+
+output$histcatvar1 = renderPlot({
+  plot.data = GLOBAL$data.versions[[input$datatoUsehist1]]
+  if(!length(plot.data) | is.null(plot.data))return(sampleplot())
+  if (nrow(plot.data)) {
+    if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--",names(plot.data)))) {
+
+
+      updateGraphStatus3()
+      plot.data$.wt = as.numeric(plot.data[[input$wtvar]])
+      plot.data$.sx = as.numeric(plot.data[[input$sexvar]])
+
+      plot.data = plot.data %>% filter(not.empty(.wt))
+      data_vline = plot.data %>% group_by(.sx) %>% summarise(grpmn = mean(.wt))
+
+      gplotout <- ggplot(plot.data, aes(x = .wt, fill = .sx)) +
+        geom_histogram(aes(y = after_stat(density)), position = "identity", alpha = 0.5, bins = 40) +
+        geom_density(stat = "density", position = "identity", alpha = 0.6) +
+        geom_vline(data = data_vline, aes(xintercept = grpmn, color = .sx),
+                   linetype = "dashed", linewidth = 1) +
+        labs(x = input$histlabelx, y = input$histlabely, fill = "Race", color = "Race") +
+        theme_bw() +
+        styler00 +
+        styler03 +
+        theme(text = element_text(family = input$histgraphfont),
+              axis.text = element_text(size = input$histfontxyticks,
+                                       family = input$histgraphfont),
+              axis.title = element_text(size = input$histfontxytitle, family = input$histgraphfont),
+              strip.text = element_text(size = input$histfontxystrip, family = input$histgraphfont),
+              legend.position = input$histlegendposition,
+              legend.text = element_text(family = input$histgraphfont),
+              legend.title = element_text(family = input$histgraphfont),
+              title = element_text(family = input$histgraphfont))
+
+
+
+      GLOBAL$histwtplot1 = gplotout # for exports of ggplot object
+      gplotout
+    } else {
+      updateGraphStatus3("Histogram distribution plot cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
+    }
+  } else {
+    sampleplot()
+  }
+})
