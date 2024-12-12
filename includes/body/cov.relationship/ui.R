@@ -29,8 +29,8 @@ body.panel.right.plot.cov = card.pro(
         "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
       ), selected = "Median ± 90% PI", width = "90%")
     ),
-    selectInput("diloglinear", "Semi-log or linear", choices = c(
-      "Linear", "Semi-Log"
+    selectInput("diloglinear", "semi-log or linear", choices = c(
+      "Linear", "semi-log"
     ), width = "90%"),
     textInput("dilabely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
     textInput("dicovlabelx", "X-label", "Time after first dose (days)", width = "95%"),
