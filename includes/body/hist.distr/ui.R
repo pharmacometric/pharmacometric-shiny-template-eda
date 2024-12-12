@@ -11,56 +11,79 @@
 
 # plot panels
 body.panel.right.plot.hist = card.pro(
-  title = "Histogram",
+  title = "Histograms",
   icon = icon("chart-simple"),
-  collapsed = 1L,
-  header.bg = "yellow",
+  collapsed = FALSE,
+  header.bg = "white",
   xtra.header.content = textOutput("reportgraphstatus"),
-  plotOutput("covdistPlot", height = 600),
+  div(
+    id = "reporthiststatus2",
+    tags$blockquote(style = "color:blue", "Tabs: Histograms of body weight distribution & age distribution by color variable")
+  ),
+  tabs = list(
+    tabEntry(
+      "Body weight",
+      selectInput("datatoUsehist1", "Data version to use:", choices = c()),
+      plotOutput("histcatvar1", height = 500)
+    ),
+    tabEntry(
+      "Age",
+      selectInput("datatoUsehist2", "Data version to use:", choices = c()),
+      plotOutput("histcatvar2", height = 500)
+    )
+  ),
   sidebar = div(
     tags$label("Graph settings"),
-    selectInput("covgraphtype", "Graph type", choices = c(
-      "Combined", "Combined_group", "Facet by ID", "Facet by Group", "Facet by Dose"
-    ), selected = "Facet by Group", width = "90%"),
+    selectInput("histgraphtype", "Graph type", choices = c("Histogram"), width = "90%"),
     conditionalPanel(
-      condition = "input.covgraphtype == 'Combined' | input.covgraphtype == 'Combined_group' | input.covgraphtype == 'Facet by Group'",
-      selectInput("covgraphtype2", "Statistic", choices = c(
-        "Mean", "Mean ± SD", "Mean ± SEM", "Median", "Median ± 90% PI", "Median ± 95% PI"
+      condition = "input.histgraphtype == 3 | input.histgraphtype == 6",
+      selectInput("histgraphsummtype", "Statistic", choices = c(
+        "Mean" = 1, "Mean ± SD" = 2, "Mean ± SEM" = 3, "Median" = 4, "Median ± 90% PI" = 5, "Median ± 95% PI" = 6
       ), selected = "Median ± 90% PI", width = "90%")
     ),
-    selectInput("covloglinear", "semi-log or linear", choices = c(
-      "Linear", "semi-log"
+    conditionalPanel(
+      condition = "input.histgraphtype == 4 |input.histgraphtype == 5 |input.histgraphtype == 6 |input.histgraphtype == 7 | input.cgraphtype == 8",
+      numericInput("histgraphcolnum", "Facet column number", value = 4, width = "90%")
+    ),
+    selectInput("histloglinear", "semi-log or linear", choices = c(
+      "linear", "semi-log"
     ), width = "90%"),
-    textInput("covlabely", "Y-label", "Predicted Concentration (μg/ml)", width = "95%"),
-    textInput("covlabelx", "X-label", "Time after first dose (days)", width = "95%"),
-    selectInput("covgraphfont", "Font type", choices = c(
-      "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
-    ), selected = "covArial", width = "90%"),
-    sliderInput("covfontxytitle",
-                "Font-size title",
+    textInput("histlabely", "Y-label", "Density", width = "95%"),
+    textInput("histlabelx", "X-label (WT tab)", "Weight(kg)", width = "95%"),
+    textInput("histlabelx2", "X-label (AGE tab)", "Age (yrs)", width = "95%"),
+    selectInput("histlegendposition", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
+    numericInput("histncollegend", "Number of legend columns", value = 5, width = "90%"),
+    selectInput("histgraphfont", "Font type", choices = font.family, selected = "Arial", width = "90%"),
+    sliderInput("histfontxytitle",
+                "Font-size text",
                 min = 1,
                 max = 50,
-                value = 14
+                value = 12
     ),
-    sliderInput("covfontxyticks",
+    sliderInput("histfontxyticks",
                 "Font-size ticks",
                 min = 1,
                 max = 50,
                 value = 12
     ),
-    sliderInput("covfontxystrip",
+    sliderInput("histfontxystrip",
                 "Font-size strip",
                 min = 1,
                 max = 50,
                 value = 12
     ),
     "For downloads:",
-    numericInput("covdownimgdpi", "Image dpi", 300, width = "90%"),
-    numericInput("covdownimgw", "Image width (px)", 2200, width = "90%"),
-    numericInput("covdownimgh", "Image height (px)", 1200, width = "90%"),
-    numericInput("covdownimgs", "Image scale", 1, width = "90%"),
+    numericInput("histdownimgdpi", "Image dpi", 300, width = "90%"),
+    numericInput("histdownimgw", "Image width (px)", 2500, width = "90%"),
+    numericInput("histdownimgh", "Image height (px)", 1700, width = "90%"),
+    numericInput("histdownimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("covdownloadimg2", "Download plot", icon = icon("image"))
+    downloadButton("histtimedownloadimg", "Download plot", icon = icon("image"), class="downloadbtns")
+  ),
+  footer = list(
+    downloadButton("histtimedownloadimg", "Download plot file (png)", icon = icon("image")),
+    downloadButton("histtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class="downloadbtns2"),
+    downloadButton("hdownloadhistt2", "Download plot code (R)", icon = icon("code"), class="downloadbtns")
   )
 )
 
