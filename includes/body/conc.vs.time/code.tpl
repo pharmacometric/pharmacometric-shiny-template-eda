@@ -59,10 +59,12 @@ dTPlot = dTPlot0 = plot.data %>%
 filter(not.na({DVVAR}), {DVVAR} > 0, {DVVAR} != ".") %>%
 {LNOTSUMMARISEPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{COLORVAR} = as.factor({COLORVAR}))
 {LSUMMARISEPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{SUMMVAR} = as.factor({SUMMVAR}))
+{LINDVPLOT}mutate({DVVAR} = as.numeric({DVVAR}),{IDVAR} = as.factor({IDVAR}))
 
 # Declare color variable
 {LNOTSUMMARISEPLOT}colorBy = "{COLORVAR}"
 {LSUMMARISEPLOT}colorBy = "{SUMMVAR}"
+{LINDVPLOT}colorBy = "{IDVAR}"
 
 # ERROR handler to ensure data has rows
 if (!nrow(plot.data)) stop("The plot data does not have data rows.")
@@ -82,6 +84,7 @@ labs(x = "{ILABELX}", y = "{ILABELY}", color = "") +
 {LNOTSUMMARISEPLOT}{LNOTMEANMEDIANALONE}geom_point(aes(color={COLORVAR})) +
 {LSUMMARISEPLOT}{LNOTMEANMEDIANALONE}geom_point(aes(color={SUMMVAR})) +
 {LNOTSUMMARISEPLOT}{LFACETPLOT}facet_wrap(. ~ {FACETVAR}, ncol = {FACETCOLNUM}) +
+{LINDVPLOT}facet_wrap(. ~ {IDVAR}, ncol = {FACETCOLNUM}) +
 {LSUMMARISEPLOT}{LFACETPLOTSUMM}facet_wrap(. ~ {SUMMVAR}, ncol = {FACETCOLNUM}) +
 {LSUMMARYPLOTA}geom_errorbar(aes(ymin={DVVAR}-sd, ymax={DVVAR}+sd, color = {FACETVAR}), position=position_dodge(0.05)) + #sd error bars
 {LSUMMARYPLOTB}geom_errorbar(aes(ymin={DVVAR}-sem, ymax={DVVAR}+sem, color = {FACETVAR}), position=position_dodge(0.05)) + #sem error bars
