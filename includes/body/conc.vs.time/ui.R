@@ -11,8 +11,8 @@
 
 #for(u in indexed(libs))message(u$key,"-",u$val)
 # for exporting code
-GLOBAL$code.convtsfd.tpl = paste0(this.path,"/code.me.R")
-GLOBAL$code.convtsfd.libs.glue = paste0("c('",paste(libs[c(10,11,12,20,19)], collapse = "','"),"')")
+GLOBAL$code.convtm.tpl = paste0(this.path,"/code.tpl")
+GLOBAL$code.convtm.libs.glue = paste0('c("',paste(libs[c(10,11,12,20,19)], collapse = '","'),'")')
 
 
 # plot panels
@@ -60,17 +60,15 @@ body.panel.right.plot.conc = card.pro(
       condition = "input.cgraphtype == 4 |input.cgraphtype == 5 |input.cgraphtype == 6 |input.cgraphtype == 7 | input.cgraphtype == 8",
       numericInput("graphcolnum", "Facet column number", value = 4, width = "90%")
     ),
-    selectInput("loglinear", "Semi-log or linear", choices = c(
-      "Linear", "Semi-Log"
+    selectInput("loglinear", "semi-log or linear", choices = c(
+      "linear", "semi-log"
     ), width = "90%"),
-    textInput("labely", "Y-label", "Concentration (μg/ml)", width = "95%"),
+    textInput("labely", "Y-label", "Concentration (ug/ml)", width = "95%"),
     textInput("labelx", "X-label (TSFD tab)", "Time after first dose (hrs)", width = "95%"),
     textInput("labelx2", "X-label (TSLD tab)", "Time after last dose (hrs)", width = "95%"),
     selectInput("legendposition", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
     numericInput("ncollegend", "Number of legend columns", value = 5, width = "90%"),
-    selectInput("graphfont", "Font type", choices = c(
-      "Times", "Verdana", "Arial", "Courier", "Comic Sans MS"
-    ), selected = "Arial", width = "90%"),
+    selectInput("graphfont", "Font type", choices = font.family, selected = "Arial", width = "90%"),
     sliderInput("fontxytitle",
       "Font-size text",
       min = 1,
@@ -95,12 +93,11 @@ body.panel.right.plot.conc = card.pro(
     numericInput("downimgh", "Image height (px)", 1700, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"))
+    downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"), class="downloadbtns")
   ),
   footer = list(
     downloadButton("concvtimedownloadimg", "Download plot file (png)", icon = icon("image")),
-    downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image")),
-    downloadButton("cdownloadconcvt2", "Download TSFD code", icon = icon("code")),
-    downloadButton("cdownloadconcvt3", "Download TSLD code", icon = icon("code"))
+    downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class="downloadbtns2"),
+    downloadButton("cdownloadconcvt2", "Download plot code", icon = icon("code"), class="downloadbtns")
   )
 )
