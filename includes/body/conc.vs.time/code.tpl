@@ -6,10 +6,10 @@
 ##
 ##  Date: {TDATE}
 ##
-##  Title: Concentration ({DVVAR}) vs. Time ({TYMEVAR})
+##  Title: Concentration ({DVVAR}) vs. {TYMEVAR0} ({TYMEVAR})
 ##
-##  Description: Generate exploratory plot for observed concentration over
-##               time
+##  Description: Generate exploratory plot for observed concentration over {TYMEVAR0}
+##
 ##
 ##  Required Files: {DATAFILE}
 ##
