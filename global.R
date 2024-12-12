@@ -30,7 +30,7 @@ for (ui_each in c(
 }
 
 
-# declare the global reactive values holder
+# declare the global reactive and regular values
 GLOBAL= reactiveValues()
 GLOBAL$lastsim = NULL
 GLOBAL$start.sim = FALSE
@@ -40,3 +40,4 @@ GLOBAL$data.orig.filename = "example.csv"
 GLOBAL$data.versions = list("original" = data.frame(),"dataV2" = data.frame(),"dataV3" = data.frame())
 GLOBAL$data.versions.filter = list("original" = "","dataV2" = "","dataV3" = "")
 data.versions.names = c("original","dataV2","dataV3")
+font.family = c("sans","serif","mono","Comic Sans MS","AppleGothic","Optima","Luminari")
