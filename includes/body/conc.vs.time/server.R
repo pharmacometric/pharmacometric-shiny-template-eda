@@ -249,7 +249,7 @@ output$concvtimeplot2 = renderPlot({
       if (input$cgraphtype %in% 4:5) {
         gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
       }
-      if (input$cgraphtype %in% c(3,6)) {
+      if (input$cgraphtype %in% c(6)) {
         gplotout = gplotout +facet_wrap(. ~ .summ, ncol = input$graphcolnum)
       }
 
