@@ -38,8 +38,8 @@ storePath = "{STORAGEPATH}"
 {LSUMMARISEPLOT}  group_by({FACETVAR}, {TYMEVAR}) %>%
 {LSUMMARISEPLOT}    reframe(
 {LSUMMARISEPLOT}      {COLORVAR} = unique({COLORVAR})[1],
-{LSUMMARISEPLOT}      {LDVMEAN}DV = mean({DVVAR}),
-{LSUMMARISEPLOT}      {LDVMEDIAN}DV = median({DVVAR}),
+{LSUMMARISEPLOT}      {LDVMEAN}{DVVAR} = mean({DVVAR}),
+{LSUMMARISEPLOT}      {LDVMEDIAN}{DVVAR} = median({DVVAR}),
 {LSUMMARISEPLOT}      {LDVMEAN}sd = sd({DVVAR}),
 {LSUMMARISEPLOT}      {LDVMEAN}sem = sd({DVVAR})/sqrt(length(({DVVAR}))),
 {LSUMMARISEPLOT}      {LDVMEDIAN}q95 = quantile({DVVAR},probs = 0.95),
