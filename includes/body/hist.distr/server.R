@@ -152,7 +152,7 @@ output$histcatvar2 <- renderPlot({
           plot.caption = element_text(vjust = 4, size = 10, face = "bold")
         )
 
-      GLOBAL$histwtplot1 <- gplotout # for exports of ggplot object
+      GLOBAL$histageplot2 <- gplotout # for exports of ggplot object
       gplotout
     } else {
       updateGraphStatus3("Histogram distribution plot cannot be created because the variable names selected do not exist in the new dataset. Consider setting the correct variable names in the <b>Variable Matching</b> tab in the left panel.")
