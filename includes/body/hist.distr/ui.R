@@ -2,7 +2,7 @@
 ############################################################################
 ##  Document Path: ~/GitHub/pharmacometric-shiny-template-eda/includes/body/hist.distr/ui.R
 ##
-##  Description: User interface for main body section
+##  Description: User interface for histogram of WT and Age plots
 ##
 ##  R version 4.4.1 (2024-06-14 ucrt)
 ##
@@ -12,7 +12,7 @@
 # plot panels
 body.panel.right.plot.hist = card.pro(
   title = "Histograms of WT and AGE",
-  icon = icon("star"),
+  icon = icon("chart-simple"),
   collapsed = 1L,
   header.bg = "yellow",
   xtra.header.content = textOutput("reportgraphstatus"),
@@ -22,7 +22,7 @@ body.panel.right.plot.hist = card.pro(
   ),
   tabs = list(
     tabEntry(
-      "Body weight",
+      "Body Weight",
       selectInput("datatoUsehist1", "Data version to use:", choices = c()),
       plotOutput("histcatvar1", height = 450)
     ),
