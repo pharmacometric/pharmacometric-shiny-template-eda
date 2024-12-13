@@ -137,6 +137,7 @@ output$histtimedownloadimg <- downloadHandler(
   content = function(con) {
     ggsave(
       con,
+      plot=GLOBAL$histwtplot1,
       dpi = input$downimgdpi,
       width = input$downimgw,
       height = input$downimgh,
@@ -162,6 +163,33 @@ output$histtimedownloadimg2 <- downloadHandler(
 
 
 
+
+#############################################################################
+###  SECTION: Download demographic table
+#############################################################################
+
+
+output$dtabdownloadimg <- downloadHandler(
+  filename = function() {
+    fAddDate("app1-demog-summ-table-v1.docx")
+  },
+  content = function(con) {
+    t1flex(GLOBAL$demo.table.out) %>% save_as_docx(path=con)
+  }
+)
+
+
+
+output$dtabtimedownloadimg2 <- downloadHandler(
+  filename = function() {
+    fAddDate("app1-demog-summ-table-v1.data")
+  },
+  content = function(con) {
+    demog_tbl = GLOBAL$demo.table.out
+    save(demog_tbl, file = con)
+  }
+)
+#############################################################################
 
 
 
