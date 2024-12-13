@@ -2,7 +2,7 @@
 ############################################################################
 ##  Document Path: ~/GitHub/pharmacometric-shiny-template-eda/includes/body/conc.vs.time/ui.R
 ##
-##  Description: User interface for main body section
+##  Description: User interface for concentration vs time plots
 ##
 ##  R version 4.4.1 (2024-06-14 ucrt)
 ##
@@ -18,7 +18,7 @@ GLOBAL$code.convtm.libs.glue = paste0('c("',paste(libs[c(10,11,12,20,19)], colla
 # plot panels
 body.panel.right.plot.conc = card.pro(
   title = "Concentration vs. Time",
-  icon = icon("chart-simple"),
+  icon = icon("chart-area"),
   collapsed = 1L,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
