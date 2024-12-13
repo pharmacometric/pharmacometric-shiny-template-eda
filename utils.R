@@ -168,6 +168,10 @@ updateGraphStatus3 = function(message = "") {
   shinyjs::runjs(paste0("$('#reporthiststatus2').html('", message, "')"))
 }
 
+
+updateGraphStatus4 = function(message = "") {
+  shinyjs::runjs(paste0("$('#repttablstatus1').html('", message, "')"))
+}
 updateVariableHolder = function(message = "") {
   shinyjs::runjs(paste0("$('#varnamesholder').html('", message, "')"))
 }
