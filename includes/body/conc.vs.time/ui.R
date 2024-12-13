@@ -19,7 +19,7 @@ GLOBAL$code.convtm.libs.glue = paste0('c("',paste(libs[c(10,11,12,20,19)], colla
 body.panel.right.plot.conc = card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-simple"),
-  collapsed = FALSE,
+  collapsed = 1L,
   header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   div(
