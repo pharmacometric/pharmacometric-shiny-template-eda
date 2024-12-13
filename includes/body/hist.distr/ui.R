@@ -11,7 +11,7 @@
 
 # plot panels
 body.panel.right.plot.hist = card.pro(
-  title = "Histograms",
+  title = "Histograms of WT and AGE",
   icon = icon("star"),
   collapsed = FALSE,
   header.bg = "yellow",
@@ -50,9 +50,6 @@ body.panel.right.plot.hist = card.pro(
       condition = "input.histgraphtype == 4 |input.histgraphtype == 5 |input.histgraphtype == 6 |input.histgraphtype == 7 | input.cgraphtype == 8",
       numericInput("histgraphcolnum", "Facet column number", value = 4, width = "90%")
     ),
-    selectInput("histloglinear", "semi-log or linear", choices = c(
-      "linear", "semi-log"
-    ), width = "90%"),
     textInput("histlabely", "Y-label", "Density", width = "95%"),
     textInput("histlabelx", "X-label (WT tab)", "Weight(kg)", width = "95%"),
     textInput("histlabelx2", "X-label (AGE tab)", "Age (yrs)", width = "95%"),
