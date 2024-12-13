@@ -103,3 +103,13 @@ observe({
 observeEvent(input$shwvarnames, {
   shinyjs::toggleClass("varnamesholder", class = "hider")
 })
+
+
+
+output$rhstable1summary <- renderPrint({
+  summary(switch(input$datatoUseV1,
+         "original" = GLOBAL$data.versions$original,
+         "dataV2" = GLOBAL$data.versions$dataV2,
+         "dataV3" = GLOBAL$data.versions$dataV3
+  ))
+})
