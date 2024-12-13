@@ -21,7 +21,7 @@ output$histcatvar1 <- renderPlot({
   }
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--", names(plot.data)))) {
-      updateGraphStatus3()
+
       plot.data$.wt <- as.numeric(plot.data[[input$wtvar]])
       plot.data$.sx <- as.numeric(plot.data[[input$sexvar]])
       plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
@@ -50,8 +50,9 @@ output$histcatvar1 <- renderPlot({
         gplotout <- gplotout + facet_wrap(. ~ .ttr, ncol = input$histgraphcolnum)
       }
 
-      # facet if it is specified
+      # color selected if it is specified
       if (input$histgraphtype %in% c(2, 4)) {
+        resp.color.hist()
         gplotout <- gplotout + aes(color = .colv)
       }
 
@@ -96,7 +97,7 @@ output$histcatvar2 <- renderPlot({
   }
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--", names(plot.data)))) {
-      updateGraphStatus3()
+
       plot.data$.age <- as.numeric(plot.data[[input$agevar]])
       plot.data$.sx <- as.numeric(plot.data[[input$sexvar]])
       plot.data$.colv <- as.factor(plot.data[[input$colvar3]]) %or% as.factor(plot.data$.id)
@@ -125,13 +126,14 @@ output$histcatvar2 <- renderPlot({
         gplotout <- gplotout + facet_wrap(. ~ .ttr, ncol = input$histgraphcolnum)
       }
 
-      # facet if it is specified
+      # color selected if it is specified
       if (input$histgraphtype %in% c(2, 4)) {
+        resp.color.hist()
         gplotout <- gplotout + aes(color = .colv)
       }
 
       gplotout <- gplotout +
-        labs(x = input$histlabelx, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
+        labs(x = input$histlabelx2, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
         theme_bw() +
         styler00 +
         styler03 +
@@ -158,4 +160,11 @@ output$histcatvar2 <- renderPlot({
   } else {
     sampleplot()
   }
+})
+
+
+
+
+resp.color.hist <- reactive({
+  updateGraphStatus3(paste0('<blockquote style="color:red">Plots generated and colored by ',input$colvar3,'. To change this, use the <b>Variable Matching</b> tab.</blockquote>'))
 })
