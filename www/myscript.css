@@ -56,7 +56,13 @@ code {
   color: blue;
 }
 
+.xpadding-15{
+  padding: unset!important;
+}
 
+#demdescrtbl table{
+  width:100%!important;
+}
 .downloadbtns {
   background-color: lightblue; border-width: 0;
 }
