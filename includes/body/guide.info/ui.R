@@ -10,7 +10,7 @@
 #############################################################################
 
 body.model.info = card.pro(
-  title = "Guide for using EDA app", width = 12,
+  title = "Guide for using the exploratory data analysis app", width = 12,
   header.bg = "darken",
   removebtn = FALSE,
   colorbtn = FALSE,
