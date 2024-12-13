@@ -44,7 +44,7 @@ body.panel.left.setup = card.pro(
       actionButton("rundatabutton", "Generate Data Versions", icon = icon("running"))
     ),
     tabEntry("Variable Matching",
-             selectInput("depvar1", "Dependent variable", choices = "DV",width = "100%"),
+             selectInput("depvar1", "Dependent variable (DV)", choices = "DV",width = "100%"),
              selectInput("indepvar", "Time since first dose", choices = "TIME",width = "100%"),
              selectInput("indepvar2", "Time since last dose", choices = "TSLD",width = "100%"),
              tags$b("Other variables"),tags$hr(),
