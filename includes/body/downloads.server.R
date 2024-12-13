@@ -129,6 +129,22 @@ output$cdownloadconcvt2 <- downloadHandler(
 ###  SECTION: Histogram of body weight and age plots
 #############################################################################
 
+# download hist plot
+output$histtimedownloadimg <- downloadHandler(
+  filename = function() {
+    fAddDate("app1-eda-concvs-img.png")
+  },
+  content = function(con) {
+    ggsave(
+      con,
+      dpi = input$downimgdpi,
+      width = input$downimgw,
+      height = input$downimgh,
+      scale = input$downimgs,
+      units = "px"
+    )
+  }
+)
 
 # download hist ggplot object
 output$histtimedownloadimg2 <- downloadHandler(
