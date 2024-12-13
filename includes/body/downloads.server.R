@@ -9,6 +9,12 @@
 #############################################################################
 #############################################################################
 
+
+#############################################################################
+###  SECTION: Concentration verus time plots
+#############################################################################
+
+
 # download c vs t plot
 output$concvtimedownloadimg <- downloadHandler(
   filename = function() {
@@ -26,7 +32,7 @@ output$concvtimedownloadimg <- downloadHandler(
   }
 )
 
-# download c vs t data
+# download c vs t ggplot object
 output$concvtimedownloadimg2 <- downloadHandler(
   filename = function() {
     fAddDate("app1-eda-concvs-obj.data")
@@ -116,6 +122,60 @@ output$cdownloadconcvt2 <- downloadHandler(
     zip(zipfile = con, files = files2zip)
   }
 )
+
+
+
+#############################################################################
+###  SECTION: Histogram of body weight and age plots
+#############################################################################
+
+
+# download hist ggplot object
+output$histtimedownloadimg2 <- downloadHandler(
+  filename = function() {
+    fAddDate("app1-eda-hist-obj.data")
+  },
+  content = function(con) {
+    hist_wt_plot = GLOBAL$histwtplot1
+    hist_age_plot = GLOBAL$histageplot2
+    save(hist_wt_plot,hist_age_plot, file = con)
+  }
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
