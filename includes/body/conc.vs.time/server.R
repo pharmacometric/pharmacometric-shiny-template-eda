@@ -44,7 +44,6 @@ output$concvtimeplot1 = renderPlot({
   if(!length(plot.data) | is.null(plot.data))return(sampleplot())
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar, input$cfacetvar, input$colvar3) %in% c("--",names(plot.data)))) {
-      updateGraphStatus2()
       plot.data$.dv = as.numeric(plot.data[[input$depvar1]])
       plot.data$.tm = as.numeric(plot.data[[input$indepvar]])
       plot.data$.id = as.numeric(plot.data[[input$idvar]])
@@ -161,7 +160,6 @@ output$concvtimeplot2 = renderPlot({
   if(!length(plot.data) | is.null(plot.data))return(sampleplot())
   if (nrow(plot.data)) {
     if (all(c(input$depvar1, input$indepvar2, input$cfacetvar, input$colvar3) %in% c("--",names(plot.data)))) {
-      updateGraphStatus2()
       plot.data$.dv = as.numeric(plot.data[[input$depvar1]])
       plot.data$.tm = as.numeric(plot.data[[input$indepvar2]])
       plot.data$.id = as.numeric(plot.data[[input$idvar]])
@@ -176,7 +174,7 @@ output$concvtimeplot2 = renderPlot({
       if (input$cgraphtype == 3)
         datatoplot = data_summarised_overall(datatoplot)
       if (input$cgraphtype == 6)
-        datatoplot = data_summarised_facet(datatoplot)
+        datatoplot = data_summarised_overall(datatoplot)
 
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% 1:3)
         datatoplot = datatoplot %>% rename(.dv = dv_mean)
@@ -188,7 +186,7 @@ output$concvtimeplot2 = renderPlot({
       # global plot out
       gplotout = ggplot(datatoplot, aes(.tm, .dv, color = .colv))   +
         guides(color = guide_legend(ncol = input$ncollegend))+
-        labs(x = input$labelx, y = input$labely, color = "")+
+        labs(x = input$labelx2, y = input$labely, color = "")+
         theme_bw() +
         styler00 +
         styler03 +
@@ -196,9 +194,7 @@ output$concvtimeplot2 = renderPlot({
 
       # add scatter if plotting median or mean alone
       if(input$cgraphtype %in% c(3,6) & input$graphsummtype %in% c(1,4))
-        gplotout = gplotout + geom_point(data = datatoplot0) #+
-      #scale_color_manual(values = rep("black",length(unique(datatoplot0$.id)))) +
-      #theme(legend.position = "none")
+        gplotout = gplotout + geom_point(data = datatoplot0, aes(color = .summ)) #+
 
 
       # add ribbon if plotting med +/- confident interval
@@ -221,7 +217,7 @@ output$concvtimeplot2 = renderPlot({
 
       # if summary is specified
       if (input$cgraphtype %in% c(3,6)) {
-        gplotout = gplotout + geom_line()
+        gplotout = gplotout + geom_line(aes(color=.summ))
       }
 
       # if median/mean with intervals specified
@@ -249,7 +245,7 @@ output$concvtimeplot2 = renderPlot({
       if (input$cgraphtype %in% 4:5) {
         gplotout = gplotout +facet_wrap(. ~ .ttr, ncol = input$graphcolnum)
       }
-      if (input$cgraphtype %in% c(6)) {
+      if (input$cgraphtype == 6) {
         gplotout = gplotout +facet_wrap(. ~ .summ, ncol = input$graphcolnum)
       }
 
@@ -263,7 +259,7 @@ output$concvtimeplot2 = renderPlot({
         gplotout = gplotout + scale_y_log10()
       }
 
-      GLOBAL$concvtimeplot2 = gplotout # for exports of ggplot object
+      GLOBAL$concvtimeplot1 = gplotout # for exports of ggplot object
       gplotout
 
     } else {
