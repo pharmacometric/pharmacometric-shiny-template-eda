@@ -12,17 +12,18 @@
 
 # regimen setup panel
 body.panel.right.table.rawdata = card.pro(
-  title = "Raw data",
+  title = "Dataset working copy",
   icon = icon("book"),
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
   editbtn = 1L,
   collapsed = FALSE,
+  sortable = FALSE,
   selectInput("datatoUseV1","Data version to use:", choices = data.versions.names),
   DTOutput("rhstable1"),
-  # rhandsontable(regimenDT, width = "100%") %>%
-  #   hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE),
+  tags$blockquote("Data Summary"),
+  verbatimTextOutput("rhstable1summary"),
 
-  footer = "Legend: Group - treatment group, Dose - dose in mg, Frequency - dosing frequency as integer, Additional - number of additional doses, Route - route of administration, F1 - bioavilability for the group"
+  footer = "Legend: Group - AGE - Age, WT - Body weight, CONC/DV - concentration, TIME/TSFD,TSLD - Time"
 )
