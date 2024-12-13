@@ -11,8 +11,8 @@
 # assemble right contents
 body.panel.right = primePanel(
   body.panel.right.plot.conc,
-  body.panel.right.plot.cov,
   body.panel.right.plot.hist,
+  body.panel.right.plot.cov,
   body.panel.right.table.demo,
   body.panel.right.table.rawdata
 )
