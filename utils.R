@@ -394,6 +394,7 @@ code_download_checks_df = tibble::tribble(
   '\\{LREMOVECOLORVAR\\}',2,'cgraphtype','c(1,4,7,8)',
   '\\{IDVAR\\}',1,'idvar','',
   '\\{LSPAGHETTIPLOT\\}',2,'cgraphtype','c(1,4,7)',
+  '\\{LNOTSPAGHETTIPLOT\\}',2,'cgraphtype','c(2,3,5,6,8)',
   '\\{LINDVPLOT\\}',2,'cgraphtype','7:8',
   '\\{LSCATTERPLOT\\}',2,'cgraphtype','c(2,5,8)',
   '\\{LSUMMARYPLOT\\}',2,'cgraphtype','c(3,6)',
