@@ -17,7 +17,7 @@ updateSelectInput(session, "datatoUseconcv2", choices = data.versions.names)
 
 output$corrcovplots1 = renderPlot({
   covrel.data = GLOBAL$data.versions[[input$datatoUseconcv1]]
-  if(covrel.data == NULL){
+  if(is.null(covrel.data)){
     my_data <- mtcars[, c(1,3,4,5,6,7)]
   chart.Correlation(my_data, histogram=TRUE, pch=19)
   }
