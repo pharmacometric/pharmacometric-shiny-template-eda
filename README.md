@@ -36,7 +36,7 @@ DT, version 0.33
 flextable, version 0.9.6
 nlme, version 3.1.166
 markdown, version 1.13
-card.pro, version 2.2.0
+card.pro, version 2.2.1
 dplyr, version 1.1.4
 ggplot2, version 3.5.1
 magrittr, version 2.0.3
