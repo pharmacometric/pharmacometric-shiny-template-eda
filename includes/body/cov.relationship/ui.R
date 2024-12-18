@@ -13,7 +13,7 @@
 body.panel.right.plot.cov = card.pro(
 
   title = "Covariate Correlation Plots & Tables",
-  header.bg = "magenta",
+  header.bg = "blueLight",
   icon = icon("chart-simple"),
   editbtn = 1L,
   collapsed = 1L,
