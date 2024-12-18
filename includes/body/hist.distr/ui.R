@@ -14,7 +14,7 @@ body.panel.right.plot.hist = card.pro(
   title = "Histograms of WT and AGE",
   icon = icon("chart-simple"),
   collapsed = 1L,
-  header.bg = "yellow",
+  header.bg = "blueLight",
   xtra.header.content = textOutput("reportgraphstatus"),
   div(
     id = "reporthiststatus2",
