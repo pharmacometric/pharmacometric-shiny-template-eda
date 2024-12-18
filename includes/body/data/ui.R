@@ -14,6 +14,7 @@
 body.panel.right.table.rawdata = card.pro(
   title = "Dataset working copy",
   icon = icon("book"),
+  header.bg = "yellow",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,
@@ -21,9 +22,10 @@ body.panel.right.table.rawdata = card.pro(
   collapsed = FALSE,
   sortable = FALSE,
   selectInput("datatoUseV1","Data version to use:", choices = data.versions.names),
-  DTOutput("rhstable1"),
+
   tags$blockquote("Data Summary"),
   verbatimTextOutput("rhstable1summary"),
-
+  tags$blockquote("Data Individuals"),
+  DTOutput("rhstable1"),
   footer = "Legend: Group - AGE - Age, WT - Body weight, CONC/DV - concentration, TIME/TSFD,TSLD - Time"
 )
