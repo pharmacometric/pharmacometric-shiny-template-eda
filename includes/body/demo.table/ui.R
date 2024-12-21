@@ -30,7 +30,8 @@ body.panel.right.table.demo = card.pro(
         tableOutput("demdescrtbl"),
         tags$code('Code for the table ...'),
         position = "vertical",
-        left.width = "90%"
+        left.width = "90%",
+        bg.left.color = "#f5f5f5"
       )
 
     ),
