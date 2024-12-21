@@ -75,23 +75,75 @@ code {
 table {
 	display: table;
   border-spacing: 2px;
-  border-collapse: separate;
-  box-sizing: border-box;
-  text-indent: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+caption {
+  text-align: start;
+}
+
+caption {
+  margin-block: 0.75rem;
+}
+
+thead th:not(:first-child),
+td {
+  text-align: end;
 }
 
 thead {
-	border-block-end: 2px solid;
-	background: whitesmoke;
+  border-block-end: 2px solid;
+  background: whitesmoke;
 }
 
 tfoot {
-	border-block: 2px solid;
-	background: whitesmoke;
+  border-block: 2px solid;
+  background: whitesmoke;
 }
 
 th,
 td {
-	border: 1px solid lightgrey;
-	padding: 0.25rem 0.75rem;
+  border: 1px solid lightgrey;
+  padding: 0.25rem 0.75rem;
+  vertical-align: baseline;
+}
+
+th:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  border-inline-end: none;
+}
+
+tbody th {
+  background: white;
+}
+
+thead th,
+tfoot th {
+  background: whitesmoke;
+}
+
+thead th {
+  vertical-align: bottom;
+}
+
+td:first-of-type,
+:where(thead, tfoot) th:nth-child(2) {
+  border-inline-start: none;
+}
+
+th:first-of-type {
+  width: 10rem;
+}
+
+th:first-child::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  width: 1px;
+  height: 100%;
+  background: lightgrey;
 }
