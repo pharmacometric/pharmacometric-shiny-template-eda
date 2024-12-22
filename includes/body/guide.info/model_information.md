@@ -11,15 +11,13 @@ The purpose of this template is to help create a standardized workflow for scien
 
 The following features are available in the current template for you to get started.
 
+ - __Pre-built modules__ Already configured set-up for modules for exploratory data analysis. User may tweak further to their specific routines
+ - __Example data & uploads__ Availability of data to test out the app, but also a feature that allows upload of user dataset for analysis
+ - __Plot/table output and code download__ Download all output plots and tables either as final outputs (png/docx) or objects (ggplot/flextable/table1) or code download to direct use in submissions
  - __User customizable interface__. This means the user can move around the panels to desired locations on the screen. They may also change the title and color of the panels to suite their needs. 
  - __Panel location and features saved across sessions__. This means that after re-arrangement of panels, changing panel colors or titles, one may refresh the page and the settings are retained.
  - __Resizable Panels__. Panels are resizable to allow easy focus on specific contents, like plots or tables of result.
- - __Auto detection of parameters and creation of inputs__. Parameters within the mrgsolve file will be automatically detected and input fields will be created for them to allow the user to vary them.
- - __Plot creation is configured__. Selected data version will be used to create plots. Settings for plots can be toggled using the cog symbol on the right side of the plot panel. 
- - __Summary of results and raw output__. The results are configured to be automatically summarized to obtain key PK parameters, as well as provide access to raw data outputs.
- - __Configured for speed__. Continued effort is being made to improve the template to ensure great speed and performance for EDA app.
  - __Aesthetics for completion__. App title are formatted to look professional. A sample icon is also provided, which may be replaced when updating the template to suit your need.
-
  
 
 ### License and term of use
