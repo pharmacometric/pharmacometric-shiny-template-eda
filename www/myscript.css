@@ -72,24 +72,24 @@ code {
 }
 
 
-table {
+#demdescrtbl table {
 	display: table;
   border-spacing: 2px;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-th,
-caption {
+#demdescrtbl th,
+#demdescrtbl caption {
   text-align: start;
 }
 
-caption {
+#demdescrtbl caption {
   margin-block: 0.75rem;
 }
 
-thead th:not(:first-child),
-td {
+#demdescrtbl thead th:not(:first-child),
+#demdescrtbl td {
   text-align: end;
 }
 
@@ -120,17 +120,17 @@ tbody th {
   background: white;
 }
 
-thead th,
-tfoot th {
+#demdescrtblthead th,
+#demdescrtbltfoot th {
   background: whitesmoke;
 }
 
-thead th {
+#demdescrtbl thead th {
   vertical-align: bottom;
 }
 
-td:first-of-type,
-:where(thead, tfoot) th:nth-child(2) {
+#demdescrtbl td:first-of-type,
+#demdescrtbl :where(thead, tfoot) th:nth-child(2) {
   border-inline-start: none;
 }
 
@@ -145,5 +145,5 @@ th:first-child::after {
   inset-inline-end: 0;
   width: 1px;
   height: 100%;
-  background: lightgrey;
+  background: white;
 }
