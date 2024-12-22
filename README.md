@@ -1,6 +1,6 @@
 # Standard PK Exploratory Data Analysis Template [Shiny]
 
-<img src="www/preview3.png">
+<img src="www/preview4.png">
 
 
 __Sample deployed template__: https://pharmacometric.shinyapps.io/pharmacometric-shiny-eda-template/
