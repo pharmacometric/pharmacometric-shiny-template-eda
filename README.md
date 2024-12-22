@@ -1,8 +1,5 @@
 # Standard PK Exploratory Data Analysis Template [Shiny]
 
-## Uncompleted project. This is ongoing so use with caution for now.
-## Version 1 completion: Mid December
-
 <img src="www/preview3.png">
 
 
