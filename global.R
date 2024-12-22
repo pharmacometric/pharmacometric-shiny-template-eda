@@ -17,8 +17,28 @@ quickcode::clean(source = c("utils.R"), clearPkgs = 1L)
 
 # load libraries
 libs = c("shiny","shinyjs","rhandsontable","DT","flextable","nlme","markdown","tibble","card.pro","dplyr","ggplot2","magrittr","mrgsolve","quickcode","patchwork","table1","r2resize","rlang","grid","ggthemes","PerformanceAnalytics")
-lapply(libs, function(l)library(l,character.only=1L))
-
+#lapply(libs, function(l)library(l,character.only=1L))
+library(shiny)
+library(shinyjs)
+library(rhandsontable)
+library(DT)
+library(flextable)
+library(nlme)
+library(markdown)
+library(tibble)
+library(card.pro)
+library(dplyr)
+library(ggplot2)
+library(magrittr)
+library(mrgsolve)
+library(quickcode)
+library(patchwork)
+library(table1)
+library(r2resize)
+library(rlang)
+library(grid)
+library(ggthemes)
+library(PerformanceAnalytics)
 # add all individual utils
 for (ui_each in c(
   "includes/header",

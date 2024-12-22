@@ -10,7 +10,7 @@
 #############################################################################
 
 # plot panels
-body.panel.right.plot.hist = card.pro(
+body.panel.right.plot.hist <- card.pro(
   title = "Histograms of WT and AGE",
   icon = icon("chart-simple"),
   collapsed = 1L,
@@ -30,6 +30,16 @@ body.panel.right.plot.hist = card.pro(
       "Age",
       selectInput("datatoUsehist2", "Data version to use:", choices = c()),
       plotOutput("histcatvar2", height = 450)
+    ),
+    tabEntry(
+      "BMI",
+      selectInput("datatoUsehist3", "Data version to use:", choices = c()),
+      plotOutput("histcatvar3", height = 450)
+    ),
+    tabEntry(
+      "BSA",
+      selectInput("datatoUsehist4", "Data version to use:", choices = c()),
+      plotOutput("histcatvar4", height = 450)
     )
   ),
   sidebar = div(
@@ -57,22 +67,22 @@ body.panel.right.plot.hist = card.pro(
     numericInput("histncollegend", "Number of legend columns", value = 5, width = "90%"),
     selectInput("histgraphfont", "Font type", choices = font.family, selected = "Arial", width = "90%"),
     sliderInput("histfontxytitle",
-                "Font-size text",
-                min = 1,
-                max = 50,
-                value = 12
+      "Font-size text",
+      min = 1,
+      max = 50,
+      value = 12
     ),
     sliderInput("histfontxyticks",
-                "Font-size ticks",
-                min = 1,
-                max = 50,
-                value = 12
+      "Font-size ticks",
+      min = 1,
+      max = 50,
+      value = 12
     ),
     sliderInput("histfontxystrip",
-                "Font-size strip",
-                min = 1,
-                max = 50,
-                value = 12
+      "Font-size strip",
+      min = 1,
+      max = 50,
+      value = 12
     ),
     "For downloads:",
     numericInput("histdownimgdpi", "Image dpi", 300, width = "90%"),
@@ -80,12 +90,11 @@ body.panel.right.plot.hist = card.pro(
     numericInput("histdownimgh", "Image height (px)", 1700, width = "90%"),
     numericInput("histdownimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("histtimedownloadimg", "Download plot", icon = icon("image"), class="downloadbtns")
+    downloadButton("histtimedownloadimg", "Download plot", icon = icon("image"), class = "downloadbtns")
   ),
   footer = list(
     downloadButton("histtimedownloadimg", "Download plot file (png)", icon = icon("image")),
-    downloadButton("histtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class="downloadbtns2"),
-    downloadButton("hdownloadhistt2", "Download plot code (R)", icon = icon("code"), class="downloadbtns")
+    downloadButton("histtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class = "downloadbtns2"),
+    downloadButton("hdownloadhistt2", "Download plot code (R)", icon = icon("code"), class = "downloadbtns")
   )
 )
-

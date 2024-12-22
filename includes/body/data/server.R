@@ -107,9 +107,46 @@ observeEvent(input$shwvarnames, {
 
 
 output$rhstable1summary <- renderPrint({
-  summary(switch(input$datatoUseV1,
-         "original" = GLOBAL$data.versions$original,
-         "dataV2" = GLOBAL$data.versions$dataV2,
-         "dataV3" = GLOBAL$data.versions$dataV3
+  summary.data.frame(switch(input$datatoUseV1,
+    "original" = GLOBAL$data.versions$original,
+    "dataV2" = GLOBAL$data.versions$dataV2,
+    "dataV3" = GLOBAL$data.versions$dataV3
   ))
+})
+
+output$subj1summary <- renderPrint({
+  "Provide unempty dataset, or fill Variable Matching tab"
+  plot.data <- (switch(input$datatoUseV1,
+    "original" = GLOBAL$data.versions$original,
+    "dataV2" = GLOBAL$data.versions$dataV2,
+    "dataV3" = GLOBAL$data.versions$dataV3
+  ))
+
+  if (!length(plot.data)) {
+    return("Provide unempty dataset, or fill Variable Matching tab")
+  }
+  if (is.null(plot.data) | input$idvar == "" | input$cfacetvar == "") {
+    return("Provide unempty dataset, or fill Variable Matching tab")
+  }
+
+
+  d2 <- data.frame(
+    Description = c(
+      paste0("Number of subjects in ", input$datatoUseV1, " data version"),
+      paste0("Number of treatments in ", input$datatoUseV1, " data version"),
+      paste0("Total number of records in ", input$datatoUseV1, " data version")
+    ),
+    Statistic = c(
+      length(unique(plot.data[[input$idvar]])),
+      length(unique(plot.data[[input$cfacetvar]])),
+      length(plot.data[[input$cfacetvar]])
+    )
+  )
+
+
+  flextable(d2) %>%
+    theme_vanilla() %>%
+    # theme_apa() %>%
+    autofit() %>%
+    htmltools_value()
 })

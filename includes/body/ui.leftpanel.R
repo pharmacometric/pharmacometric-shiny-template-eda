@@ -54,9 +54,11 @@ body.panel.left.setup = card.pro(
                column(width = 6,selectInput("colvar3", "Color by", choices = "ID",width = "100%")),
                column(width = 6,selectInput("summby", "Summarize data by", choices = "TRT",width = "100%")),
                column(width = 6,selectInput("depvar4", "Dose variable", choices = "DOSE",width = "100%")),
-               column(width = 6,selectInput("wtvar", "Body weight variable", choices = "WT",width = "100%")),
-               column(width = 6,selectInput("agevar", "Age variable", choices = "AGE",width = "100%")),
-               column(width = 6,selectInput("sexvar", "Gender variable", choices = "SEX",width = "100%"))
+               column(width = 6,selectInput("wtvar", "Body weight variable", choices = c(),width = "100%")),
+               column(width = 6,selectInput("agevar", "Age variable", choices = c(),width = "100%")),
+               column(width = 6,selectInput("sexvar", "Gender variable", choices = "SEX",width = "100%")),
+               column(width = 6,selectInput("bsavar", "BSA variable", choices = c(),width = "100%")),
+               column(width = 6,selectInput("bmivar", "BMI variable", choices = c(),width = "100%"))
              )
              )
   ),

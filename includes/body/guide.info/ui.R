@@ -11,7 +11,7 @@
 
 body.model.info = card.pro(
   title = "Guide for using the exploratory data analysis app", width = 12,
-  header.bg = "redLight",
+  header.bg = "darken",
   removebtn = FALSE,
   colorbtn = FALSE,
   expandbtn = FALSE,

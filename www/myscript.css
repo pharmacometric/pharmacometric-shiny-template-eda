@@ -147,3 +147,8 @@ th:first-child::after {
   height: 100%;
   background: white;
 }
+
+
+#subj1summary table{
+  width: 100%;
+}

@@ -37,7 +37,7 @@ createSampleData = function(N = 10) {
   ##  II: Interval since the last dose (float, in hours; typically 0 for first observations).
   ##  SS: Steady state indicator (0 for not at steady state).
   ##  TRT: Treatment group assigned to the patient (string; "Drug1", "Drug2", or "Drug3").
-  ##
+  ##  BMI: Range from 15-35
   ##  Additional Notes
   ##  Each patient has a total of 5 records: 2 dosing records (with DV set to .) and 3 observation records (with actual DV values).
   ##  The distribution of TRT can be randomized as needed for your study design.
@@ -90,7 +90,8 @@ createSampleData = function(N = 10) {
     }
 
     sex = sample(c("0" = "Male","1" = "Female"))
-
+    bmi = runif(1,min = 15, max = 35)
+    bsa = runif(1,min = 1.3, max = 2.6)
     # Dosing records (2 records with DV set to ".")
     for (j in 0:2) {
       regimenDT = rbind(regimenDT, data.frame(
@@ -108,7 +109,9 @@ createSampleData = function(N = 10) {
         DVID = 0,
         II = 0,
         SS = 0,
-        SEX = names(sex)[1],
+        SEX = as.numeric(names(sex)[1]),
+        BMI = bmi,
+        BSA = bsa,
         SEXC = sex[1],
         FLAG = 1,
         TRT = treatment[i],
@@ -139,7 +142,9 @@ createSampleData = function(N = 10) {
         FLAG = 1,
         II = 0,
         SS = 0,
-        SEX = names(sex)[1],
+        SEX = as.numeric(names(sex)[1]),
+        BMI = bmi,
+        BSA = bsa,
         SEXC = sex[1],
         TRT = treatment[i],
         CMT = 2, # Compartment for observations

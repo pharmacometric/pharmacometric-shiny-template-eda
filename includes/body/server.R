@@ -41,6 +41,8 @@ observe({
   updateSelectInput(session,"depvar4", choices = varnames, selected =  "DOSE")
   updateSelectInput(session,"wtvar", choices = varnames, selected =  "WT")
   updateSelectInput(session,"agevar", choices = varnames, selected =  "AGE")
+  updateSelectInput(session,"bsavar", choices = varnames, selected =  "BSA")
+  updateSelectInput(session,"bmivar", choices = varnames, selected =  "BMI")
   updateSelectInput(session,"sexvar", choices = varnames, selected =  "SEXC")
   updateSelectInput(session,"summby", choices = varnames, selected =  "TRT")
   updateSelectInput(session,"colvar3", choices = varnames, selected =  "ID")

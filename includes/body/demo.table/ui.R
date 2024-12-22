@@ -36,7 +36,7 @@ body.panel.right.table.demo = card.pro(
 
     ),
     tabEntry(
-      "Other tables",
+      "Exclusion/Inclusion Table",
       DTOutput("othrsdescrtbl")
     )
   ),
