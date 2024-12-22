@@ -31,27 +31,23 @@ body.panel.right.plot.cov = card.pro(
     ),
     tabEntry(
       "Categorical",
-      r2resize::splitCard(
-        tableOutput("corrccrfgtbl"),
-        tags$code('Code for the table ...'),
-        position = "vertical",
-        left.width = "90%"
-      )
+      column(width=3,class ="p-0",selectInput("datatoUseconcv2", "Data version to use:", choices = c())),
+      column(width=6,class ="p-0",selectInput("corrcectouse2","Categorical variables to plot", choices = c(), multiple = 1L, width = "100%")),
+      column(width=3,class ="p-0",selectInput("corrcectoby2","Plot By", choices = c(), multiple = 0L, width = "100%")),
+      plotOutput("corrcovplots2", height = 600)
 
     )
   ),
   sidebar = div(
     tags$label("Table settings"),
+    textInput("labelycovcorr", "Y-label", "Body Weight (kg)", width = "95%"),
+    selectInput("legendpositioncovcorr", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
+    numericInput("ncollegendcovcorr", "Number of legend columns", value = 3, width = "90%"),
+
     selectInput("corrcdemgraphtype", "Graph type", choices = c(
       "overall " = 1,
       "stratify by treatment" = 2
     ), selected = "Facet by Group", width = "90%"),
-    conditionalPanel(
-      condition = "input.tabdemgraphtype == 3 | input.tabdemgraphtype == 6",
-      selectInput("graphsummtype", "Statistic", choices = c(
-        "Mean" = 1, "Mean ± SD" = 2, "Mean ± SEM" = 3, "Median" = 4, "Median ± 90% PI" = 5, "Median ± 95% PI" = 6
-      ), selected = "Median ± 90% PI", width = "90%")
-    ),
     tags$label("Table outputs"),
     hr(),
     downloadButton("corrcwnloadtable1", "Download summaries", icon = icon("download"), width = "90%"),

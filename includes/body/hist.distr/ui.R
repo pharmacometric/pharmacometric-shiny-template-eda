@@ -63,6 +63,8 @@ body.panel.right.plot.hist <- card.pro(
     textInput("histlabely", "Y-label", "Density", width = "95%"),
     textInput("histlabelx", "X-label (WT tab)", "Weight(kg)", width = "95%"),
     textInput("histlabelx2", "X-label (AGE tab)", "Age (yrs)", width = "95%"),
+    textInput("histlabelx3", "X-label (BMI tab)", "Body mass index (kg/m2)", width = "95%"),
+    textInput("histlabelx4", "X-label (BSA tab)", "Body surface area (m2)", width = "95%"),
     selectInput("histlegendposition", "Legend position", choices = c("bottom", "top", "left", "right", "none"), width = "90%"),
     numericInput("histncollegend", "Number of legend columns", value = 5, width = "90%"),
     selectInput("histgraphfont", "Font type", choices = font.family, selected = "Arial", width = "90%"),

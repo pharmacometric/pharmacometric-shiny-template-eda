@@ -209,7 +209,7 @@ output$histcatvar3 <- renderPlot({
       }
 
       gplotout <- gplotout +
-        labs(x = input$histlabelx2, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
+        labs(x = input$histlabelx3, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
         theme_bw() +
         styler00 +
         styler03 +
@@ -284,7 +284,7 @@ output$histcatvar4 <- renderPlot({
       }
 
       gplotout <- gplotout +
-        labs(x = input$histlabelx2, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
+        labs(x = input$histlabelx4, y = input$histlabely, fill = "", color = "", caption = "Dashed and dotted lines denote mean and median of body weights, respectively.") +
         theme_bw() +
         styler00 +
         styler03 +

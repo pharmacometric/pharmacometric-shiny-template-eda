@@ -30,6 +30,7 @@ shiny, version 1.8.1.1
 shinyjs, version 2.1.0
 rhandsontable, version 0.3.8
 DT, version 0.33
+GGally, version 2.2.1
 flextable, version 0.9.6
 nlme, version 3.1.166
 markdown, version 1.13

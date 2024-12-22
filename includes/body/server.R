@@ -48,7 +48,9 @@ observe({
   updateSelectInput(session,"colvar3", choices = varnames, selected =  "ID")
   updateSelectInput(session,"idvar", choices = varnames, selected =  "ID")
   updateSelectInput(session,"covariatestouse", choices = varnames, selected =  c("WT","AGE","CRCL","RENAL_FUNCTION","SEXC"))
-  updateSelectInput(session,"corrcectouse", choices = varnames, selected =  c("WT","AGE","CRCL","RENAL_FUNCTION","SEXC"))
+  updateSelectInput(session,"corrcectouse", choices = varnames, selected =  c("WT","AGE","CRCL","BMI","BSA"))
+  updateSelectInput(session,"corrcectouse2", choices = varnames, selected =  c("SEXC","RENAL_FUNCTION","TRT"))
+  updateSelectInput(session,"corrcectoby2", choices = varnames, selected =  c("WT"))
 })
 
 
