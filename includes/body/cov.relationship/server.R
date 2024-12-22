@@ -17,7 +17,6 @@ updateSelectInput(session, "datatoUseconcv2", choices = data.versions.names)
 
 output$corrcovplots1 <- renderPlot({
   covrel.data <- GLOBAL$data.versions[[input$datatoUseconcv1]]
-  usedd <<- covrel.data
   if (is.null(covrel.data)) {
     return("Awaiting data and covariate selection")
   }
@@ -48,7 +47,7 @@ output$corrcovplots2 <- renderPlot({
     covrel.data2 <- covrel.data %>%
       filter(!duplicated(ID)) # %>%select(all_of(varsr))
 
-    pl1 <- ggplot(data = usedd)
+    pl1 <- ggplot(data = covrel.data2)
     allplt <- lapply(varsr, function(o) {
       pl1 + aes_string(x = o, y = input$corrcectoby2) +
         geom_boxplot(outlier.shape = NA) +
