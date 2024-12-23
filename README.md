@@ -11,7 +11,7 @@ The importance of using clean data free of outliers cannot be overstated in the 
 
 ### Side note
 
-The template includes automated code generation for plots configured. For Version, the download of "concentration vs. time" ggplot object, image output, and code is tested and works. Downloads of other panels and EDA outputs are not yet configured.
+The template includes configured automated code generation for plots. For Version 1, the download of "concentration vs. time" ggplot object, image output, and code is tested and works. Downloads of other panels and EDA outputs are not yet configured.
 
 ### Usage 
 ```r
