@@ -3,11 +3,15 @@
 <img src="www/preview4.png">
 
 
-__Sample deployed template__: https://pharmacometric.shinyapps.io/pharmacometric-shiny-eda-template/
+__Sample version 1 deployed template__: https://pharmacometric.shinyapps.io/pharmacometric-shiny-eda-template/
 
 Creating a standard R script for a Shiny dashboard to perform exploratory data analysis (EDA) on clinical study data is an essential step in the data analysis pipeline. This dashboard can provide interactive visualizations and summary statistics that allow researchers to explore the data's underlying patterns, distributions, and relationships among variables. By incorporating various tools such as scatter plots, histograms, and box plots, users can gain insights into the data at a granular level. The flexibility of Shiny enables real-time updates, allowing users to filter and manipulate data dynamically, which is particularly useful for identifying trends and anomalies before proceeding to more complex modeling.
 
 The importance of using clean data free of outliers cannot be overstated in the context of pharmacometric model development. Outliers can significantly distort statistical analyses and lead to inaccurate model predictions, potentially compromising the validity of the study results. By ensuring that the data is thoroughly cleaned and pre-processed, researchers can improve the robustness of their models and enhance their ability to make reliable inferences about drug behavior in populations. Clean data facilitates better parameter estimation, reduces uncertainty in model predictions, and ultimately contributes to more effective decision-making in clinical settings. Therefore, conducting comprehensive EDA to identify and address potential data quality issues is a critical precursor to successful pharmacometric modeling.
+
+### Side note
+
+The template includes automated code generation for plots configured. For Version, the download of "concentration vs. time" ggplot object, image output, and code is tested and works. Downloads of other panels and EDA outputs are not yet configured.
 
 ### Usage 
 ```r
