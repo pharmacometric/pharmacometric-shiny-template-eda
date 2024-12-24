@@ -1,4 +1,4 @@
-# Standardize Dashboard Template for Exploratory Data Analysis [Shiny]
+# Standardized Dashboard Template for Exploratory Data Analysis [Shiny]
 
 <img src="www/preview4.png">
 
