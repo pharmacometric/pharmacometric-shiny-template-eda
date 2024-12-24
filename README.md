@@ -1,4 +1,4 @@
-# Standard PK Exploratory Data Analysis Template [Shiny]
+# Standardize Dashboard Template for Exploratory Data Analysis [Shiny]
 
 <img src="www/preview4.png">
 
