@@ -50,6 +50,7 @@ r2resize, version 1.9.1
 rlang, version 1.1.4
 grid, version 4.4.1
 ggthemes, version 5.1.0
+ggforce, version 0.4.2
 ```
 ### Features
 
