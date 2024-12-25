@@ -9,14 +9,14 @@
 #############################################################################
 #############################################################################
 
-#for(u in indexed(libs))message(u$key,"-",u$val)
+# for(u in indexed(libs))message(u$key,"-",u$val)
 # for exporting code
-GLOBAL$code.convtm.tpl = paste0(this.path,"/code.tpl")
-GLOBAL$code.convtm.libs.glue = paste0('c("',paste(libs[c(10,11,12,20,19)], collapse = '","'),'")')
+GLOBAL$code.convtm.tpl <- paste0(this.path, "/code.tpl")
+GLOBAL$code.convtm.libs.glue <- paste0('c("', paste(libs[c(10, 11, 12, 20, 19)], collapse = '","'), '")')
 
 
 # plot panels
-body.panel.right.plot.conc = card.pro(
+body.panel.right.plot.conc <- card.pro(
   title = "Concentration vs. Time",
   icon = icon("chart-area"),
   collapsed = 1L,
@@ -29,12 +29,24 @@ body.panel.right.plot.conc = card.pro(
   tabs = list(
     tabEntry(
       "DV.vs.TSFD",
-      selectInput("datatoUseconc1", "Data version to use:", choices = c()),
+      column(width = 6, class = "p-0", selectInput("datatoUseconc1", "Data version to use:", choices = c())),
+      column(
+        width = 6, class = "p-0",
+        conditionalPanel(
+          condition = "input.cgraphtype == 7 | input.cgraphtype == 8", numericInput("pagetoshowc1", "Page to show", value = 1)
+        )
+      ),
       plotOutput("concvtimeplot1", height = 500)
     ),
     tabEntry(
       "DV.vs.TSLD",
-      selectInput("datatoUseconc2", "Data version to use:", choices = c()),
+      column(width = 6, class = "p-0", selectInput("datatoUseconc2", "Data version to use:", choices = c())),
+      column(
+        width = 6, class = "p-0",
+        conditionalPanel(
+          condition = "input.cgraphtype == 7 | input.cgraphtype == 8", numericInput("pagetoshowc2", "Page to show", value = 1)
+        )
+      ),
       plotOutput("concvtimeplot2", height = 500)
     )
   ),
@@ -93,11 +105,11 @@ body.panel.right.plot.conc = card.pro(
     numericInput("downimgh", "Image height (px)", 1700, width = "90%"),
     numericInput("downimgs", "Image scale", 1, width = "90%"),
     br(),
-    downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"), class="downloadbtns")
+    downloadButton("concvtimedownloadimg", "Download plot", icon = icon("image"), class = "downloadbtns")
   ),
   footer = list(
     downloadButton("concvtimedownloadimg", "Download plot file (png)", icon = icon("image")),
-    downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class="downloadbtns2"),
-    downloadButton("cdownloadconcvt2", "Download plot code (R)", icon = icon("code"), class="downloadbtns")
+    downloadButton("concvtimedownloadimg2", "Download plot object (ggplot)", icon = icon("image"), class = "downloadbtns2"),
+    downloadButton("cdownloadconcvt2", "Download plot code (R)", icon = icon("code"), class = "downloadbtns")
   )
 )
