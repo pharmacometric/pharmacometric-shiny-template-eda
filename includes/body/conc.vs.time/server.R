@@ -142,7 +142,7 @@ output$concvtimeplot1 <- renderPlot({
 
       # inidividual if it is specified
       if (input$cgraphtype %in% 7:8) {
-        gplotout <- gplotout + facet_wrap(. ~ .id, ncol = input$graphcolnum)
+        gplotout <- gplotout + facet_wrap_paginate(. ~ .id, ncol = input$graphcolnum,nrow=2,page=input$pagetoshowc1)
       }
 
       # add semi log if it is specified
@@ -264,7 +264,7 @@ output$concvtimeplot2 <- renderPlot({
 
       # inidividual if it is specified
       if (input$cgraphtype %in% 7:8) {
-        gplotout <- gplotout + facet_wrap(. ~ .id, ncol = input$graphcolnum)
+        gplotout <- gplotout + facet_wrap_paginate(. ~ .id, ncol = input$graphcolnum,nrow=2,page=input$pagetoshowc1)
       }
 
       # add semi log if it is specified
