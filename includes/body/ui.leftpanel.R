@@ -11,7 +11,6 @@
 
 # sims setup panel
 body.panel.left.setup = card.pro(
-
   title = "Data",
   removebtn = FALSE,
   colorbtn = FALSE,
