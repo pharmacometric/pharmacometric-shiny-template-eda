@@ -4,6 +4,9 @@
 #tracksimulations, #reportgraphstatus, #reportgraphstatus2{
   color: red!important;
 }
+.page-footer {
+    height: 120px;
+}
 #summaryrestbl table{
   width:100%!important;
 }
